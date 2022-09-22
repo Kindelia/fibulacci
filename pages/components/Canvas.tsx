@@ -7,12 +7,16 @@ export type CanvasProps = React.ComponentProps<"canvas"> & {
 export function Canvas(props: CanvasProps) {
   const { draw, ...rest } = props;
 
-  const canvas = useRef();
+  const ref = useRef();
 
   useEffect(() => {
-    const context = canvas?.current?.getContext("2d");
-    draw(context);
-  });
+    const canvas = ref.current as HTMLCanvasElement;
+    const context = canvas.getContext("2d");
 
-  return <canvas ref={canvas} {...rest} />;
+    if (!context) return;
+
+    draw(context);
+  }, []);
+
+  return <canvas ref={ref} {...rest} />;
 }
