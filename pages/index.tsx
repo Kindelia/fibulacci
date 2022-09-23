@@ -1,33 +1,94 @@
 import Head from "next/head";
-import { Canvas } from "./components/Canvas";
-import { useKey } from "react-use";
 import { useState } from "react";
-import { grass00 } from "./constants";
+import { useKey } from "react-use";
+
+import { Canvas } from "./components/Canvas";
+import { blob05 } from "./constants";
+import { Castle } from "./game/maps/castle";
+import { Blob } from "./game/mobs/blob";
 
 export default function Home() {
-  const [count, set] = useState(0);
+  const initialState = {
+    movements: [],
+    mapLimit: 500,
+    player: {
+      x: 200,
+      y: 300,
+    },
+  };
 
-  const increment = () => set((count) => ++count);
+  const [state, setState] = useState<typeof initialState>(initialState);
 
-  useKey("ArrowUp", increment);
-  useKey("ArrowRight", increment);
-  useKey("ArrowLeft", increment);
-  useKey("ArrowDown", increment);
+  useKey("ArrowUp", () =>
+    setState((prev) => ({
+      ...prev,
+      player: {
+        ...prev.player,
+        y: prev.player.y > 0 ? prev.player.y - 1  : prev.player.y,
+      },
+      movements: [...prev.movements, "ArrowUp"],
+    }))
+  );
+
+  useKey("ArrowDown", () =>
+    setState((prev) => ({
+      ...prev,
+      player: {
+        ...prev.player,
+        y: prev.player.y < prev.mapLimit ? prev.player.y + 1 : prev.player.y,
+      },
+      movements: [...prev.movements, "ArrowDown"],
+    }))
+  );
+
+  useKey("ArrowRight", () =>
+    setState((prev) => ({
+      ...prev,
+      player: {
+        ...prev.player,
+        x: prev.player.x > prev.mapLimit ? ++prev.player.x : prev.player.x,
+      },
+      movements: [...prev.movements, "ArrowRight"],
+    }))
+  );
+
+  useKey("ArrowLeft", () =>
+    setState((prev) => ({
+      ...prev,
+      player: {
+        ...prev.player,
+        x: prev.player.x < prev.mapLimit ? --prev.player.x : prev.player.x,
+      },
+      movements: [...prev.movements, "ArrowLeft"],
+    }))
+  );
+
+  console.log(JSON.stringify(state, null, 2));
+
+  const player1 = new Blob({
+    name: "Player Blob 1",
+    x: state.player.x,
+    y: state.player.y,
+  });
+
+  const player2 = new Blob({
+    name: "Player Blob 2",
+    x: 325,
+    y: 300,
+  });
+
+  const castle = new Castle();
 
   function draw(context: CanvasRenderingContext2D) {
-    let image = new Image();
-    
-    image.onload = () => { 
-      context.drawImage(image, 0, 0)
-    }
+    context.clearRect(0, 0, 400, 400);
 
-    image.src = grass00
-    image.width = 250
-    image.height = 250
+    castle.draw(context);
 
-    context.fillStyle = 'white';
-    context.fillRect(0, 0, 500, 500);
+    player1.drawWithAnimated(context);
+    player2.draw(context);
   }
+
+  console.log("RENDER RENDER");
 
   return (
     <div>
@@ -38,11 +99,8 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1>Fibulacci</h1>
-        <h4>{JSON.stringify({
-          count,
-        })}</h4>
-        <Canvas draw={draw} width={500} height={500} />
+        {/* <StartScreen /> */}
+        <Canvas draw={draw} state={state} width={1000} height={900} />
       </main>
     </div>
   );
