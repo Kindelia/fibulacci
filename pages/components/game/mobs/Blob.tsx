@@ -10,23 +10,18 @@ export type BlobProps = {
 export default function Blob(props: BlobProps) {
   const { side, x, y } = props;
 
-  const images = F.pipe(
+  return F.pipe(
     F.range(8),
-    F.map((i) => `images/mobs/blob/${side}/blob-${side}-${i - 1}.png`),
-    F.toArray
-  );
-
-  return (
+    F.map((i) => `images/mobs/blob/${side}/blob-${side}-${i}.png`),
+    F.toArray,
+    (images) => (
       <AnimatedSprite
-        // scale={2}
-        images={images}
         x={x ?? 0}
         y={y ?? 0}
         isPlaying
-        width={32}
-        height={32}
-        initialFrame={0}
+        images={images}
         animationSpeed={0.1}
-        />
+      />
+    )
   );
 }
