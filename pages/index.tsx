@@ -1,15 +1,8 @@
-import { Stage } from "@inlet/react-pixi";
-import Head from "next/head";
-import { useWindowSize } from "react-use";
+import Head from 'next/head';
 
-import Map from "../components/Map";
-import Blob from "../components/Blob";
-import { usePlayer } from "../hooks/usePlayer";
+import { StartScreen } from '../components/StartScreen';
 
 export default function Home() {
-  const player = usePlayer();
-  const window = useWindowSize();
-
   return (
     <div>
       <Head>
@@ -19,20 +12,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <Stage
-          width={window.width}
-          height={window.height}
-          options={{
-            backgroundColor: 0x1099bb,
-          }}
-        >
-          <Map>
-            <Blob side="right" x={player.x} y={player.y} />
-            <Blob side="left" x={200} y={400} />
-            <Blob side="left" x={250} y={303} />
-            <Blob side="right" x={400} y={500} />
-          </Map>
-        </Stage>
+        <StartScreen />
       </main>
     </div>
   );
