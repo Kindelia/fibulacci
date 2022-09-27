@@ -1,11 +1,20 @@
-import Image from "next/image";
+import Router from "next/router";
+import { useState } from "react";
+import { useEffectOnce } from "react-use";
 
 export function StartScreen() {
+  const [isShown, setIsShown] = useState(true);
+
+  useEffectOnce(() => {
+    setTimeout(() => {
+      Router.push('/play');
+    }, 5000);
+  });
+
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <img
-        src="https://img.freepik.com/premium-vector/pixel-art-8bit-game-home-screen-landscape-start-game-menu-background_360488-314.jpg?w=2000"
-        className="h-screen w-full flex"
+        src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/296cfd51810903.58fa63641b9a1.gif"
       />
     </div>
   );
