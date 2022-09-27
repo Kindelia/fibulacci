@@ -1,10 +1,8 @@
-import Router from "next/router";
-import { useState } from "react";
-import { useEffectOnce } from "react-use";
+import Router from 'next/router';
+import { useState } from 'react';
+import { useEffectOnce } from 'react-use';
 
 export function StartScreen() {
-  const [isShown, setIsShown] = useState(true);
-
   useEffectOnce(() => {
     setTimeout(() => {
       Router.push('/play');
