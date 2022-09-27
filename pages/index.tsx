@@ -1,5 +1,6 @@
 import { Stage } from "@inlet/react-pixi";
 import Head from "next/head";
+import { useWindowSize } from "react-use";
 
 import Map from "./components/game/maps/Map";
 import Blob from "./components/game/mobs/Blob";
@@ -7,6 +8,7 @@ import { usePlayer } from "./hooks/usePlayer";
 
 export default function Home() {
   const player = usePlayer();
+  const window = useWindowSize();
 
   return (
     <div>
@@ -18,8 +20,8 @@ export default function Home() {
 
       <main>
         <Stage
-          width={1000}
-          height={1000}
+          width={window.width}
+          height={window.height}
           options={{
             backgroundColor: 0x1099bb,
           }}
