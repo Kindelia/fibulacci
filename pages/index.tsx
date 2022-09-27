@@ -2,9 +2,9 @@ import { Stage } from "@inlet/react-pixi";
 import Head from "next/head";
 import { useWindowSize } from "react-use";
 
-import Map from "./components/game/maps/Map";
-import Blob from "./components/game/mobs/Blob";
-import { usePlayer } from "./hooks/usePlayer";
+import Map from "../components/Map";
+import Blob from "../components/Blob";
+import { usePlayer } from "../hooks/usePlayer";
 
 export default function Home() {
   const player = usePlayer();
