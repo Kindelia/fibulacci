@@ -8,7 +8,7 @@ export type BlobProps = {
   y?: number;
 };
 
-export default function Blob(props: BlobProps) {
+export function Blob(props: BlobProps) {
   const { side, x, y } = props;
 
   const [play] = useSound(
