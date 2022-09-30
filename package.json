@@ -12,6 +12,8 @@
     "@fxts/core": "0.10.0",
     "@inlet/react-pixi": "6.8.0",
     "@nanostores/react": "0.4.0",
+    "@tanstack/react-query": "^4.7.2",
+    "axios": "^0.27.2",
     "nanostores": "0.7.0",
     "next": "12.3.1",
     "pixi.js": "6.5.4",
