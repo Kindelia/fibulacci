@@ -1,0 +1,5 @@
+// spawns 3829 at pos (12, 12)
+run {
+  ask x = (Call 'Fib' {Fib_Act_next #65269});
+  (Done x)
+}
