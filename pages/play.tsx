@@ -11,10 +11,7 @@ import { useKindeliaStatsQuery } from '../hooks/useKindeliaStatsQuery';
 export default function Home() {
   const window = useWindowSize();
 
-  const stats = useKindeliaStatsQuery();
-  const x = useKindeliaPostTestMutation();
-
-  console.log(JSON.stringify(stats));
+  useKindeliaStatsQuery();
 
   return (
     <div>
