@@ -1,4 +1,0 @@
-run {
-  ask x = (Call 'Fib' {Fib_Act #0});
-  (Done x)
-}
