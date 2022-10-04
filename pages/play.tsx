@@ -5,7 +5,6 @@ import { useWindowSize } from 'react-use';
 import { Blob } from '../components/Blob';
 import { Map } from '../components/Map';
 import { Player } from '../components/Player';
-import { useKindeliaPostTestMutation } from '../hooks/useKindeliaPostTestMutation';
 import { useKindeliaStatsQuery } from '../hooks/useKindeliaStatsQuery';
 
 export default function Home() {
