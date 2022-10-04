@@ -1,21 +1,13 @@
-import { Stage } from "@inlet/react-pixi";
-import Head from "next/head";
-import { useEffectOnce, useWindowSize } from "react-use";
+import { Stage } from '@inlet/react-pixi';
+import Head from 'next/head';
+import { useWindowSize } from 'react-use';
 
-import { Blob } from "../components/Blob";
-import { Map } from "../components/Map";
-import { Player } from "../components/Player";
-import { useKindeliaStats } from "../hooks/useKindeliaStats";
-import { useRequestTest } from "../hooks/useRequestTest";
+import { Blob } from '../components/Blob';
+import { Map } from '../components/Map';
+import { Player } from '../components/Player';
 
 export default function Home() {
   const window = useWindowSize();
-
-  useEffectOnce(() => {
-    const kindeliaStats = useKindeliaStats();
-
-    console.log(JSON.stringify(kindeliaStats, null, 4));
-  });
 
   return (
     <div>
