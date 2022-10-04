@@ -1,7 +1,7 @@
-// import { useMutation, useQuery } from "@tanstack/react-query";
-// import { client } from "../utils/axios";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { api } from "../utils/axios";
 
-// export function useMoveMutation() {
+export function useMoveMutation() {
 //   const id = 727;
 //   const x = 0o0;
 //   const y = 0o4;
@@ -25,4 +25,4 @@
 //   return useMutation("moveMutation", () =>
 //     client.post("/publish", data).then((res) => res.data)
 //   );
-// }
+}

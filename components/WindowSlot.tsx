@@ -19,6 +19,7 @@ export function WindowSlot(_props: WindowSlotProps) {
             F.range(4),
             F.map((j: number) => (
               <Sprite
+                key={i + j}
                 image={"images/window-slot.png"}
                 scale={2}
                 x={x + i * 64}

@@ -18,6 +18,7 @@ export function EXPBar(props: EXPBarProps) {
     F.range(14),
     F.map((i: number) => (
       <Sprite
+        key={i}
         image={"images/exp-full.png"}
         x={x + i * 24}
         y={y}
