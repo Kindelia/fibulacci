@@ -6,11 +6,13 @@ import { Blob } from '../components/Blob';
 import { Map } from '../components/Map';
 import { Player } from '../components/Player';
 import { useKindeliaStatsQuery } from '../hooks/useKindeliaStatsQuery';
+import { useStateQuery } from '../hooks/useStateQuery';
 
 export default function Home() {
   const window = useWindowSize();
 
-  useKindeliaStatsQuery();
+  const kindeliaState = useStateQuery();
+  const x = useKindeliaStatsQuery();
 
   return (
     <div>

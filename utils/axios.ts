@@ -7,5 +7,5 @@ const urls: string[] = [
 ];
 
 export const api = axios.create({
-  baseURL: `https://${urls[1]}`,
+  baseURL: `https://${urls[2]}`,
 });
