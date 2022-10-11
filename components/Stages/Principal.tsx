@@ -16,9 +16,11 @@ export function Stage(props: StageProps) {
   });
 
   function handlePlay() {
-    if(!isPlaying) {
-      setIsPlaying(true);
+    try {
       play();
+      setIsPlaying(true);
+    } catch (error) {
+      setIsPlaying(false);
     }
   }
 
