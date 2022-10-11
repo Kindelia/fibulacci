@@ -1,6 +1,6 @@
 import { usePlayer } from "../hooks/usePlayer";
-import { Window } from "./Window";
-import { Blob } from "./Blob";
+import { Blob } from "./Creatures/Blob";
+import { Window } from "./Interfaces/Window";
 
 type PlayerProps = {};
 

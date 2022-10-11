@@ -1,4 +1,4 @@
-import { atom } from "nanostores";
+import { persistentAtom } from '@nanostores/persistent';
 
 type Player = {
   exp?: number;
@@ -15,7 +15,7 @@ type Player = {
   y?: number;
 };
 
-const playerInitialState: Player = {
+const initialPlayerState: Player = {
   exp: 0,
   hp: 100,
   level: 1,
@@ -30,16 +30,35 @@ const playerInitialState: Player = {
   y: 0,
 };
 
-export const playerStore = atom<Player>({
-  ...playerInitialState,
-});
+export const playerStore = persistentAtom<Player>(
+  "player",
+  {...initialPlayerState},
+  {
+    encode: JSON.stringify,
+    decode: JSON.parse,
+  }
+);
 
 export function setPlayer(player: Player) {
-  playerStore.set({ ...playerStore.get(), ...player });
+  const currentPlayer = playerStore.get();
+
+  console.log("currentPlayer", currentPlayer);
+  console.log("player", player);
+  console.log("merge", {
+    ...currentPlayer,
+    ...player,
+    movements: [...currentPlayer.movements, ...player.movements],
+  });
+
+  playerStore.set({
+    ...currentPlayer,
+    ...player,
+    movements: [...currentPlayer.movements, ...player.movements],
+  });
 }
 
 export function resetPlayer() {
   playerStore.set({
-    ...playerInitialState,
+    ...initialPlayerState
   });
 }
