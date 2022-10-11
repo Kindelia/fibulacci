@@ -10,20 +10,26 @@ export function EXPBar(props: EXPBarProps) {
   const scale = 1;
 
   return (
-    <div className="flex gap-2">
-      {F.pipe(
-        F.range(14),
-        F.map((i: number) => (
-          <Image
-            key={i}
-            src="/images/exp-full.png"
-            alt="EXP Bar"
-            width={width * scale}
-            height={height * scale}
-          />
-        )),
-        F.toArray
-      )}
+    <div>
+      <div className="flex justify-between">
+        <p>EXP</p>
+        <p>Lvl. 1</p>
+      </div>
+      <div className="flex gap-2">
+        {F.pipe(
+          F.range(14),
+          F.map((i: number) => (
+            <Image
+              key={i}
+              src="/images/exp-full.png"
+              alt="EXP Bar"
+              width={width * scale}
+              height={height * scale}
+            />
+          )),
+          F.toArray
+        )}
+      </div>
     </div>
   );
 }
