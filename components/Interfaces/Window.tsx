@@ -18,6 +18,9 @@ export function Window(props: WindowProps) {
       }}
     >
       <div className="flex flex-col h-screen justify-center items-center gap-10">
+        <div className="w-3/4 h-48 bg-orange-100 flex justify-center items-center">
+          <p className="text-black">MINIMAP</p>
+        </div>
         <div className="flex flex-col gap-2">
           <HPBar />
           <MPBar />
