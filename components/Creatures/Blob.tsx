@@ -20,7 +20,7 @@ export function Blob(props: BlobProps) {
 
   return (
     <div
-      className="animate-blob absolute"
+      className="animate-blob absolute cursor-pointer"
       style={{
         backgroundImage: `url("/images/blob-${side}.png")`,
         width: size * scale,
