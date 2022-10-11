@@ -1,7 +1,5 @@
-import * as F from "@fxts/core";
-import { Sprite } from "@inlet/react-pixi";
-import Image from "next/image";
-import { useWindowSize } from "react-use";
+import * as F from '@fxts/core';
+import Image from 'next/image';
 
 type WindowSlotProps = {};
 
