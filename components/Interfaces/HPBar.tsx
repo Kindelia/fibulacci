@@ -12,22 +12,33 @@ export function HPBar(_props: HPBarProps) {
   const scale = 3;
 
   return (
-    <div className="flex flex-col border-2 border-white" style={{
-      width: width * scale,
-    }}>
-      <EmptyBar />
-      <div className="-mt-14" style={{
+    <div
+      style={{
         width: width * scale,
         height: height * scale,
-      }}>
+        position: "relative",
+      }}
+    >
+      <EmptyBar />
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: width * scale,
+          height: height * scale,
+          overflow: "hidden",
+        }}
+      >
         <Image
           src="/images/hp-bar.png"
           alt="HP Bar"
           width={width * scale}
           height={height * scale}
-          objectFit="cover"
+          layout="fixed"
         />
       </div>
+      <p className="absolute top-1/4 left-2/4 font-press-start-2p">HP</p>
     </div>
   );
 }
