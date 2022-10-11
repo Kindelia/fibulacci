@@ -1,7 +1,5 @@
-import { ReactNode, useEffect, useState } from "react";
-import { useWindowSize } from "react-use";
+import { ReactNode, useState } from "react";
 import useSound from "use-sound";
-import { Window } from "../Interfaces/Window";
 
 type StageProps = {
   children: ReactNode;
@@ -10,29 +8,25 @@ type StageProps = {
 export function Stage(props: StageProps) {
   const { children } = props;
 
-  const [{ isPlaying }, setState] = useState({
-    isPlaying: false,
-  });
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  const [play, { stop }] = useSound("sounds/map-sound.mp3", {
+  const [play] = useSound("sounds/map-sound.mp3", {
     volume: 0.1,
     loop: true,
   });
 
-  useEffect(() => {
-    if (isPlaying) return play();
-    else stop();
-  }, [isPlaying]);
+  function handlePlay() {
+    if(!isPlaying) {
+      setIsPlaying(true);
+      play();
+    }
+  }
 
   return (
     <>
-      {/* <button
-        className="bg-purple-600 px-4 py-4"
-        onClick={() => setState({ isPlaying: !isPlaying })}
-      >
-        PLAY SOUND
-      </button> */}
-      <div className="bg-map h-screen w-full">{children}</div>
+      <div onClick={handlePlay} className="bg-map h-screen w-full">
+        {children}
+      </div>
     </>
   );
 }
