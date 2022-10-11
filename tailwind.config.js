@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "press-start-2p": ['"Press Start 2P"', "sans-serif"],
+      },
       backgroundImage: {
         // Creatures
         "blob-right": "url('../public/images/blob-right.png')",
@@ -13,7 +16,7 @@ module.exports = {
         "blob-blue-left": "url('../public/images/blob-blue-left.png')",
         "blob-blue-right": "url('../public/images/blob-blue-right.png')",
         // Hub
-        "window": "url('../public/images/window.png')",
+        window: "url('../public/images/window.png')",
         "hp-bar": "url('../public/images/hp-bar.png')",
         // Stages
         map: "url('../public/images/maps/map.png')",
