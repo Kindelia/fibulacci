@@ -1,0 +1,6 @@
+// Returns the state unmodified
+run {
+  ask state = (Call 'Fib' {Fib_Act_next #0});
+  let parsed = (Fib_st_parse state);
+  (Done parsed)
+}
