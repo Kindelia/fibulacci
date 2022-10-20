@@ -1,8 +1,8 @@
-// Functions necessary for Fib
+// Functions necessary for Fit
 
-// Fib.init : _
-fun (Fib_init) {
-  (Fib_init) = (Fib_st_init)
+// Fit.init : _
+fun (Fit_init) {
+  (Fit_init) = (Fit_st_init)
 }
 
 // U120.new (hi: U60) (lo: U60) : (U120)
@@ -10,43 +10,43 @@ fun (U120_new hi lo) {
   (U120_new hi lo) = (+ (<< hi #60) (>> (<< lo #60) #60))
 }
 
-// Apps.Fib.State.update (state: (Apps.Fib.State)) (action: (U120)) (frame: (U120)) : (Apps.Fib.State)
-fun (Fib_st_upd state action frame) {
-  (Fib_st_upd {Fib_st_new map tab} action frame) = dup _6 _7 = action; dup _8 _9 = _6; dup _2 _3 = tab; dup _4 _5 = _2; dup _0 _1 = map; let data = (Fib_ac_gdata _7); dup _18 _19 = data; let comm = (Fib_ac_gcomm _8); dup _16 _17 = comm; let id = (Fib_ac_gid _9); dup _12 _13 = id; dup _14 _15 = _12; let ent_tab = (Fib_tbl_got _3 _13); (Pair_match ent_tab @~ @ent_tab.snd let ent = ent_tab.snd; dup _10 _11 = ent; (Bool_if (Bool_and (U120_equal _10 #0) (U120_equal _16 #15)) (Fib_st_crtp {Fib_st_new _0 _4} _14 _18) (Fib_st_updcm {Fib_st_new _1 _5} _17 _19 _15 _11 frame)))
+// Apps.Fit.State.update (state: (Apps.Fit.State)) (action: (U120)) (frame: (U120)) : (Apps.Fit.State)
+fun (Fit_st_upd state action frame) {
+  (Fit_st_upd {Fit_st_new map tab} action frame) = dup _6 _7 = action; dup _8 _9 = _6; dup _2 _3 = tab; dup _4 _5 = _2; dup _0 _1 = map; let data = (Fit_ac_gdata _7); dup _18 _19 = data; let comm = (Fit_ac_gcomm _8); dup _16 _17 = comm; let id = (Fit_ac_gid _9); dup _12 _13 = id; dup _14 _15 = _12; let ent_tab = (Fit_tbl_got _3 _13); (Pair_match ent_tab @~ @ent_tab.snd let ent = ent_tab.snd; dup _10 _11 = ent; (Bool_if (Bool_and (U120_equal _10 #0) (U120_equal _16 #15)) (Fit_st_crtp {Fit_st_new _0 _4} _14 _18) (Fit_st_updcm {Fit_st_new _1 _5} _17 _19 _15 _11 frame)))
 }
 
-// Apps.Fib.State.update.command (state: (Apps.Fib.State)) (command: (U120)) (data: (U120)) (id: (Apps.Fib.Id)) (ent: (Apps.Fib.Entity)) (frame: (U120)) : (Apps.Fib.State)
-fun (Fib_st_updcm state command data id ent frame) {
-  (Fib_st_updcm state #0 data id ent ~) = (Fib_st_walk state data ent id)
-  (Fib_st_updcm state #1 ~ ~ ~ ~) = state
-  (Fib_st_updcm state #2 data ~ ent ~) = (Fib_st_updsk state #0 data ent)
-  (Fib_st_updcm state #3 data ~ ent ~) = (Fib_st_updsk state #1 data ent)
-  (Fib_st_updcm state #4 data ~ ent ~) = (Fib_st_updsk state #2 data ent)
-  (Fib_st_updcm state #5 data ~ ent ~) = (Fib_st_updsk state #3 data ent)
-  (Fib_st_updcm state #6 data ~ ent ~) = (Fib_st_updsk state #4 data ent)
-  (Fib_st_updcm state #7 data ~ ent ~) = (Fib_st_updsk state #5 data ent)
-  (Fib_st_updcm state #8 data id ent frame) = (Fib_st_updit state data id ent frame)
-  (Fib_st_updcm state ~ ~ ~ ~ ~) = state
+// Apps.Fit.State.update.command (state: (Apps.Fit.State)) (command: (U120)) (data: (U120)) (id: (Apps.Fit.Id)) (ent: (Apps.Fit.Entity)) (frame: (U120)) : (Apps.Fit.State)
+fun (Fit_st_updcm state command data id ent frame) {
+  (Fit_st_updcm state #0 data id ent ~) = (Fit_st_walk state data ent id)
+  (Fit_st_updcm state #1 ~ ~ ~ ~) = state
+  (Fit_st_updcm state #2 data ~ ent ~) = (Fit_st_updsk state #0 data ent)
+  (Fit_st_updcm state #3 data ~ ent ~) = (Fit_st_updsk state #1 data ent)
+  (Fit_st_updcm state #4 data ~ ent ~) = (Fit_st_updsk state #2 data ent)
+  (Fit_st_updcm state #5 data ~ ent ~) = (Fit_st_updsk state #3 data ent)
+  (Fit_st_updcm state #6 data ~ ent ~) = (Fit_st_updsk state #4 data ent)
+  (Fit_st_updcm state #7 data ~ ent ~) = (Fit_st_updsk state #5 data ent)
+  (Fit_st_updcm state #8 data id ent frame) = (Fit_st_updit state data id ent frame)
+  (Fit_st_updcm state ~ ~ ~ ~ ~) = state
 }
 
-// Apps.Fib.State.update.interact (state: (Apps.Fib.State)) (data: (U120)) (player_id: (Apps.Fib.Id)) (player: (Apps.Fib.Entity)) (frame: (U120)) : (Apps.Fib.State)
-fun (Fib_st_updit state data player_id player frame) {
-  (Fib_st_updit state data player_id player frame) = dup _4 _5 = state; dup _6 _7 = _4; dup _8 _9 = _5; dup _2 _3 = player; dup _0 _1 = data; let map = (Apps_Fib_5nd _6); let pos = (Fib_pos_new (Fib_plr_p_gx _2) (Fib_plr_p_gy _3)); let delta = (Apps_Fib_x52 _0); let data = (Apps_Fib_w6S _1); (Maybe_match (Fib_pos_mod pos delta) _7 @target.value let npc = (Fib_map_get map target.value); dup _10 _11 = npc; let int = (Apps_Fib_qgm _10 data); let result = ((((int _8) player_id) _11) frame); (Apps_Fib_pbB result @~ @result.state @~ @~ @~ result.state _9))
+// Apps.Fit.State.update.interact (state: (Apps.Fit.State)) (data: (U120)) (player_id: (Apps.Fit.Id)) (player: (Apps.Fit.Entity)) (frame: (U120)) : (Apps.Fit.State)
+fun (Fit_st_updit state data player_id player frame) {
+  (Fit_st_updit state data player_id player frame) = dup _4 _5 = state; dup _6 _7 = _4; dup _8 _9 = _5; dup _2 _3 = player; dup _0 _1 = data; let map = (Apps_Fit_5nd _6); let pos = (Fit_pos_new (Fit_plr_p_gx _2) (Fit_plr_p_gy _3)); let delta = (Apps_Fit_x52 _0); let data = (Apps_Fit_w6S _1); (Maybe_match (Fit_pos_mod pos delta) _7 @target.value let npc = (Fit_map_get map target.value); dup _10 _11 = npc; let int = (Apps_Fit_qgm _10 data); let result = ((((int _8) player_id) _11) frame); (Apps_Fit_pbB result @~ @result.state @~ @~ @~ result.state _9))
 }
 
-// Apps.Fib.State.update.skill (state: (Apps.Fib.State)) (skill_id: (U120)) (data: (U120)) (entity: (Apps.Fib.Entity)) : (Apps.Fib.State)
-fun (Fib_st_updsk state skill_id data entity) {
-  (Fib_st_updsk state skill_id data entity) = dup _2 _3 = entity; dup _4 _5 = _2; dup _6 _7 = _3; dup _0 _1 = state; let skill = (Fib_plr_sk_g _4 skill_id); let pos = (Fib_pos_new (Fib_plr_p_gx _5) (Fib_plr_p_gy _6)); let delta = (Fib_pos_g_xy data); (Maybe_match (Fib_pos_mod pos delta) _0 @target.value (Fib_st_appsk _1 skill _7 target.value))
+// Apps.Fit.State.update.skill (state: (Apps.Fit.State)) (skill_id: (U120)) (data: (U120)) (entity: (Apps.Fit.Entity)) : (Apps.Fit.State)
+fun (Fit_st_updsk state skill_id data entity) {
+  (Fit_st_updsk state skill_id data entity) = dup _2 _3 = entity; dup _4 _5 = _2; dup _6 _7 = _3; dup _0 _1 = state; let skill = (Fit_plr_sk_g _4 skill_id); let pos = (Fit_pos_new (Fit_plr_p_gx _5) (Fit_plr_p_gy _6)); let delta = (Fit_pos_g_xy data); (Maybe_match (Fit_pos_mod pos delta) _0 @target.value (Fit_st_appsk _1 skill _7 target.value))
 }
 
-// Apps.Fib.Action.get_id (action: (U120)) : (U120)
-fun (Fib_ac_gid action) {
-  (Fib_ac_gid action) = (Fib_g_u120 action #0 #12)
+// Apps.Fit.Action.get_id (action: (U120)) : (U120)
+fun (Fit_ac_gid action) {
+  (Fit_ac_gid action) = (Fit_g_u120 action #0 #12)
 }
 
-// Apps.Fib.get_in_u120 (chunk: (U120)) (pos: (U120)) (size: (U120)) : (U120)
-fun (Fib_g_u120 chunk pos size) {
-  (Fib_g_u120 chunk pos size) = let mask = (- (<< #1 size) #1); let num = (& (>> chunk pos) mask); num
+// Apps.Fit.get_in_u120 (chunk: (U120)) (pos: (U120)) (size: (U120)) : (U120)
+fun (Fit_g_u120 chunk pos size) {
+  (Fit_g_u120 chunk pos size) = let mask = (- (<< #1 size) #1); let num = (& (>> chunk pos) mask); num
 }
 
 // Bool.if -(a: Type) (b: (Bool)) (t: a) (f: a) : a
@@ -72,21 +72,21 @@ fun (U60_tbool n) {
   (U60_tbool ~) = {Bool_true}
 }
 
-// Apps.Fib.Interaction.Result.match -(a: Type) (x: (Apps.Fib.Interaction.Result a)) -(p: (x: (Apps.Fib.Interaction.Result a)) Type) (new: (val: a) (state: (Apps.Fib.State)) (player: (Apps.Fib.Id)) (entity: (Apps.Fib.Id)) (frame: (U120)) (p (Apps.Fib.Interaction.Result.new a val state player entity frame))) (err: (p (Apps.Fib.Interaction.Result.err a))) : (p x)
-fun (Apps_Fib_pbB x new err) {
-  (Apps_Fib_pbB {Apps_Fib_HVU val_ state_ player_ entity_ frame_} new ~) = (((((new val_) state_) player_) entity_) frame_)
-  (Apps_Fib_pbB {Apps_Fib_n78} ~ err) = err
+// Apps.Fit.Interaction.Result.match -(a: Type) (x: (Apps.Fit.Interaction.Result a)) -(p: (x: (Apps.Fit.Interaction.Result a)) Type) (new: (val: a) (state: (Apps.Fit.State)) (player: (Apps.Fit.Id)) (entity: (Apps.Fit.Id)) (frame: (U120)) (p (Apps.Fit.Interaction.Result.new a val state player entity frame))) (err: (p (Apps.Fit.Interaction.Result.err a))) : (p x)
+fun (Apps_Fit_pbB x new err) {
+  (Apps_Fit_pbB {Apps_Fit_HVU val_ state_ player_ entity_ frame_} new ~) = (((((new val_) state_) player_) entity_) frame_)
+  (Apps_Fit_pbB {Apps_Fit_n78} ~ err) = err
 }
 
-// Apps.Fib.Interaction.Result.err -(a: Type) : (Apps.Fib.Interaction.Result a)
-ctr {Apps_Fib_n78}
+// Apps.Fit.Interaction.Result.err -(a: Type) : (Apps.Fit.Interaction.Result a)
+ctr {Apps_Fit_n78}
 
-// Apps.Fib.Interaction.Result.new -(a: Type) (val: a) (state: (Apps.Fib.State)) (player: (Apps.Fib.Id)) (entity: (Apps.Fib.Id)) (frame: (U120)) : (Apps.Fib.Interaction.Result a)
-ctr {Apps_Fib_HVU val state player entity frame}
+// Apps.Fit.Interaction.Result.new -(a: Type) (val: a) (state: (Apps.Fit.State)) (player: (Apps.Fit.Id)) (entity: (Apps.Fit.Id)) (frame: (U120)) : (Apps.Fit.Interaction.Result a)
+ctr {Apps_Fit_HVU val state player entity frame}
 
-// Apps.Fib.Pos.get_xy_delta (data: (U120)) : (Pair (U120) (U120))
-fun (Fib_pos_g_xy data) {
-  (Fib_pos_g_xy data) = dup _0 _1 = data; let dx = (& _0 #15); let dy = (>> _1 #4); let func = @n dup _2 _3 = n; dup _4 _5 = _2; (Bool_if (U120_equal (/ _3 #8) #1) (- #0 (% _4 #8)) (% _5 #8)); dup _6 _7 = func; {T2 (_6 dx) (_7 dy)}
+// Apps.Fit.Pos.get_xy_delta (data: (U120)) : (Pair (U120) (U120))
+fun (Fit_pos_g_xy data) {
+  (Fit_pos_g_xy data) = dup _0 _1 = data; let dx = (& _0 #15); let dy = (>> _1 #4); let func = @n dup _2 _3 = n; dup _4 _5 = _2; (Bool_if (U120_equal (/ _3 #8) #1) (- #0 (% _4 #8)) (% _5 #8)); dup _6 _7 = func; {T2 (_6 dx) (_7 dy)}
 }
 
 // U120.equal (a: (U120)) (b: (U120)) : (Bool)
@@ -187,17 +187,17 @@ fun (Maybe_match x none some) {
   (Maybe_match {Maybe_some value_} ~ some) = (some value_)
 }
 
-// Apps.Fib.Player.pos.get_x (player: (Apps.Fib.Player)) : (U120)
-fun (Fib_plr_p_gx player) {
-  (Fib_plr_p_gx player) = (Fib_g_u120 player #0 #8)
+// Apps.Fit.Player.pos.get_x (player: (Apps.Fit.Player)) : (U120)
+fun (Fit_plr_p_gx player) {
+  (Fit_plr_p_gx player) = (Fit_g_u120 player #0 #8)
 }
 
-// Apps.Fib.State.new (map: (Apps.Fib.Map)) (tab: (Apps.Fib.Table)) : (Apps.Fib.State)
-ctr {Fib_st_new map tab}
+// Apps.Fit.State.new (map: (Apps.Fit.Map)) (tab: (Apps.Fit.Table)) : (Apps.Fit.State)
+ctr {Fit_st_new map tab}
 
-// Apps.Fib.Table.Bases : (List (Data.BaseTree.Base))
-fun (Fib_tbl_bses) {
-  (Fib_tbl_bses) = {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_nil}}}}}}}}}}}}}
+// Apps.Fit.Table.Bases : (List (Data.BaseTree.Base))
+fun (Fit_tbl_bses) {
+  (Fit_tbl_bses) = {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_nil}}}}}}}}}}}}}
 }
 
 // Data.BaseTree.Base.2 : (Data.BaseTree.Base)
@@ -212,14 +212,14 @@ ctr {List_nil}
 // Data.BaseTree.Base.5 : (Data.BaseTree.Base)
 ctr {Bt_base5}
 
-// Apps.Fib.Map.Bases : (List (Data.BaseTree.Base))
-fun (Fib_map_base) {
-  (Fib_map_base) = {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base5} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_nil}}}}}}}}}}}
+// Apps.Fit.Map.Bases : (List (Data.BaseTree.Base))
+fun (Fit_map_base) {
+  (Fit_map_base) = {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base5} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_nil}}}}}}}}}}}
 }
 
-// Apps.Fib.Player.skills.get (player: (Apps.Fib.Player)) (skill_id: (U120)) : (U120)
-fun (Fib_plr_sk_g player skill_id) {
-  (Fib_plr_sk_g player skill_id) = (Fib_g_u120 player (+ #84 (* skill_id #6)) #6)
+// Apps.Fit.Player.skills.get (player: (Apps.Fit.Player)) (skill_id: (U120)) : (U120)
+fun (Fit_plr_sk_g player skill_id) {
+  (Fit_plr_sk_g player skill_id) = (Fit_g_u120 player (+ #84 (* skill_id #6)) #6)
 }
 
 // U120.high (n: (U120)) : U60
@@ -248,18 +248,18 @@ fun (U120_low n) {
   (U120_low n) = (>> (<< n #60) #60)
 }
 
-// Apps.Fib.Interaction.get_direction (data: (U120)) : (Pair (U120) (U120))
-fun (Apps_Fib_x52 data) {
-  (Apps_Fib_x52 data) = (Apps_Fib_6Nu (& data #3))
+// Apps.Fit.Interaction.get_direction (data: (U120)) : (Pair (U120) (U120))
+fun (Apps_Fit_x52 data) {
+  (Apps_Fit_x52 data) = (Apps_Fit_6Nu (& data #3))
 }
 
-// Apps.Fib.Interaction.get_direction.aux (val: (U120)) : (Pair (U120) (U120))
-fun (Apps_Fib_6Nu val) {
-  (Apps_Fib_6Nu #0) = {T2 #0 #1329227995784915872903807060280344575}
-  (Apps_Fib_6Nu #1) = {T2 #1329227995784915872903807060280344575 #0}
-  (Apps_Fib_6Nu #2) = {T2 #0 #1}
-  (Apps_Fib_6Nu #0) = {T2 #1 #0}
-  (Apps_Fib_6Nu ~) = {T2 #0 #0}
+// Apps.Fit.Interaction.get_direction.aux (val: (U120)) : (Pair (U120) (U120))
+fun (Apps_Fit_6Nu val) {
+  (Apps_Fit_6Nu #0) = {T2 #0 #1329227995784915872903807060280344575}
+  (Apps_Fit_6Nu #1) = {T2 #1329227995784915872903807060280344575 #0}
+  (Apps_Fit_6Nu #2) = {T2 #0 #1}
+  (Apps_Fit_6Nu #0) = {T2 #1 #0}
+  (Apps_Fit_6Nu ~) = {T2 #0 #0}
 }
 
 // Bool.and (a: (Bool)) (b: (Bool)) : (Bool)
@@ -268,24 +268,24 @@ fun (Bool_and a b) {
   (Bool_and {Bool_false} ~) = {Bool_false}
 }
 
-// Apps.Fib.Player.pos.get_y (player: (Apps.Fib.Player)) : (U120)
-fun (Fib_plr_p_gy player) {
-  (Fib_plr_p_gy player) = (Fib_g_u120 player #8 #8)
+// Apps.Fit.Player.pos.get_y (player: (Apps.Fit.Player)) : (U120)
+fun (Fit_plr_p_gy player) {
+  (Fit_plr_p_gy player) = (Fit_g_u120 player #8 #8)
 }
 
-// Apps.Fib.Action.get_data (action: (U120)) : (U120)
-fun (Fib_ac_gdata action) {
-  (Fib_ac_gdata action) = (Fib_g_u120 action #16 #8)
+// Apps.Fit.Action.get_data (action: (U120)) : (U120)
+fun (Fit_ac_gdata action) {
+  (Fit_ac_gdata action) = (Fit_g_u120 action #16 #8)
 }
 
-// Apps.Fib.Pos.new (x: (U120)) (y: (U120)) : (Apps.Fib.Pos)
-fun (Fib_pos_new x y) {
-  (Fib_pos_new x y) = dup _2 _3 = y; dup _0 _1 = x; let x.val = (% _0 #160); dup _10 _11 = x.val; dup _12 _13 = _10; let y.val = (% _2 #160); dup _6 _7 = y.val; dup _8 _9 = _6; let e0 = {U120_mod_ilt _1 #160 (Fib_pos_160n)}; dup _4 _5 = e0; let e1 = {U120_mod_ilt _3 #160 (Fib_pos_160n)}; {Sigma_new (Fib_pos_vnew _11 _7) {T2 (Fib_pos_vivx _12 _8 _4) (Fib_pos_vivy _13 _9 _5 e1)}}
+// Apps.Fit.Pos.new (x: (U120)) (y: (U120)) : (Apps.Fit.Pos)
+fun (Fit_pos_new x y) {
+  (Fit_pos_new x y) = dup _2 _3 = y; dup _0 _1 = x; let x.val = (% _0 #160); dup _10 _11 = x.val; dup _12 _13 = _10; let y.val = (% _2 #160); dup _6 _7 = y.val; dup _8 _9 = _6; let e0 = {U120_mod_ilt _1 #160 (Fit_pos_160n)}; dup _4 _5 = e0; let e1 = {U120_mod_ilt _3 #160 (Fit_pos_160n)}; {Sigma_new (Fit_pos_vnew _11 _7) {T2 (Fit_pos_vivx _12 _8 _4) (Fit_pos_vivy _13 _9 _5 e1)}}
 }
 
 // Pos.160_is_not_0 : (Not (Equal (U120) (U120.new 0 160) (U120.new 0 0)))
-fun (Fib_pos_160n) {
-  (Fib_pos_160n) = @absurd (Equal_rewrt absurd {T0})
+fun (Fit_pos_160n) {
+  (Fit_pos_160n) = @absurd (Equal_rewrt absurd {T0})
 }
 
 // Equal.rewrite -(t: Type) -(a: t) -(b: t) (e: (Equal t a b)) -(p: (_: t) Type) (x: (p a)) : (p b)
@@ -301,27 +301,27 @@ fun (U120_ltn a b) {
   (U120_ltn a b) = (U120_tbool (< a b))
 }
 
-// Apps.Fib.Pos.Value.get_y (val: (U120)) : (U120)
-fun (Fib_pos_v_gy val) {
-  (Fib_pos_v_gy val) = (>> val #8)
+// Apps.Fit.Pos.Value.get_y (val: (U120)) : (U120)
+fun (Fit_pos_v_gy val) {
+  (Fit_pos_v_gy val) = (>> val #8)
 }
 
-// Apps.Fib.Pos.Value.get_x (val: (U120)) : (U120)
-fun (Fib_pos_v_gx val) {
-  (Fib_pos_v_gx val) = (& val #255)
+// Apps.Fit.Pos.Value.get_x (val: (U120)) : (U120)
+fun (Fit_pos_v_gx val) {
+  (Fit_pos_v_gx val) = (& val #255)
 }
 
 // Sigma.new -(a: Type) -(b: (_: a) Type) (fst: a) (snd: (b fst)) : (Sigma a b)
 ctr {Sigma_new fst snd}
 
-// Apps.Fib.Pos.Value.new (x: (U120)) (y: (U120)) : _
-fun (Fib_pos_vnew x y) {
-  (Fib_pos_vnew x y) = (| (<< y #8) x)
+// Apps.Fit.Pos.Value.new (x: (U120)) (y: (U120)) : _
+fun (Fit_pos_vnew x y) {
+  (Fit_pos_vnew x y) = (| (<< y #8) x)
 }
 
-// Apps.Fib.Pos.Value.IsValid.x (x: (U120)) (y: (U120)) (e0: (Equal (Bool) (U120.less_than x (U120.new 0 160)) (Bool.true))) : (Equal (Bool) (U120.less_than (U120.bitwise_and (U120.bitwise_or (U120.shift_left y (U120.new 0 8)) x) (U120.new 0 255)) (U120.new 0 160)) (Bool.true))
-fun (Fib_pos_vivx x y e0) {
-  (Fib_pos_vivx x y e0) = dup _8 _9 = y; dup _0 _1 = x; dup _2 _3 = _0; dup _4 _5 = _1; dup _6 _7 = _2; let e1 = {U120_and_po (<< _8 #8) _3 #255}; let e2 = {U120_sl_mz _9 #8}; let e1.1 = (Equal_rewrt e2 e1); let e3 = {U120_or_zl (& _4 #255)}; let e1.2 = (Equal_rewrt e3 e1.1); let e4 = {U120_and_lea _5 #255}; let e5 = {U120_ile_clt (& _6 #255) _7 #160 e4 e0}; let e5.1 = (Equal_rewrt (Equal_mirr e1.2) e5); e5.1
+// Apps.Fit.Pos.Value.IsValid.x (x: (U120)) (y: (U120)) (e0: (Equal (Bool) (U120.less_than x (U120.new 0 160)) (Bool.true))) : (Equal (Bool) (U120.less_than (U120.bitwise_and (U120.bitwise_or (U120.shift_left y (U120.new 0 8)) x) (U120.new 0 255)) (U120.new 0 160)) (Bool.true))
+fun (Fit_pos_vivx x y e0) {
+  (Fit_pos_vivx x y e0) = dup _8 _9 = y; dup _0 _1 = x; dup _2 _3 = _0; dup _4 _5 = _1; dup _6 _7 = _2; let e1 = {U120_and_po (<< _8 #8) _3 #255}; let e2 = {U120_sl_mz _9 #8}; let e1.1 = (Equal_rewrt e2 e1); let e3 = {U120_or_zl (& _4 #255)}; let e1.2 = (Equal_rewrt e3 e1.1); let e4 = {U120_and_lea _5 #255}; let e5 = {U120_ile_clt (& _6 #255) _7 #160 e4 e0}; let e5.1 = (Equal_rewrt (Equal_mirr e1.2) e5); e5.1
 }
 
 // U120.and.less_equal_a (a: (U120)) (b: (U120)) : (U120.IsLessEqual (U120.bitwise_and a b) a)
@@ -352,9 +352,9 @@ ctr {U120_sl_mz a s}
 // U120.mod.is_less_than (a: (U120)) (b: (U120)) (e: (Not (Equal (U120) b (U120.new 0 0)))) : (U120.IsLessThan (U120.mod a b) b)
 ctr {U120_mod_ilt a b e}
 
-// Apps.Fib.Pos.Value.IsValid.y (x: (U120)) (y: (U120)) (e0: (Equal (Bool) (U120.less_than x (U120.new 0 160)) (Bool.true))) (e1: (Equal (Bool) (U120.less_than y (U120.new 0 160)) (Bool.true))) : (Equal (Bool) (U120.less_than (U120.shift_right (U120.bitwise_or (U120.shift_left y (U120.new 0 8)) x) (U120.new 0 8)) (U120.new 0 160)) (Bool.true))
-fun (Fib_pos_vivy x y e0 e1) {
-  (Fib_pos_vivy x y e0 e1) = dup _4 _5 = y; dup _6 _7 = _4; dup _8 _9 = _5; dup _10 _11 = _6; dup _0 _1 = x; dup _2 _3 = _0; let e2 = {U120_ilt_clt _1 #160 #256 e0 {Equal_refl}}; let e3 = {U120_sr_zlel _2 #8 e2}; let e4 = {U120_sr_psor (<< _7 #8) _3 #8}; let e4.1 = (Equal_rewrt e3 e4); let e5 = {U120_or_zr (>> (<< _8 #8) #8)}; let e4.2 = (Equal_rewrt e5 e4.1); let e6 = {U120_sr_slle _9 #8}; let e7 = {U120_ile_clt (>> (<< _10 #8) #8) _11 #160 e6 e1}; let e7.1 = (Equal_rewrt (Equal_mirr e4.2) e7); e7.1
+// Apps.Fit.Pos.Value.IsValid.y (x: (U120)) (y: (U120)) (e0: (Equal (Bool) (U120.less_than x (U120.new 0 160)) (Bool.true))) (e1: (Equal (Bool) (U120.less_than y (U120.new 0 160)) (Bool.true))) : (Equal (Bool) (U120.less_than (U120.shift_right (U120.bitwise_or (U120.shift_left y (U120.new 0 8)) x) (U120.new 0 8)) (U120.new 0 160)) (Bool.true))
+fun (Fit_pos_vivy x y e0 e1) {
+  (Fit_pos_vivy x y e0 e1) = dup _4 _5 = y; dup _6 _7 = _4; dup _8 _9 = _5; dup _10 _11 = _6; dup _0 _1 = x; dup _2 _3 = _0; let e2 = {U120_ilt_clt _1 #160 #256 e0 {Equal_refl}}; let e3 = {U120_sr_zlel _2 #8 e2}; let e4 = {U120_sr_psor (<< _7 #8) _3 #8}; let e4.1 = (Equal_rewrt e3 e4); let e5 = {U120_or_zr (>> (<< _8 #8) #8)}; let e4.2 = (Equal_rewrt e5 e4.1); let e6 = {U120_sr_slle _9 #8}; let e7 = {U120_ile_clt (>> (<< _10 #8) #8) _11 #160 e6 e1}; let e7.1 = (Equal_rewrt (Equal_mirr e4.2) e7); e7.1
 }
 
 // U120.or.zero_right (a: (U120)) : (Equal (U120) (U120.bitwise_or a (U120.new 0 0)) a)
@@ -372,68 +372,68 @@ ctr {U120_sr_psor a b c}
 // U120.shift_right.shl_less_equal (a: (U120)) (b: (U120)) : (Equal (Bool) (U120.less_equal (U120.shift_right (U120.shift_left a b) b) a) (Bool.true))
 ctr {U120_sr_slle a b}
 
-// Apps.Fib.Interaction.get (id: (U120)) (data: (U120)) : (Apps.Fib.Interaction (Unit))
-fun (Apps_Fib_qgm id data) {
-  (Apps_Fib_qgm #256 ~) = let spawn_points = {List_cons (Fib_pos_new #26 #154) {List_cons (Fib_pos_new #26 #155) {List_cons (Fib_pos_new #25 #153) {List_nil}}}}; let hp = #100; let bat_id = #512; (Apps_Fib_5eL hp spawn_points bat_id)
-  (Apps_Fib_qgm #257 ~) = let spawn_points = {List_cons (Fib_pos_new #36 #132) {List_cons (Fib_pos_new #36 #133) {List_cons (Fib_pos_new #37 #131) {List_nil}}}}; let hp = #100; let bat_id = #513; (Apps_Fib_5eL hp spawn_points bat_id)
-  (Apps_Fib_qgm #258 ~) = let spawn_points = {List_cons (Fib_pos_new #49 #136) {List_cons (Fib_pos_new #50 #137) {List_cons (Fib_pos_new #51 #138) {List_nil}}}}; let hp = #100; let bat_id = #514; (Apps_Fib_5eL hp spawn_points bat_id)
+// Apps.Fit.Interaction.get (id: (U120)) (data: (U120)) : (Apps.Fit.Interaction (Unit))
+fun (Apps_Fit_qgm id data) {
+  (Apps_Fit_qgm #256 ~) = let spawn_points = {List_cons (Fit_pos_new #26 #154) {List_cons (Fit_pos_new #26 #155) {List_cons (Fit_pos_new #25 #153) {List_nil}}}}; let hp = #100; let bat_id = #512; (Apps_Fit_5eL hp spawn_points bat_id)
+  (Apps_Fit_qgm #257 ~) = let spawn_points = {List_cons (Fit_pos_new #36 #132) {List_cons (Fit_pos_new #36 #133) {List_cons (Fit_pos_new #37 #131) {List_nil}}}}; let hp = #100; let bat_id = #513; (Apps_Fit_5eL hp spawn_points bat_id)
+  (Apps_Fit_qgm #258 ~) = let spawn_points = {List_cons (Fit_pos_new #49 #136) {List_cons (Fit_pos_new #50 #137) {List_cons (Fit_pos_new #51 #138) {List_nil}}}}; let hp = #100; let bat_id = #514; (Apps_Fit_5eL hp spawn_points bat_id)
 }
 
-// Apps.Fib.Npc.bat_cave (hp: (U120)) (spawn_points: (List (Apps.Fib.Pos))) (bat_id: (Apps.Fib.Id)) : (Apps.Fib.Interaction (Unit))
-fun (Apps_Fib_5eL hp spawn_points bat_id) {
-  (Apps_Fib_5eL hp spawn_points bat_id) = (Apps_Fib_cyA (Apps_Fib_AdD) @entity (Apps_Fib_cyA (Apps_Fib_OZI) @~ (Apps_Fib_cyA (Apps_Fib_fuR) @map (Apps_Fib_cyA (Apps_Fib_Q52 entity) @~ let pos = (Apps_Fib__ql spawn_points map); (Maybe_match pos (Apps_Fib_0Uh) @pos.value dup _0 _1 = pos.value; let bat = (+ (Sigma_fst _0) (<< hp #16)); let func = @state (Fib_st_crtu state bat _1 bat_id); (Apps_Fib_cyA (Apps_Fib_lXM func) @~ (Apps_Fib_cyA (Apps_Fib_75P #4095) @~ (Apps_Fib_fxk {T0}))))))))
+// Apps.Fit.Npc.bat_cave (hp: (U120)) (spawn_points: (List (Apps.Fit.Pos))) (bat_id: (Apps.Fit.Id)) : (Apps.Fit.Interaction (Unit))
+fun (Apps_Fit_5eL hp spawn_points bat_id) {
+  (Apps_Fit_5eL hp spawn_points bat_id) = (Apps_Fit_cyA (Apps_Fit_AdD) @entity (Apps_Fit_cyA (Apps_Fit_OZI) @~ (Apps_Fit_cyA (Apps_Fit_fuR) @map (Apps_Fit_cyA (Apps_Fit_Q52 entity) @~ let pos = (Apps_Fit__ql spawn_points map); (Maybe_match pos (Apps_Fit_0Uh) @pos.value dup _0 _1 = pos.value; let bat = (+ (Sigma_fst _0) (<< hp #16)); let func = @state (Fit_st_crtu state bat _1 bat_id); (Apps_Fit_cyA (Apps_Fit_lXM func) @~ (Apps_Fit_cyA (Apps_Fit_75P #4095) @~ (Apps_Fit_fxk {T0}))))))))
 }
 
-// Apps.Fib.Npc.bat_cave.available_pos (list: (List (Apps.Fib.Pos))) (map: (Apps.Fib.Map)) : (Maybe (Apps.Fib.Pos))
-fun (Apps_Fib__ql list map) {
-  (Apps_Fib__ql {List_nil} ~) = {Maybe_none}
-  (Apps_Fib__ql {List_cons h t} map) = dup _2 _3 = h; dup _0 _1 = map; let val = (Fib_map_get _0 _2); (Bool_if (U120_is0 val) {Maybe_some _3} (Apps_Fib__ql t _1))
+// Apps.Fit.Npc.bat_cave.available_pos (list: (List (Apps.Fit.Pos))) (map: (Apps.Fit.Map)) : (Maybe (Apps.Fit.Pos))
+fun (Apps_Fit__ql list map) {
+  (Apps_Fit__ql {List_nil} ~) = {Maybe_none}
+  (Apps_Fit__ql {List_cons h t} map) = dup _2 _3 = h; dup _0 _1 = map; let val = (Fit_map_get _0 _2); (Bool_if (U120_is0 val) {Maybe_some _3} (Apps_Fit__ql t _1))
 }
 
-// Apps.Fib.Interaction.map.get : (Apps.Fib.Interaction (Apps.Fib.Map))
-fun (Apps_Fib_fuR) {
-  (Apps_Fib_fuR) = @state dup _0 _1 = state; @player @entity @frame {Apps_Fib_HVU (Apps_Fib_5nd _0) _1 player entity frame}
+// Apps.Fit.Interaction.map.get : (Apps.Fit.Interaction (Apps.Fit.Map))
+fun (Apps_Fit_fuR) {
+  (Apps_Fit_fuR) = @state dup _0 _1 = state; @player @entity @frame {Apps_Fit_HVU (Apps_Fit_5nd _0) _1 player entity frame}
 }
 
-// Apps.Fib.State.get_map (state: (Apps.Fib.State)) : (Apps.Fib.Map)
-fun (Apps_Fib_5nd state) {
-  (Apps_Fib_5nd {Fib_st_new map ~}) = map
+// Apps.Fit.State.get_map (state: (Apps.Fit.State)) : (Apps.Fit.Map)
+fun (Apps_Fit_5nd state) {
+  (Apps_Fit_5nd {Fit_st_new map ~}) = map
 }
 
-// Apps.Fib.Interaction.entity.get : (Apps.Fib.Interaction (Apps.Fib.Player))
-fun (Apps_Fib_AdD) {
-  (Apps_Fib_AdD) = (Apps_Fib_cyA (Apps_Fib_V6F) @id (Apps_Fib_cyA (Apps_Fib__Hb) @table let entity = (Fib_tbl_get table id); (Apps_Fib_fxk entity)))
+// Apps.Fit.Interaction.entity.get : (Apps.Fit.Interaction (Apps.Fit.Player))
+fun (Apps_Fit_AdD) {
+  (Apps_Fit_AdD) = (Apps_Fit_cyA (Apps_Fit_V6F) @id (Apps_Fit_cyA (Apps_Fit__Hb) @table let entity = (Fit_tbl_get table id); (Apps_Fit_fxk entity)))
 }
 
-// Apps.Fib.Interaction.entity.get_id : (Apps.Fib.Interaction (Apps.Fib.Id))
-fun (Apps_Fib_V6F) {
-  (Apps_Fib_V6F) = @state @player @entity dup _0 _1 = entity; @frame {Apps_Fib_HVU _0 state player _1 frame}
+// Apps.Fit.Interaction.entity.get_id : (Apps.Fit.Interaction (Apps.Fit.Id))
+fun (Apps_Fit_V6F) {
+  (Apps_Fit_V6F) = @state @player @entity dup _0 _1 = entity; @frame {Apps_Fit_HVU _0 state player _1 frame}
 }
 
-// Apps.Fib.Table.get (map: (Apps.Fib.Table)) (id: (Apps.Fib.Id)) : (Apps.Fib.Entity)
-fun (Fib_tbl_get map id) {
-  (Fib_tbl_get map id) = (Bt_get (Fib_tbl_bses) (Fib_tbl_fid id) map)
+// Apps.Fit.Table.get (map: (Apps.Fit.Table)) (id: (Apps.Fit.Id)) : (Apps.Fit.Entity)
+fun (Fit_tbl_get map id) {
+  (Fit_tbl_get map id) = (Bt_get (Fit_tbl_bses) (Fit_tbl_fid id) map)
 }
 
-// Apps.Fib.Table.Key.from_id (id: (U120)) : (Apps.Fib.Table.Key)
-fun (Fib_tbl_fid id) {
-  (Fib_tbl_fid id) = (Fib_tbl_fid0 (Fib_tbl_bses) id)
+// Apps.Fit.Table.Key.from_id (id: (U120)) : (Apps.Fit.Table.Key)
+fun (Fit_tbl_fid id) {
+  (Fit_tbl_fid id) = (Fit_tbl_fid0 (Fit_tbl_bses) id)
 }
 
-fun (Fib_tbl_fE5j x0 x1 x2) {
-  (Fib_tbl_fE5j {Bt_base2} t id) = dup _0 _1 = id; (Fib_tbl_fid1 t (/ _0 #2) (% _1 #2))
+fun (Fit_tbl_fE5j x0 x1 x2) {
+  (Fit_tbl_fE5j {Bt_base2} t id) = dup _0 _1 = id; (Fit_tbl_fid1 t (/ _0 #2) (% _1 #2))
 }
 
-// Apps.Fib.Table.Key.from_id.aux0 (bases: (List (Data.BaseTree.Base))) (id: (U120)) : (Data.BaseTree.Key bases)
-fun (Fib_tbl_fid0 bases id) {
-  (Fib_tbl_fid0 {List_nil} ~) = {T0}
-  (Fib_tbl_fid0 {List_cons .0 t} id) = (Fib_tbl_fE5j .0 t id)
+// Apps.Fit.Table.Key.from_id.aux0 (bases: (List (Data.BaseTree.Base))) (id: (U120)) : (Data.BaseTree.Key bases)
+fun (Fit_tbl_fid0 bases id) {
+  (Fit_tbl_fid0 {List_nil} ~) = {T0}
+  (Fit_tbl_fid0 {List_cons .0 t} id) = (Fit_tbl_fE5j .0 t id)
 }
 
-// Apps.Fib.Table.Key.from_id.aux1 (bases: (List (Data.BaseTree.Base))) (id: (U120)) (b: (U120)) : (Data.BaseTree.Base.Bin (Data.BaseTree.Key bases))
-fun (Fib_tbl_fid1 bases id b) {
-  (Fib_tbl_fid1 bases id #0) = {Bt_base_b0 (Fib_tbl_fid0 bases id)}
-  (Fib_tbl_fid1 bases id #1) = {Bt_base_b1 (Fib_tbl_fid0 bases id)}
+// Apps.Fit.Table.Key.from_id.aux1 (bases: (List (Data.BaseTree.Base))) (id: (U120)) (b: (U120)) : (Data.BaseTree.Base.Bin (Data.BaseTree.Key bases))
+fun (Fit_tbl_fid1 bases id b) {
+  (Fit_tbl_fid1 bases id #0) = {Bt_base_b0 (Fit_tbl_fid0 bases id)}
+  (Fit_tbl_fid1 bases id #1) = {Bt_base_b1 (Fit_tbl_fid0 bases id)}
 }
 
 // Data.BaseTree.Base.Bin.0 -(r: Type) (pred: r) : (Data.BaseTree.Base.Bin r)
@@ -486,44 +486,44 @@ ctr {Bt_base_q4 pred}
 // Data.BaseTree.Base.Qui.0 -(r: Type) (pred: r) : (Data.BaseTree.Base.Qui r)
 ctr {Bt_base_q0 pred}
 
-// Apps.Fib.Interaction.pure -(a: Type) (x: a) : (Apps.Fib.Interaction _)
-fun (Apps_Fib_fxk x) {
-  (Apps_Fib_fxk x) = @state @player @entity @frame {Apps_Fib_HVU x state player entity frame}
+// Apps.Fit.Interaction.pure -(a: Type) (x: a) : (Apps.Fit.Interaction _)
+fun (Apps_Fit_fxk x) {
+  (Apps_Fit_fxk x) = @state @player @entity @frame {Apps_Fit_HVU x state player entity frame}
 }
 
-// Apps.Fib.Interaction.table.get : (Apps.Fib.Interaction (Apps.Fib.Table))
-fun (Apps_Fib__Hb) {
-  (Apps_Fib__Hb) = @state dup _0 _1 = state; @player @entity @frame {Apps_Fib_HVU (Apps_Fib_hNo _0) _1 player entity frame}
+// Apps.Fit.Interaction.table.get : (Apps.Fit.Interaction (Apps.Fit.Table))
+fun (Apps_Fit__Hb) {
+  (Apps_Fit__Hb) = @state dup _0 _1 = state; @player @entity @frame {Apps_Fit_HVU (Apps_Fit_hNo _0) _1 player entity frame}
 }
 
-// Apps.Fib.State.get_table (state: (Apps.Fib.State)) : (Apps.Fib.Table)
-fun (Apps_Fib_hNo state) {
-  (Apps_Fib_hNo {Fib_st_new ~ tbl}) = tbl
+// Apps.Fit.State.get_table (state: (Apps.Fit.State)) : (Apps.Fit.Table)
+fun (Apps_Fit_hNo state) {
+  (Apps_Fit_hNo {Fit_st_new ~ tbl}) = tbl
 }
 
-// Apps.Fib.Interaction.bind -(a: Type) -(b: Type) (itr: (Apps.Fib.Interaction a)) (next: (_: a) (Apps.Fib.Interaction b)) : (Apps.Fib.Interaction b)
-fun (Apps_Fib_cyA itr next) {
-  (Apps_Fib_cyA itr next) = @state @player @entity @frame let r_a = ((((itr state) player) entity) frame); (Apps_Fib_pbB r_a @r_a.val @r_a.state @r_a.player @r_a.entity @r_a.frame let r_b = (((((next r_a.val) r_a.state) r_a.player) r_a.entity) r_a.frame); r_b {Apps_Fib_n78})
+// Apps.Fit.Interaction.bind -(a: Type) -(b: Type) (itr: (Apps.Fit.Interaction a)) (next: (_: a) (Apps.Fit.Interaction b)) : (Apps.Fit.Interaction b)
+fun (Apps_Fit_cyA itr next) {
+  (Apps_Fit_cyA itr next) = @state @player @entity @frame let r_a = ((((itr state) player) entity) frame); (Apps_Fit_pbB r_a @r_a.val @r_a.state @r_a.player @r_a.entity @r_a.frame let r_b = (((((next r_a.val) r_a.state) r_a.player) r_a.entity) r_a.frame); r_b {Apps_Fit_n78})
 }
 
-// Apps.Fib.State.create_unit (state: (Apps.Fib.State)) (init: (Apps.Fib.Entity)) (pos: (Apps.Fib.Pos)) (id: (Apps.Fib.Id)) : (Apps.Fib.State)
-fun (Fib_st_crtu state init pos id) {
-  (Fib_st_crtu {Fib_st_new map table} init pos id) = dup _6 _7 = map; dup _4 _5 = id; dup _2 _3 = table; dup _0 _1 = pos; let tile = (Fib_map_got _6 _0); (Pair_match tile @tile.fst @tile.snd (Bool_if (U120_is0 tile.snd) let map = (Fib_map_set tile.fst _4 _1); let func = @x dup _8 _9 = x; (Bool_if (U120_is0 _8) init _9); let table = (Fib_tbl_mut _2 func _5); {Fib_st_new map table} {Fib_st_new _7 _3}))
+// Apps.Fit.State.create_unit (state: (Apps.Fit.State)) (init: (Apps.Fit.Entity)) (pos: (Apps.Fit.Pos)) (id: (Apps.Fit.Id)) : (Apps.Fit.State)
+fun (Fit_st_crtu state init pos id) {
+  (Fit_st_crtu {Fit_st_new map table} init pos id) = dup _6 _7 = map; dup _4 _5 = id; dup _2 _3 = table; dup _0 _1 = pos; let tile = (Fit_map_got _6 _0); (Pair_match tile @tile.fst @tile.snd (Bool_if (U120_is0 tile.snd) let map = (Fit_map_set tile.fst _4 _1); let func = @x dup _8 _9 = x; (Bool_if (U120_is0 _8) init _9); let table = (Fit_tbl_mut _2 func _5); {Fit_st_new map table} {Fit_st_new _7 _3}))
 }
 
-// Apps.Fib.Map.got (map: (Apps.Fib.Map)) (pos: (Apps.Fib.Pos)) : (Pair (Apps.Fib.Map) (Apps.Fib.Id))
-fun (Fib_map_got map pos) {
-  (Fib_map_got map pos) = let keys = (Fib_map_kfps pos); (Pair_match keys @keys.fst @keys.snd let p = (Bt_got (Fib_map_base) keys.fst map); (Pair_match p @p.fst @p.snd {T2 p.fst (Fib_map_gtil p.snd keys.snd)}))
+// Apps.Fit.Map.got (map: (Apps.Fit.Map)) (pos: (Apps.Fit.Pos)) : (Pair (Apps.Fit.Map) (Apps.Fit.Id))
+fun (Fit_map_got map pos) {
+  (Fit_map_got map pos) = let keys = (Fit_map_kfps pos); (Pair_match keys @keys.fst @keys.snd let p = (Bt_got (Fit_map_base) keys.fst map); (Pair_match p @p.fst @p.snd {T2 p.fst (Fit_map_gtil p.snd keys.snd)}))
 }
 
-// Apps.Fib.Map.Key.from_pos (pos: (Apps.Fib.Pos)) : (Pair (Apps.Fib.Map.Key) (U120))
-fun (Fib_map_kfps pos) {
-  (Fib_map_kfps pos) = dup _0 _1 = pos; let x = (Fib_pos_g_x _0); dup _2 _3 = x; let y = (Fib_pos_g_y _1); let key = (U120_low (+ (/ _2 #10) (* y #16))); {T2 (Bt_key_fu60 (Fib_map_base) #2560 (% key #2560)) (% _3 #10)}
+// Apps.Fit.Map.Key.from_pos (pos: (Apps.Fit.Pos)) : (Pair (Apps.Fit.Map.Key) (U120))
+fun (Fit_map_kfps pos) {
+  (Fit_map_kfps pos) = dup _0 _1 = pos; let x = (Fit_pos_g_x _0); dup _2 _3 = x; let y = (Fit_pos_g_y _1); let key = (U120_low (+ (/ _2 #10) (* y #16))); {T2 (Bt_key_fu60 (Fit_map_base) #2560 (% key #2560)) (% _3 #10)}
 }
 
-// Apps.Fib.Pos.get_x (pos: (Apps.Fib.Pos)) : (U120)
-fun (Fib_pos_g_x pos) {
-  (Fib_pos_g_x pos) = (& (Sigma_fst pos) #255)
+// Apps.Fit.Pos.get_x (pos: (Apps.Fit.Pos)) : (U120)
+fun (Fit_pos_g_x pos) {
+  (Fit_pos_g_x pos) = (& (Sigma_fst pos) #255)
 }
 
 // Sigma.fst -(a: Type) -(b: (_: a) Type) (s: (Sigma a b)) : a
@@ -531,9 +531,9 @@ fun (Sigma_fst s) {
   (Sigma_fst {Sigma_new x ~}) = x
 }
 
-// Apps.Fib.Pos.get_y (pos: (Apps.Fib.Pos)) : (U120)
-fun (Fib_pos_g_y pos) {
-  (Fib_pos_g_y pos) = (>> (Sigma_fst pos) #8)
+// Apps.Fit.Pos.get_y (pos: (Apps.Fit.Pos)) : (U120)
+fun (Fit_pos_g_y pos) {
+  (Fit_pos_g_y pos) = (>> (Sigma_fst pos) #8)
 }
 
 // Data.BaseTree.Key.from_u60.base5 (t: (List (Data.BaseTree.Base))) (q: U60) (m: U60) (n: U60) : (Data.BaseTree.Base.Qui (Data.BaseTree.Key t))
@@ -607,14 +607,14 @@ fun (Pair_match x new) {
   (Pair_match {T2 fst_ snd_} new) = ((new fst_) snd_)
 }
 
-// Apps.Fib.Map.get_tile (chunk: (U120)) (idx: (U120)) : (Apps.Fib.Id)
-fun (Fib_map_gtil chunk idx) {
-  (Fib_map_gtil chunk idx) = (& (>> chunk (* idx #12)) #4095)
+// Apps.Fit.Map.get_tile (chunk: (U120)) (idx: (U120)) : (Apps.Fit.Id)
+fun (Fit_map_gtil chunk idx) {
+  (Fit_map_gtil chunk idx) = (& (>> chunk (* idx #12)) #4095)
 }
 
-// Apps.Fib.Table.mut (table: (Apps.Fib.Table)) (func: (_: (Apps.Fib.Entity)) (Apps.Fib.Entity)) (id: (Apps.Fib.Id)) : (Apps.Fib.Table)
-fun (Fib_tbl_mut table func id) {
-  (Fib_tbl_mut table func id) = (Bt_mut (Fib_tbl_bses) table (Fib_tbl_fid id) func)
+// Apps.Fit.Table.mut (table: (Apps.Fit.Table)) (func: (_: (Apps.Fit.Entity)) (Apps.Fit.Entity)) (id: (Apps.Fit.Id)) : (Apps.Fit.Table)
+fun (Fit_tbl_mut table func id) {
+  (Fit_tbl_mut table func id) = (Bt_mut (Fit_tbl_bses) table (Fit_tbl_fid id) func)
 }
 
 fun (Bt_mut0_ x0 x1 x2 x3 x4 x5) {
@@ -663,14 +663,14 @@ fun (U120_is0 n) {
   (U120_is0 ~) = {Bool_false}
 }
 
-// Apps.Fib.Map.set (map: (Apps.Fib.Map)) (id: (Apps.Fib.Id)) (pos: (Apps.Fib.Pos)) : (Apps.Fib.Map)
-fun (Fib_map_set map id pos) {
-  (Fib_map_set map id pos) = let keys = (Fib_map_kfps pos); dup _0 _1 = keys; let key = (Pair_fst _0); let idx = (Pair_snd _1); let func = @chunk (Fib_s_u120 (* idx #12) id chunk); (Bt_mut (Fib_map_base) map key func)
+// Apps.Fit.Map.set (map: (Apps.Fit.Map)) (id: (Apps.Fit.Id)) (pos: (Apps.Fit.Pos)) : (Apps.Fit.Map)
+fun (Fit_map_set map id pos) {
+  (Fit_map_set map id pos) = let keys = (Fit_map_kfps pos); dup _0 _1 = keys; let key = (Pair_fst _0); let idx = (Pair_snd _1); let func = @chunk (Fit_s_u120 (* idx #12) id chunk); (Bt_mut (Fit_map_base) map key func)
 }
 
-// Apps.Fib.set_in_u120 (x: (U120)) (id: (Apps.Fib.Id)) (chunk: (U120)) : (U120)
-fun (Fib_s_u120 x id chunk) {
-  (Fib_s_u120 x id chunk) = let shl = @n (<< n x); dup _0 _1 = shl; let res = (| (& (U120_bwcom (_0 #4095)) chunk) (_1 id)); res
+// Apps.Fit.set_in_u120 (x: (U120)) (id: (Apps.Fit.Id)) (chunk: (U120)) : (U120)
+fun (Fit_s_u120 x id chunk) {
+  (Fit_s_u120 x id chunk) = let shl = @n (<< n x); dup _0 _1 = shl; let res = (| (& (U120_bwcom (_0 #4095)) chunk) (_1 id)); res
 }
 
 // U120.bitwise_complement (n: (U120)) : (U120)
@@ -683,19 +683,19 @@ fun (U120_maxval) {
   (U120_maxval) = #1329227995784915872903807060280344575
 }
 
-// Apps.Fib.Interaction.entity.set (new_entity: (Apps.Fib.Entity)) : (Apps.Fib.Interaction (Unit))
-fun (Apps_Fib_75P new_entity) {
-  (Apps_Fib_75P new_entity) = (Apps_Fib_cyA (Apps_Fib_AdD) @entity let func = @table (Fib_tbl_set table new_entity entity); (Apps_Fib_cyA (Apps_Fib_xk3 func) @~ (Apps_Fib_fxk {T0})))
+// Apps.Fit.Interaction.entity.set (new_entity: (Apps.Fit.Entity)) : (Apps.Fit.Interaction (Unit))
+fun (Apps_Fit_75P new_entity) {
+  (Apps_Fit_75P new_entity) = (Apps_Fit_cyA (Apps_Fit_AdD) @entity let func = @table (Fit_tbl_set table new_entity entity); (Apps_Fit_cyA (Apps_Fit_xk3 func) @~ (Apps_Fit_fxk {T0})))
 }
 
-// Apps.Fib.Interaction.table.mut (func: (_: (Apps.Fib.Table)) (Apps.Fib.Table)) : (Apps.Fib.Interaction (Unit))
-fun (Apps_Fib_xk3 func) {
-  (Apps_Fib_xk3 func) = @state dup _0 _1 = state; @player @entity @frame let table = (Apps_Fib_hNo _0); let map = (Apps_Fib_5nd _1); let state = {Fib_st_new map (func table)}; {Apps_Fib_HVU {T0} state player entity frame}
+// Apps.Fit.Interaction.table.mut (func: (_: (Apps.Fit.Table)) (Apps.Fit.Table)) : (Apps.Fit.Interaction (Unit))
+fun (Apps_Fit_xk3 func) {
+  (Apps_Fit_xk3 func) = @state dup _0 _1 = state; @player @entity @frame let table = (Apps_Fit_hNo _0); let map = (Apps_Fit_5nd _1); let state = {Fit_st_new map (func table)}; {Apps_Fit_HVU {T0} state player entity frame}
 }
 
-// Apps.Fib.Table.set (map: (Apps.Fib.Table)) (entity: (Apps.Fib.Entity)) (id: (Apps.Fib.Id)) : (Apps.Fib.Table)
-fun (Fib_tbl_set map entity id) {
-  (Fib_tbl_set map entity id) = (Bt_set (Fib_tbl_bses) (Fib_tbl_fid id) map entity)
+// Apps.Fit.Table.set (map: (Apps.Fit.Table)) (entity: (Apps.Fit.Entity)) (id: (Apps.Fit.Id)) : (Apps.Fit.Table)
+fun (Fit_tbl_set map entity id) {
+  (Fit_tbl_set map entity id) = (Bt_set (Fit_tbl_bses) (Fit_tbl_fid id) map entity)
 }
 
 fun (Bt_set0_ x0 x1 x2 x3 x4 x5) {
@@ -738,83 +738,83 @@ fun (Bt_set bases key map val) {
   (Bt_set {List_cons .0 bs} {Bt_base_q4 ks} {Bt_qui_tie b0 b1 b2 b3 b4} val) = (Bt_set6_ .0 bs ks b0 b1 b2 b3 b4 val)
 }
 
-// Apps.Fib.Interaction.frame.check_cd (cd: (U120)) : (Apps.Fib.Interaction (Unit))
-fun (Apps_Fib_Q52 cd) {
-  (Apps_Fib_Q52 cd) = (Apps_Fib_cyA (Apps_Fib_ynn) @frame let is_ready = (U120_lte cd frame); (Apps_Fib_cyA (Apps_Fib_Qj4 is_ready) @~ (Apps_Fib_fxk {T0})))
+// Apps.Fit.Interaction.frame.check_cd (cd: (U120)) : (Apps.Fit.Interaction (Unit))
+fun (Apps_Fit_Q52 cd) {
+  (Apps_Fit_Q52 cd) = (Apps_Fit_cyA (Apps_Fit_ynn) @frame let is_ready = (U120_lte cd frame); (Apps_Fit_cyA (Apps_Fit_Qj4 is_ready) @~ (Apps_Fit_fxk {T0})))
 }
 
-// Apps.Fib.Interaction.check (bool: (Bool)) : (Apps.Fib.Interaction (Unit))
-fun (Apps_Fib_Qj4 bool) {
-  (Apps_Fib_Qj4 {Bool_true}) = (Apps_Fib_fxk {T0})
-  (Apps_Fib_Qj4 {Bool_false}) = (Apps_Fib_0Uh)
+// Apps.Fit.Interaction.check (bool: (Bool)) : (Apps.Fit.Interaction (Unit))
+fun (Apps_Fit_Qj4 bool) {
+  (Apps_Fit_Qj4 {Bool_true}) = (Apps_Fit_fxk {T0})
+  (Apps_Fit_Qj4 {Bool_false}) = (Apps_Fit_0Uh)
 }
 
-// Apps.Fib.Interaction.fail : (Apps.Fib.Interaction (Unit))
-fun (Apps_Fib_0Uh) {
-  (Apps_Fib_0Uh) = @~ @~ @~ @~ {Apps_Fib_n78}
+// Apps.Fit.Interaction.fail : (Apps.Fit.Interaction (Unit))
+fun (Apps_Fit_0Uh) {
+  (Apps_Fit_0Uh) = @~ @~ @~ @~ {Apps_Fit_n78}
 }
 
-// Apps.Fib.Interaction.frame.get : (Apps.Fib.Interaction (U120))
-fun (Apps_Fib_ynn) {
-  (Apps_Fib_ynn) = @state @player @entity @frame dup _0 _1 = frame; {Apps_Fib_HVU _0 state player entity _1}
+// Apps.Fit.Interaction.frame.get : (Apps.Fit.Interaction (U120))
+fun (Apps_Fit_ynn) {
+  (Apps_Fit_ynn) = @state @player @entity @frame dup _0 _1 = frame; {Apps_Fit_HVU _0 state player entity _1}
 }
 
-// Apps.Fib.Interaction.player.get : (Apps.Fib.Interaction (Apps.Fib.Player))
-fun (Apps_Fib_OZI) {
-  (Apps_Fib_OZI) = (Apps_Fib_cyA (Apps_Fib_ffR) @id (Apps_Fib_cyA (Apps_Fib__Hb) @table let player = (Fib_tbl_get table id); (Apps_Fib_fxk player)))
+// Apps.Fit.Interaction.player.get : (Apps.Fit.Interaction (Apps.Fit.Player))
+fun (Apps_Fit_OZI) {
+  (Apps_Fit_OZI) = (Apps_Fit_cyA (Apps_Fit_ffR) @id (Apps_Fit_cyA (Apps_Fit__Hb) @table let player = (Fit_tbl_get table id); (Apps_Fit_fxk player)))
 }
 
-// Apps.Fib.Interaction.player.get_id : (Apps.Fib.Interaction (Apps.Fib.Id))
-fun (Apps_Fib_ffR) {
-  (Apps_Fib_ffR) = @state @player dup _0 _1 = player; @entity @frame {Apps_Fib_HVU _0 state _1 entity frame}
+// Apps.Fit.Interaction.player.get_id : (Apps.Fit.Interaction (Apps.Fit.Id))
+fun (Apps_Fit_ffR) {
+  (Apps_Fit_ffR) = @state @player dup _0 _1 = player; @entity @frame {Apps_Fit_HVU _0 state _1 entity frame}
 }
 
-// Apps.Fib.Map.get (map: (Apps.Fib.Map)) (pos: (Apps.Fib.Pos)) : (Apps.Fib.Id)
-fun (Fib_map_get map pos) {
-  (Fib_map_get map pos) = let keys = (Fib_map_getc map pos); (Pair_match keys @keys.fst @keys.snd (Fib_map_gtil keys.fst keys.snd))
+// Apps.Fit.Map.get (map: (Apps.Fit.Map)) (pos: (Apps.Fit.Pos)) : (Apps.Fit.Id)
+fun (Fit_map_get map pos) {
+  (Fit_map_get map pos) = let keys = (Fit_map_getc map pos); (Pair_match keys @keys.fst @keys.snd (Fit_map_gtil keys.fst keys.snd))
 }
 
-// Apps.Fib.Map.get.chunk (map: (Apps.Fib.Map)) (pos: (Apps.Fib.Pos)) : (Pair (U120) (U120))
-fun (Fib_map_getc map pos) {
-  (Fib_map_getc map pos) = let keys = (Fib_map_kfps pos); dup _0 _1 = keys; let chunk = (Bt_get (Fib_map_base) (Pair_fst _0) map); let idx = (Pair_snd _1); {T2 chunk idx}
+// Apps.Fit.Map.get.chunk (map: (Apps.Fit.Map)) (pos: (Apps.Fit.Pos)) : (Pair (U120) (U120))
+fun (Fit_map_getc map pos) {
+  (Fit_map_getc map pos) = let keys = (Fit_map_kfps pos); dup _0 _1 = keys; let chunk = (Bt_get (Fit_map_base) (Pair_fst _0) map); let idx = (Pair_snd _1); {T2 chunk idx}
 }
 
-// Apps.Fib.Interaction.state.mut (func: (_: (Apps.Fib.State)) (Apps.Fib.State)) : (Apps.Fib.Interaction (Unit))
-fun (Apps_Fib_lXM func) {
-  (Apps_Fib_lXM func) = @state @player @entity @frame {Apps_Fib_HVU {T0} (func state) player entity frame}
+// Apps.Fit.Interaction.state.mut (func: (_: (Apps.Fit.State)) (Apps.Fit.State)) : (Apps.Fit.Interaction (Unit))
+fun (Apps_Fit_lXM func) {
+  (Apps_Fit_lXM func) = @state @player @entity @frame {Apps_Fit_HVU {T0} (func state) player entity frame}
 }
 
-// Apps.Fib.State.create_player (state: (Apps.Fib.State)) (id: (Apps.Fib.Id)) (data: (U120)) : (Apps.Fib.State)
-fun (Fib_st_crtp state id data) {
-  (Fib_st_crtp {Fib_st_new map tab} id data) = let s_pos = (Fib_st_crtpc (% data #4)); let new_player = (Pair_match s_pos @s_pos.fst @s_pos.snd (Fib_plr_dflt s_pos.fst s_pos.snd)); (Fib_st_pplc {Fib_st_new map tab} new_player id)
+// Apps.Fit.State.create_player (state: (Apps.Fit.State)) (id: (Apps.Fit.Id)) (data: (U120)) : (Apps.Fit.State)
+fun (Fit_st_crtp state id data) {
+  (Fit_st_crtp {Fit_st_new map tab} id data) = let s_pos = (Fit_st_crtpc (% data #4)); let new_player = (Pair_match s_pos @s_pos.fst @s_pos.snd (Fit_plr_dflt s_pos.fst s_pos.snd)); (Fit_st_pplc {Fit_st_new map tab} new_player id)
 }
 
-// Apps.Fib.State.create_player.city (data: (U120)) : (Pair (U120) (U120))
-fun (Fib_st_crtpc data) {
-  (Fib_st_crtpc #0) = {T2 #12 #12}
-  (Fib_st_crtpc #1) = {T2 #147 #12}
-  (Fib_st_crtpc #2) = {T2 #147 #147}
-  (Fib_st_crtpc #3) = {T2 #12 #147}
+// Apps.Fit.State.create_player.city (data: (U120)) : (Pair (U120) (U120))
+fun (Fit_st_crtpc data) {
+  (Fit_st_crtpc #0) = {T2 #12 #12}
+  (Fit_st_crtpc #1) = {T2 #147 #12}
+  (Fit_st_crtpc #2) = {T2 #147 #147}
+  (Fit_st_crtpc #3) = {T2 #12 #147}
 }
 
-// Apps.Fib.Player.default (x: (U120)) (y: (U120)) : (Apps.Fib.Player)
-fun (Fib_plr_dflt x y) {
-  (Fib_plr_dflt x y) = let xp = #0; let hp = #100; let of = #0; let gd = #50; let cd = #0; let skills = {List_cons #1 {List_nil}}; (Fib_plr_new x y xp hp of gd cd skills)
+// Apps.Fit.Player.default (x: (U120)) (y: (U120)) : (Apps.Fit.Player)
+fun (Fit_plr_dflt x y) {
+  (Fit_plr_dflt x y) = let xp = #0; let hp = #100; let of = #0; let gd = #50; let cd = #0; let skills = {List_cons #1 {List_nil}}; (Fit_plr_new x y xp hp of gd cd skills)
 }
 
-// Apps.Fib.Player.new (x: (U120)) (y: (U120)) (xp: (U120)) (hp: (U120)) (of: (U120)) (gd: (U120)) (cd: (U120)) (skills: (List (U120))) : (Apps.Fib.Player)
-fun (Fib_plr_new x y xp hp of gd cd skills) {
-  (Fib_plr_new x y xp hp of gd cd skills) = let player = #0; let player = (Fib_plr_p_c player @~ (+ (<< y #8) x)); let player = (Fib_plr_xp_c player @~ xp); let player = (Fib_plr_hp_c player @~ hp); let player = (Fib_plr_of_c player @~ of); let player = (Fib_plr_gd_c player @~ gd); let player = (Fib_plr_cd_c player @~ cd); let func = @skill_id @acc dup _0 _1 = acc; dup _2 _3 = _0; {T2 (Fib_plr_sk_c (Pair_fst _1) (Pair_snd _2) @~ skill_id) (+ (Pair_snd _3) #1)}; let pair = (List_foldl {T2 player #0} func skills); (Pair_fst pair)
+// Apps.Fit.Player.new (x: (U120)) (y: (U120)) (xp: (U120)) (hp: (U120)) (of: (U120)) (gd: (U120)) (cd: (U120)) (skills: (List (U120))) : (Apps.Fit.Player)
+fun (Fit_plr_new x y xp hp of gd cd skills) {
+  (Fit_plr_new x y xp hp of gd cd skills) = let player = #0; let player = (Fit_plr_p_c player @~ (+ (<< y #8) x)); let player = (Fit_plr_xp_c player @~ xp); let player = (Fit_plr_hp_c player @~ hp); let player = (Fit_plr_of_c player @~ of); let player = (Fit_plr_gd_c player @~ gd); let player = (Fit_plr_cd_c player @~ cd); let func = @skill_id @acc dup _0 _1 = acc; dup _2 _3 = _0; {T2 (Fit_plr_sk_c (Pair_fst _1) (Pair_snd _2) @~ skill_id) (+ (Pair_snd _3) #1)}; let pair = (List_foldl {T2 player #0} func skills); (Pair_fst pair)
 }
 
-// Apps.Fib.Player.xp.change (player: (Apps.Fib.Player)) (f: (_: (U120)) (U120)) : (Apps.Fib.Player)
-fun (Fib_plr_xp_c player f) {
-  (Fib_plr_xp_c player f) = (Fib_m_u120 player #16 #12 f)
+// Apps.Fit.Player.xp.change (player: (Apps.Fit.Player)) (f: (_: (U120)) (U120)) : (Apps.Fit.Player)
+fun (Fit_plr_xp_c player f) {
+  (Fit_plr_xp_c player f) = (Fit_m_u120 player #16 #12 f)
 }
 
-// Apps.Fib.mut_in_u120 (chunk: (U120)) (pos: (U120)) (size: (U120)) (f: (_: (U120)) (U120)) : (U120)
-fun (Fib_m_u120 chunk pos size f) {
-  (Fib_m_u120 chunk pos size f) = dup _4 _5 = chunk; dup _0 _1 = pos; dup _2 _3 = _0; let mask = (- (<< #1 size) #1); dup _6 _7 = mask; let num = (& (>> _4 _1) _6); let num = (f num); let chunk = (& (U120_bwcom (<< _7 _2)) _5); let chunk = (| (<< num _3) chunk); chunk
+// Apps.Fit.mut_in_u120 (chunk: (U120)) (pos: (U120)) (size: (U120)) (f: (_: (U120)) (U120)) : (U120)
+fun (Fit_m_u120 chunk pos size f) {
+  (Fit_m_u120 chunk pos size f) = dup _4 _5 = chunk; dup _0 _1 = pos; dup _2 _3 = _0; let mask = (- (<< #1 size) #1); dup _6 _7 = mask; let num = (& (>> _4 _1) _6); let num = (f num); let chunk = (& (U120_bwcom (<< _7 _2)) _5); let chunk = (| (<< num _3) chunk); chunk
 }
 
 // List.foldl -(a: Type) -(b: Type) (nil: b) (cons: (_: a) (_: b) b) (xs: (List a)) : b
@@ -823,95 +823,95 @@ fun (List_foldl nil cons xs) {
   (List_foldl nil cons {List_cons x.h x.t}) = dup _0 _1 = cons; (List_foldl ((_0 x.h) nil) _1 x.t)
 }
 
-// Apps.Fib.Player.skills.change (player: (Apps.Fib.Player)) (skill_id: (U120)) (f: (_: (U120)) (U120)) : (Apps.Fib.Player)
-fun (Fib_plr_sk_c player skill_id f) {
-  (Fib_plr_sk_c player skill_id f) = (Fib_m_u120 player (+ #84 (* skill_id #6)) #6 f)
+// Apps.Fit.Player.skills.change (player: (Apps.Fit.Player)) (skill_id: (U120)) (f: (_: (U120)) (U120)) : (Apps.Fit.Player)
+fun (Fit_plr_sk_c player skill_id f) {
+  (Fit_plr_sk_c player skill_id f) = (Fit_m_u120 player (+ #84 (* skill_id #6)) #6 f)
 }
 
-// Apps.Fib.Player.pos.change (player: (Apps.Fib.Player)) (f: (_: (U120)) (U120)) : (Apps.Fib.Player)
-fun (Fib_plr_p_c player f) {
-  (Fib_plr_p_c player f) = (Fib_m_u120 player #0 #16 f)
+// Apps.Fit.Player.pos.change (player: (Apps.Fit.Player)) (f: (_: (U120)) (U120)) : (Apps.Fit.Player)
+fun (Fit_plr_p_c player f) {
+  (Fit_plr_p_c player f) = (Fit_m_u120 player #0 #16 f)
 }
 
-// Apps.Fib.Player.of.change (player: (Apps.Fib.Player)) (f: (_: (U120)) (U120)) : (Apps.Fib.Player)
-fun (Fib_plr_of_c player f) {
-  (Fib_plr_of_c player f) = (Fib_m_u120 player #40 #16 f)
+// Apps.Fit.Player.of.change (player: (Apps.Fit.Player)) (f: (_: (U120)) (U120)) : (Apps.Fit.Player)
+fun (Fit_plr_of_c player f) {
+  (Fit_plr_of_c player f) = (Fit_m_u120 player #40 #16 f)
 }
 
-// Apps.Fib.Player.gd.change (player: (Apps.Fib.Player)) (f: (_: (U120)) (U120)) : (Apps.Fib.Player)
-fun (Fib_plr_gd_c player f) {
-  (Fib_plr_gd_c player f) = (Fib_m_u120 player #60 #12 f)
+// Apps.Fit.Player.gd.change (player: (Apps.Fit.Player)) (f: (_: (U120)) (U120)) : (Apps.Fit.Player)
+fun (Fit_plr_gd_c player f) {
+  (Fit_plr_gd_c player f) = (Fit_m_u120 player #60 #12 f)
 }
 
-// Apps.Fib.Player.cd.change (player: (Apps.Fib.Player)) (f: (_: (U120)) (U120)) : (Apps.Fib.Player)
-fun (Fib_plr_cd_c player f) {
-  (Fib_plr_cd_c player f) = (Fib_m_u120 player #72 #12 f)
+// Apps.Fit.Player.cd.change (player: (Apps.Fit.Player)) (f: (_: (U120)) (U120)) : (Apps.Fit.Player)
+fun (Fit_plr_cd_c player f) {
+  (Fit_plr_cd_c player f) = (Fit_m_u120 player #72 #12 f)
 }
 
-// Apps.Fib.Player.hp.change (player: (Apps.Fib.Player)) (f: (_: (U120)) (U120)) : (Apps.Fib.Player)
-fun (Fib_plr_hp_c player f) {
-  (Fib_plr_hp_c player f) = (Fib_m_u120 player #28 #12 f)
+// Apps.Fit.Player.hp.change (player: (Apps.Fit.Player)) (f: (_: (U120)) (U120)) : (Apps.Fit.Player)
+fun (Fit_plr_hp_c player f) {
+  (Fit_plr_hp_c player f) = (Fit_m_u120 player #28 #12 f)
 }
 
-// Apps.Fib.State.player.place (state: (Apps.Fib.State)) (player: (Apps.Fib.Player)) (id: (Apps.Fib.Id)) : (Apps.Fib.State)
-fun (Fib_st_pplc state player id) {
-  (Fib_st_pplc {Fib_st_new map tab} player id) = dup _12 _13 = id; dup _14 _15 = _12; dup _8 _9 = tab; dup _10 _11 = _8; dup _4 _5 = player; dup _6 _7 = _4; dup _0 _1 = map; dup _2 _3 = _0; let x = (Fib_plr_p_gx _5); let y = (Fib_plr_p_gy _6); let pos = (Fib_pos_new x y); dup _16 _17 = pos; let map_id = (Fib_map_got _1 _16); (Pair_match map_id @map_id.fst @map_id.snd (Bool_if (U120_equal #0 map_id.snd) let tab_ent = (Fib_tbl_got _9 _13); (Pair_match tab_ent @tab_ent.fst @tab_ent.snd (Bool_if (U120_equal #0 tab_ent.snd) let tab = (Fib_tbl_set tab_ent.fst _7 _14); let map = (Fib_map_set map_id.fst _15 _17); {Fib_st_new map tab} {Fib_st_new _2 _10})) {Fib_st_new _3 _11}))
+// Apps.Fit.State.player.place (state: (Apps.Fit.State)) (player: (Apps.Fit.Player)) (id: (Apps.Fit.Id)) : (Apps.Fit.State)
+fun (Fit_st_pplc state player id) {
+  (Fit_st_pplc {Fit_st_new map tab} player id) = dup _12 _13 = id; dup _14 _15 = _12; dup _8 _9 = tab; dup _10 _11 = _8; dup _4 _5 = player; dup _6 _7 = _4; dup _0 _1 = map; dup _2 _3 = _0; let x = (Fit_plr_p_gx _5); let y = (Fit_plr_p_gy _6); let pos = (Fit_pos_new x y); dup _16 _17 = pos; let map_id = (Fit_map_got _1 _16); (Pair_match map_id @map_id.fst @map_id.snd (Bool_if (U120_equal #0 map_id.snd) let tab_ent = (Fit_tbl_got _9 _13); (Pair_match tab_ent @tab_ent.fst @tab_ent.snd (Bool_if (U120_equal #0 tab_ent.snd) let tab = (Fit_tbl_set tab_ent.fst _7 _14); let map = (Fit_map_set map_id.fst _15 _17); {Fit_st_new map tab} {Fit_st_new _2 _10})) {Fit_st_new _3 _11}))
 }
 
-// Apps.Fib.Table.got (map: (Apps.Fib.Table)) (id: (Apps.Fib.Id)) : (Pair (Apps.Fib.Table) (Apps.Fib.Entity))
-fun (Fib_tbl_got map id) {
-  (Fib_tbl_got map id) = (Bt_got (Fib_tbl_bses) (Fib_tbl_fid id) map)
+// Apps.Fit.Table.got (map: (Apps.Fit.Table)) (id: (Apps.Fit.Id)) : (Pair (Apps.Fit.Table) (Apps.Fit.Entity))
+fun (Fit_tbl_got map id) {
+  (Fit_tbl_got map id) = (Bt_got (Fit_tbl_bses) (Fit_tbl_fid id) map)
 }
 
-// Apps.Fib.Action.get_comm (action: (U120)) : (U120)
-fun (Fib_ac_gcomm action) {
-  (Fib_ac_gcomm action) = (Fib_g_u120 action #12 #4)
+// Apps.Fit.Action.get_comm (action: (U120)) : (U120)
+fun (Fit_ac_gcomm action) {
+  (Fit_ac_gcomm action) = (Fit_g_u120 action #12 #4)
 }
 
-// Apps.Fib.State.apply_skill (state: (Apps.Fib.State)) (skill: (U120)) (entity: (U120)) (target: (Apps.Fib.Pos)) : (Apps.Fib.State)
-fun (Fib_st_appsk state skill entity target) {
-  (Fib_st_appsk state #0 ~ ~) = state
-  (Fib_st_appsk state #1 entity target) = (Fib_sk_fireb state entity target)
-  (Fib_st_appsk state #2 ~ ~) = state
-  (Fib_st_appsk state #3 ~ ~) = state
-  (Fib_st_appsk state #4 ~ ~) = state
+// Apps.Fit.State.apply_skill (state: (Apps.Fit.State)) (skill: (U120)) (entity: (U120)) (target: (Apps.Fit.Pos)) : (Apps.Fit.State)
+fun (Fit_st_appsk state skill entity target) {
+  (Fit_st_appsk state #0 ~ ~) = state
+  (Fit_st_appsk state #1 entity target) = (Fit_sk_fireb state entity target)
+  (Fit_st_appsk state #2 ~ ~) = state
+  (Fit_st_appsk state #3 ~ ~) = state
+  (Fit_st_appsk state #4 ~ ~) = state
 }
 
-// Apps.Fib.Skill.fireball (state: (Apps.Fib.State)) (player: (Apps.Fib.Player)) (pos: (Apps.Fib.Pos)) : (Apps.Fib.State)
-fun (Fib_sk_fireb state player pos) {
-  (Fib_sk_fireb {Fib_st_new map tab} player pos) = dup _4 _5 = player; dup _0 _1 = pos; dup _2 _3 = _0; let ~ = {T2 (Fib_pos_g_x _1) (Fib_pos_g_y _2)}; let deltas = (Fib_pos_arn #2); let x = (Fib_plr_p_gx _4); let y = (Fib_plr_p_gy _5); let coords = {List_cons _3 (Fib_pos_rnge (Fib_pos_new x y) deltas)}; let fold = (List_fold coords); let damage = @pos @state (Fib_st_pdmg state pos #50); ((fold {Fib_st_new map tab}) damage)
+// Apps.Fit.Skill.fireball (state: (Apps.Fit.State)) (player: (Apps.Fit.Player)) (pos: (Apps.Fit.Pos)) : (Apps.Fit.State)
+fun (Fit_sk_fireb state player pos) {
+  (Fit_sk_fireb {Fit_st_new map tab} player pos) = dup _4 _5 = player; dup _0 _1 = pos; dup _2 _3 = _0; let ~ = {T2 (Fit_pos_g_x _1) (Fit_pos_g_y _2)}; let deltas = (Fit_pos_arn #2); let x = (Fit_plr_p_gx _4); let y = (Fit_plr_p_gy _5); let coords = {List_cons _3 (Fit_pos_rnge (Fit_pos_new x y) deltas)}; let fold = (List_fold coords); let damage = @pos @state (Fit_st_pdmg state pos #50); ((fold {Fit_st_new map tab}) damage)
 }
 
-// Apps.Fib.Pos.around (range: (U120)) : (List (Pair (U120) (U120)))
-fun (Fib_pos_arn range) {
-  (Fib_pos_arn #0) = {List_nil}
-  (Fib_pos_arn range) = dup _0 _1 = range; dup _2 _3 = _0; dup _4 _5 = _1; let fst = {T2 _2 #0}; let snd = {T2 (- #0 _3) #0}; {List_cons fst {List_cons snd (Fib_pos_arnv (U120_decs _4) _5)}}
+// Apps.Fit.Pos.around (range: (U120)) : (List (Pair (U120) (U120)))
+fun (Fit_pos_arn range) {
+  (Fit_pos_arn #0) = {List_nil}
+  (Fit_pos_arn range) = dup _0 _1 = range; dup _2 _3 = _0; dup _4 _5 = _1; let fst = {T2 _2 #0}; let snd = {T2 (- #0 _3) #0}; {List_cons fst {List_cons snd (Fit_pos_arnv (U120_decs _4) _5)}}
 }
 
-// Apps.Fib.Pos.around.variations (variations: (U120)) (range: (U120)) : (List (Pair (U120) (U120)))
-fun (Fib_pos_arnv variations range) {
-  (Fib_pos_arnv #0 range) = dup _0 _1 = range; dup _2 _3 = _0; let fst = {T2 #0 _1}; let snd = {T2 #0 (- #0 _2)}; {List_cons fst {List_cons snd (Fib_pos_arn (U120_decs _3))}}
-  (Fib_pos_arnv var range) = dup _8 _9 = var; dup _10 _11 = _8; dup _12 _13 = _9; dup _14 _15 = _10; dup _16 _17 = _11; dup _18 _19 = _12; dup _20 _21 = _13; dup _22 _23 = _14; dup _0 _1 = range; dup _2 _3 = _0; dup _4 _5 = _1; dup _6 _7 = _2; let fst = {T2 _15 (- _3 _16)}; let snd = {T2 _17 (- _18 _4)}; let trd = {T2 (- #0 _19) (- _5 _20)}; let frt = {T2 (- #0 _21) (- _22 _6)}; {List_cons fst {List_cons snd {List_cons trd {List_cons frt (Fib_pos_arnv (U120_decs _23) _7)}}}}
+// Apps.Fit.Pos.around.variations (variations: (U120)) (range: (U120)) : (List (Pair (U120) (U120)))
+fun (Fit_pos_arnv variations range) {
+  (Fit_pos_arnv #0 range) = dup _0 _1 = range; dup _2 _3 = _0; let fst = {T2 #0 _1}; let snd = {T2 #0 (- #0 _2)}; {List_cons fst {List_cons snd (Fit_pos_arn (U120_decs _3))}}
+  (Fit_pos_arnv var range) = dup _8 _9 = var; dup _10 _11 = _8; dup _12 _13 = _9; dup _14 _15 = _10; dup _16 _17 = _11; dup _18 _19 = _12; dup _20 _21 = _13; dup _22 _23 = _14; dup _0 _1 = range; dup _2 _3 = _0; dup _4 _5 = _1; dup _6 _7 = _2; let fst = {T2 _15 (- _3 _16)}; let snd = {T2 _17 (- _18 _4)}; let trd = {T2 (- #0 _19) (- _5 _20)}; let frt = {T2 (- #0 _21) (- _22 _6)}; {List_cons fst {List_cons snd {List_cons trd {List_cons frt (Fit_pos_arnv (U120_decs _23) _7)}}}}
 }
 
-// Apps.Fib.State.player.damage (state: (Apps.Fib.State)) (pos: (Apps.Fib.Pos)) (dmg: (U120)) : (Apps.Fib.State)
-fun (Fib_st_pdmg state pos dmg) {
-  (Fib_st_pdmg {Fib_st_new map table} pos dmg) = dup _8 _9 = pos; dup _6 _7 = dmg; dup _4 _5 = table; dup _0 _1 = map; dup _2 _3 = _0; let map_id = (Fib_map_got _1 _8); dup _22 _23 = map_id; let id = (Pair_snd _22); dup _16 _17 = id; dup _18 _19 = _16; dup _20 _21 = _17; (Bool_if (U120_is0 _18) {Fib_st_new _2 _4} let table_entity = (Fib_tbl_got _5 _19); dup _14 _15 = table_entity; let table = (Pair_fst _14); dup _12 _13 = table; let player = (Pair_snd _15); let player_hp = (Fib_plr_hp_g player); dup _10 _11 = player_hp; let dmg_gte = (U120_gte _6 _10); (Bool_if dmg_gte let new_player = @x (Fib_plr_dmg x _11); let new_table = (Fib_tbl_mut _12 new_player _20); let new_map = (Fib_map_del (Pair_fst _23) _9); {Fib_st_new new_map new_table} let new_player = @x (Fib_plr_dmg x _7); let new_table = (Fib_tbl_mut _13 new_player _21); {Fib_st_new _3 new_table}))
+// Apps.Fit.State.player.damage (state: (Apps.Fit.State)) (pos: (Apps.Fit.Pos)) (dmg: (U120)) : (Apps.Fit.State)
+fun (Fit_st_pdmg state pos dmg) {
+  (Fit_st_pdmg {Fit_st_new map table} pos dmg) = dup _8 _9 = pos; dup _6 _7 = dmg; dup _4 _5 = table; dup _0 _1 = map; dup _2 _3 = _0; let map_id = (Fit_map_got _1 _8); dup _22 _23 = map_id; let id = (Pair_snd _22); dup _16 _17 = id; dup _18 _19 = _16; dup _20 _21 = _17; (Bool_if (U120_is0 _18) {Fit_st_new _2 _4} let table_entity = (Fit_tbl_got _5 _19); dup _14 _15 = table_entity; let table = (Pair_fst _14); dup _12 _13 = table; let player = (Pair_snd _15); let player_hp = (Fit_plr_hp_g player); dup _10 _11 = player_hp; let dmg_gte = (U120_gte _6 _10); (Bool_if dmg_gte let new_player = @x (Fit_plr_dmg x _11); let new_table = (Fit_tbl_mut _12 new_player _20); let new_map = (Fit_map_del (Pair_fst _23) _9); {Fit_st_new new_map new_table} let new_player = @x (Fit_plr_dmg x _7); let new_table = (Fit_tbl_mut _13 new_player _21); {Fit_st_new _3 new_table}))
 }
 
-// Apps.Fib.Map.del (map: (Apps.Fib.Map)) (pos: (Apps.Fib.Pos)) : (Apps.Fib.Map)
-fun (Fib_map_del map pos) {
-  (Fib_map_del map pos) = (Fib_map_set map #0 pos)
+// Apps.Fit.Map.del (map: (Apps.Fit.Map)) (pos: (Apps.Fit.Pos)) : (Apps.Fit.Map)
+fun (Fit_map_del map pos) {
+  (Fit_map_del map pos) = (Fit_map_set map #0 pos)
 }
 
-// Apps.Fib.Player.damage (player: (Apps.Fib.Player)) (dmg: (U120)) : (Apps.Fib.Player)
-fun (Fib_plr_dmg player dmg) {
-  (Fib_plr_dmg player dmg) = (Fib_plr_hp_c player @x (- x dmg))
+// Apps.Fit.Player.damage (player: (Apps.Fit.Player)) (dmg: (U120)) : (Apps.Fit.Player)
+fun (Fit_plr_dmg player dmg) {
+  (Fit_plr_dmg player dmg) = (Fit_plr_hp_c player @x (- x dmg))
 }
 
-// Apps.Fib.Player.hp.get (player: (Apps.Fib.Player)) : (U120)
-fun (Fib_plr_hp_g player) {
-  (Fib_plr_hp_g player) = (Fib_g_u120 player #28 #12)
+// Apps.Fit.Player.hp.get (player: (Apps.Fit.Player)) : (U120)
+fun (Fit_plr_hp_g player) {
+  (Fit_plr_hp_g player) = (Fit_g_u120 player #28 #12)
 }
 
 // List.fold -(a: Type) -(p: Type) (xs: (List a)) : (_: p) (_: (_: a) (_: p) p) p
@@ -920,10 +920,10 @@ fun (List_fold xs) {
   (List_fold {List_cons head tail}) = @nil @cons dup _0 _1 = cons; ((_0 head) (((List_fold tail) nil) _1))
 }
 
-// Apps.Fib.Pos.range (center: (Apps.Fib.Pos)) (deltas: (List (Pair (U120) (U120)))) : (List (Apps.Fib.Pos))
-fun (Fib_pos_rnge center deltas) {
-  (Fib_pos_rnge ~ {List_nil}) = {List_nil}
-  (Fib_pos_rnge center {List_cons head tail}) = dup _0 _1 = center; dup _2 _3 = _0; (Pair_match head @head.fst @head.snd let validate = @val (U120_ltn val #160); dup _10 _11 = validate; let x = (+ (Fib_pos_g_x _1) head.fst); dup _8 _9 = x; let y = (+ (Fib_pos_g_y _2) head.snd); dup _6 _7 = y; let is_valid = (Bool_and (_10 _8) (_11 _6)); let go = (Fib_pos_rnge _3 tail); dup _4 _5 = go; (Bool_match is_valid {List_cons (Fib_pos_new _9 _7) _4} _5))
+// Apps.Fit.Pos.range (center: (Apps.Fit.Pos)) (deltas: (List (Pair (U120) (U120)))) : (List (Apps.Fit.Pos))
+fun (Fit_pos_rnge center deltas) {
+  (Fit_pos_rnge ~ {List_nil}) = {List_nil}
+  (Fit_pos_rnge center {List_cons head tail}) = dup _0 _1 = center; dup _2 _3 = _0; (Pair_match head @head.fst @head.snd let validate = @val (U120_ltn val #160); dup _10 _11 = validate; let x = (+ (Fit_pos_g_x _1) head.fst); dup _8 _9 = x; let y = (+ (Fit_pos_g_y _2) head.snd); dup _6 _7 = y; let is_valid = (Bool_and (_10 _8) (_11 _6)); let go = (Fit_pos_rnge _3 tail); dup _4 _5 = go; (Bool_match is_valid {List_cons (Fit_pos_new _9 _7) _4} _5))
 }
 
 // Bool.match (x: (Bool)) -(p: (x: (Bool)) Type) (true: (p (Bool.true))) (false: (p (Bool.false))) : (p x)
@@ -932,9 +932,9 @@ fun (Bool_match x true false) {
   (Bool_match {Bool_false} ~ false) = false
 }
 
-// Apps.Fib.Pos.modify (pos: (Apps.Fib.Pos)) (delta: (Pair (U120) (U120))) : (Maybe (Apps.Fib.Pos))
-fun (Fib_pos_mod pos delta) {
-  (Fib_pos_mod pos delta) = let list = (Fib_pos_rnge pos {List_cons delta {List_nil}}); (List_match list {Maybe_none} @list.head @~ {Maybe_some list.head})
+// Apps.Fit.Pos.modify (pos: (Apps.Fit.Pos)) (delta: (Pair (U120) (U120))) : (Maybe (Apps.Fit.Pos))
+fun (Fit_pos_mod pos delta) {
+  (Fit_pos_mod pos delta) = let list = (Fit_pos_rnge pos {List_cons delta {List_nil}}); (List_match list {Maybe_none} @list.head @~ {Maybe_some list.head})
 }
 
 // List.match -(t: Type) (x: (List t)) -(p: (x: (List t)) Type) (nil: (p (List.nil t))) (cons: (head: t) (tail: (List t)) (p (List.cons t head tail))) : (p x)
@@ -943,42 +943,42 @@ fun (List_match x nil cons) {
   (List_match {List_cons head_ tail_} ~ cons) = ((cons head_) tail_)
 }
 
-// Apps.Fib.Interaction.get_data (data: (U120)) : (U120)
-fun (Apps_Fib_w6S data) {
-  (Apps_Fib_w6S ~) = (& #252 #3)
+// Apps.Fit.Interaction.get_data (data: (U120)) : (U120)
+fun (Apps_Fit_w6S data) {
+  (Apps_Fit_w6S ~) = (& #252 #3)
 }
 
-// Apps.Fib.State.walk (state: (Apps.Fib.State)) (data: (U120)) (entity: (Apps.Fib.Entity)) (id: (Apps.Fib.Id)) : (Apps.Fib.State)
-fun (Fib_st_walk state data entity id) {
-  (Fib_st_walk {Fib_st_new map table} data ~ id) = dup _6 _7 = table; dup _4 _5 = map; dup _0 _1 = data; dup _2 _3 = _0; let max_move = #2; let dx = (& _1 #15); let dy = (>> _2 #4); let real_change = @x (% x #8); dup _10 _11 = real_change; let gtn = (U120_gte max_move (+ (_10 dx) (_11 dy))); let delta_xy = (Fib_pos_g_xy _3); dup _8 _9 = delta_xy; let dx = (Pair_fst _8); let dy = (Pair_snd _9); (Bool_if gtn (Fib_st_move id dx dy {Fib_st_new _4 _6}) {Fib_st_new _5 _7})
+// Apps.Fit.State.walk (state: (Apps.Fit.State)) (data: (U120)) (entity: (Apps.Fit.Entity)) (id: (Apps.Fit.Id)) : (Apps.Fit.State)
+fun (Fit_st_walk state data entity id) {
+  (Fit_st_walk {Fit_st_new map table} data ~ id) = dup _6 _7 = table; dup _4 _5 = map; dup _0 _1 = data; dup _2 _3 = _0; let max_move = #2; let dx = (& _1 #15); let dy = (>> _2 #4); let real_change = @x (% x #8); dup _10 _11 = real_change; let gtn = (U120_gte max_move (+ (_10 dx) (_11 dy))); let delta_xy = (Fit_pos_g_xy _3); dup _8 _9 = delta_xy; let dx = (Pair_fst _8); let dy = (Pair_snd _9); (Bool_if gtn (Fit_st_move id dx dy {Fit_st_new _4 _6}) {Fit_st_new _5 _7})
 }
 
-// Apps.Fib.State.move (entity_id: (Apps.Fib.Id)) (dx: (U120)) (dy: (U120)) (state: (Apps.Fib.State)) : (Apps.Fib.State)
-fun (Fib_st_move entity_id dx dy state) {
-  (Fib_st_move entity_id dx dy {Fib_st_new map table}) = dup _4 _5 = map; dup _0 _1 = table; dup _2 _3 = _0; let tab_ent = (Fib_tbl_got _1 entity_id); let player = (Pair_snd tab_ent); dup _8 _9 = player; let x = (Fib_plr_p_gx _8); let y = (Fib_plr_p_gy _9); let origin_pos = (Fib_pos_new x y); dup _6 _7 = origin_pos; let modify = (Fib_pos_mod _6 {T2 dx dy}); (Maybe_match modify {Fib_st_new _4 _2} @modify.value (Fib_st_pmov {Fib_st_new _5 _3} _7 modify.value))
+// Apps.Fit.State.move (entity_id: (Apps.Fit.Id)) (dx: (U120)) (dy: (U120)) (state: (Apps.Fit.State)) : (Apps.Fit.State)
+fun (Fit_st_move entity_id dx dy state) {
+  (Fit_st_move entity_id dx dy {Fit_st_new map table}) = dup _4 _5 = map; dup _0 _1 = table; dup _2 _3 = _0; let tab_ent = (Fit_tbl_got _1 entity_id); let player = (Pair_snd tab_ent); dup _8 _9 = player; let x = (Fit_plr_p_gx _8); let y = (Fit_plr_p_gy _9); let origin_pos = (Fit_pos_new x y); dup _6 _7 = origin_pos; let modify = (Fit_pos_mod _6 {T2 dx dy}); (Maybe_match modify {Fit_st_new _4 _2} @modify.value (Fit_st_pmov {Fit_st_new _5 _3} _7 modify.value))
 }
 
-// Apps.Fib.State.player.move (state: (Apps.Fib.State)) (ori: (Apps.Fib.Pos)) (des: (Apps.Fib.Pos)) : (Apps.Fib.State)
-fun (Fib_st_pmov state ori des) {
-  (Fib_st_pmov {Fib_st_new map table} ori des) = dup _8 _9 = des; dup _10 _11 = _8; dup _4 _5 = map; dup _6 _7 = _4; dup _2 _3 = ori; dup _0 _1 = table; let des_map_id = (Fib_map_got _5 _9); let emp_des = (Fib_map_tlem (Pair_snd des_map_id)); let ori_map_id = (Fib_map_got _6 _2); dup _12 _13 = ori_map_id; dup _14 _15 = _12; dup _16 _17 = _13; let tbl_ent_ori = (Fib_tbl_got _0 (Pair_snd _14)); (Bool_if emp_des let new_player = @player (Fib_plr_p_c player @~ (Sigma_fst _10)); let new_table = (Fib_tbl_mut (Pair_fst tbl_ent_ori) new_player (Pair_snd _15)); let new_map = (Fib_map_del (Pair_fst _16) _3); let new_map = (Fib_map_set new_map (Pair_snd _17) _11); {Fib_st_new new_map new_table} {Fib_st_new _7 _1})
+// Apps.Fit.State.player.move (state: (Apps.Fit.State)) (ori: (Apps.Fit.Pos)) (des: (Apps.Fit.Pos)) : (Apps.Fit.State)
+fun (Fit_st_pmov state ori des) {
+  (Fit_st_pmov {Fit_st_new map table} ori des) = dup _8 _9 = des; dup _10 _11 = _8; dup _4 _5 = map; dup _6 _7 = _4; dup _2 _3 = ori; dup _0 _1 = table; let des_map_id = (Fit_map_got _5 _9); let emp_des = (Fit_map_tlem (Pair_snd des_map_id)); let ori_map_id = (Fit_map_got _6 _2); dup _12 _13 = ori_map_id; dup _14 _15 = _12; dup _16 _17 = _13; let tbl_ent_ori = (Fit_tbl_got _0 (Pair_snd _14)); (Bool_if emp_des let new_player = @player (Fit_plr_p_c player @~ (Sigma_fst _10)); let new_table = (Fit_tbl_mut (Pair_fst tbl_ent_ori) new_player (Pair_snd _15)); let new_map = (Fit_map_del (Pair_fst _16) _3); let new_map = (Fit_map_set new_map (Pair_snd _17) _11); {Fit_st_new new_map new_table} {Fit_st_new _7 _1})
 }
 
-// Apps.Fib.Map.tile_is_empty (tile: (U120)) : (Bool)
-fun (Fib_map_tlem tile) {
-  (Fib_map_tlem tile) = (U120_is0 tile)
+// Apps.Fit.Map.tile_is_empty (tile: (U120)) : (Bool)
+fun (Fit_map_tlem tile) {
+  (Fit_map_tlem tile) = (U120_is0 tile)
 }
 
-// Fib.Act.next (code: (U120)) : (Fib.Act)
-ctr {Fib_Act_next code}
+// Fit.Act.next (code: (U120)) : (Fit.Act)
+ctr {Fit_Act_next code}
 
-// Apps.Fib.State.init : (Apps.Fib.State)
-fun (Fib_st_init) {
-  (Fib_st_init) = let map = (Fib_map_allc); let tab = (Fib_tbl_allc); {Fib_st_new map tab}
+// Apps.Fit.State.init : (Apps.Fit.State)
+fun (Fit_st_init) {
+  (Fit_st_init) = let map = (Fit_map_allc); let tab = (Fit_tbl_allc); {Fit_st_new map tab}
 }
 
-// Apps.Fib.Table.alloc : (Apps.Fib.Table)
-fun (Fib_tbl_allc) {
-  (Fib_tbl_allc) = (Bt_alloc (Fib_tbl_bses) #0)
+// Apps.Fit.Table.alloc : (Apps.Fit.Table)
+fun (Fit_tbl_allc) {
+  (Fit_tbl_allc) = (Bt_alloc (Fit_tbl_bses) #0)
 }
 
 fun (Bt_alloc0_ x0 x1 x2) {
@@ -992,8 +992,8 @@ fun (Bt_alloc bases default) {
   (Bt_alloc {List_cons .0 t} default) = (Bt_alloc0_ .0 t default)
 }
 
-// Apps.Fib.Map.alloc : (Apps.Fib.Map)
-fun (Fib_map_allc) {
-  (Fib_map_allc) = (Bt_alloc (Fib_map_base) #0)
+// Apps.Fit.Map.alloc : (Apps.Fit.Map)
+fun (Fit_map_allc) {
+  (Fit_map_allc) = (Bt_alloc (Fit_map_base) #0)
 }
 
