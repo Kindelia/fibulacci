@@ -1,0 +1,5 @@
+run {
+  ask tick = (Tick);
+  ask x = (Call 'Fic' {Fic_kdl_anxt tick});
+  (Done x)
+}

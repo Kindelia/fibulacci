@@ -1,6 +1,5 @@
-// Returns the state unmodified
 run {
-  ask state = (Call 'Fit' {Fit_Act_next #0});
-  let parsed = (Fit_st_parse state);
-  (Done parsed)
+  ask x = (Call 'Fic' {Fic_kdl_actg});
+  let r = (Fic_kdl_stpr x);
+  (Done r)
 }

@@ -1,9 +1,14 @@
-// Fitulacci contract
-// Should only be published after functions.kdl is
-
-// Fit (action: (Fit.Act)) : (Kindelia.IO (Apps.Fit.State))
-fun (Fit action) {
-  (Fit {Fit_Act_next code}) = {TAKE @state let y = (Fit_st_upd state code #0); dup _0 _1 = y; {SAVE _0 @~ {DONE _1}}}
+// Apps.Fic.Kindelia (action: (Apps.Fic.Kindelia.Act)) : (Kindelia.IO (Apps.Fic.Kindelia.Response))
+fun (Fic action) {
+  (Fic {Fic_kdl_anxt code}) =
+    {TAKE @state let blk = #0;
+    let result = (Fic_kdl_supd state code blk);
+    dup _0 _1 = result;
+    let state = (Pair_fst _0);
+    {SAVE state @~ {DONE {Fic_kdl_rnxt _1}}}}
+  (Fic {Fic_kdl_actg}) =
+    {TAKE @state dup _0 _1 = state;
+    {SAVE _0 @~ {DONE {Fic_kdl_rst _1}}}}
 } with {
-  (Fit_st_init)
+    {Fic_kdl #0 (Fic_st_buld)}
 }
