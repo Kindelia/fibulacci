@@ -1,6 +1,5 @@
 import { EXPBar } from "./EXPBar";
 import { HPBar } from "./HPBar";
-import { MPBar } from "./MPBar";
 import { WindowSlot } from "./WindowSlot";
 
 type WindowProps = {};
@@ -23,7 +22,6 @@ export function Window(props: WindowProps) {
         </div>
         <div className="flex flex-col gap-2">
           <HPBar />
-          <MPBar />
         </div>
         <EXPBar />
         <WindowSlot />
