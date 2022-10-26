@@ -8,6 +8,10 @@ export function StartScreen() {
     Router.push("/play");
   }
 
+  function goToCredits() {
+    Router.push("/credits");
+  }
+
   return (
     <div className="flex flex:col ai:center jc:center h:100vh bg:black gap:20">
       <LogoIcon className="h:40% @float|3s|ease-in-out|infinite" />
@@ -19,7 +23,9 @@ export function StartScreen() {
         START
       </button>
       <ConnectButton />
-      <p>CREDITS</p>
+      <p onClick={goToCredits} className="cursor:pointer">
+        CREDITS
+      </p>
     </div>
   );
 }
