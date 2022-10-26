@@ -1,5 +1,6 @@
-import $ from '@master/literal';
-import useSound from 'use-sound';
+import $ from "@master/literal";
+import { useState } from "react";
+import useSound from "use-sound";
 
 export type BlobProps = {
   side: "left" | "right";
@@ -8,6 +9,8 @@ export type BlobProps = {
 };
 
 export function Blob(props: BlobProps) {
+  const [isPlayingSound, setIsPlayingSound] = useState(false);
+
   const scale = 1;
 
   const size = 32 * scale;
@@ -18,6 +21,19 @@ export function Blob(props: BlobProps) {
   };
 
   const [play] = useSound("/sounds/blob-voice.mp3", { volume: 0.9 });
+
+  function handlePlaySound() {
+    if (isPlayingSound) return;
+
+    try {
+      play();
+      setIsPlayingSound(true);
+    } catch (error) {
+      setIsPlayingSound(false);
+    } finally {
+      setTimeout(() => setIsPlayingSound(false), 2000);
+    }
+  }
 
   return (
     <div
@@ -31,7 +47,7 @@ export function Blob(props: BlobProps) {
         bg:url('/images/blob-${side}.png')
         @blob|1s|steps(8)|infinite
       `}
-      onClick={() => play()}
+      onClick={handlePlaySound}
     />
   );
 }
