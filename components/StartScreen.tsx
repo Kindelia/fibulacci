@@ -1,6 +1,7 @@
-import Image from "next/image";
-import Router from "next/router";
-import { useEffectOnce } from "react-use";
+import Router from 'next/router';
+import { useEffectOnce } from 'react-use';
+
+import { LogoIcon } from './LogoIcon';
 
 export function StartScreen() {
   useEffectOnce(() => {
@@ -10,13 +11,10 @@ export function StartScreen() {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <Image
-        src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/296cfd51810903.58fa63641b9a1.gif"
-        alt="loading"
-        height={500}
-        width={800}
-      />
+    <div className="flex flex:col ai:center jc:center h:100vh bg:black gap:20">
+      <LogoIcon isDark={false} className="h:40% @heart|1s|infinite mb:100" />
+      <p>Welcome Fibulacci</p>
+      <p>O seu divertimento está sendo carregado...</p>
     </div>
   );
 }
