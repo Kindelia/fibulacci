@@ -11,7 +11,7 @@ export function EXPBar(props: EXPBarProps) {
 
   return (
     <div>
-      <div className="flex jc:space-between">
+      <div className="flex jc:space-between mb:20">
         <p>EXP</p>
         <p>Lvl. 1</p>
       </div>
