@@ -1,7 +1,7 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { BlobBlue } from "../components/Creatures/BlobBlue";
 import { Player } from "../components/Player";
-import { Stage } from "../components/Stages/Principal";
+import { PrincipalStage } from "../components/Stages/PrincipalStage";
 import { useStateQuery } from "../hooks/useStateQuery";
 
 export default function PlayPure() {
@@ -9,13 +9,11 @@ export default function PlayPure() {
 
   return (
     <>
-      {/* <ConnectButton /> */}
-      <div className="">
-        <Stage>
-        <Player />
-        <BlobBlue x={10} y={20} side="left" />
-      </Stage>
-      </div>
+      <ConnectButton />
+        <PrincipalStage>
+          <Player />
+          <BlobBlue x={50} y={70} side="left" />
+        </PrincipalStage>
     </>
   );
 }

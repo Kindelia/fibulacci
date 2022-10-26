@@ -26,8 +26,8 @@ const initialPlayerState: Player = {
   name: "Anony",
   score: 0,
   speed: 1,
-  x: 0,
-  y: 0,
+  x: 20,
+  y: 30,
 };
 
 export const playerStore = persistentAtom<Player>(
