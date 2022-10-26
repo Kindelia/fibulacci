@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { LoadingScreen } from '../components/LoadingScreen';
+import { StartScreen } from '../components/StartScreen';
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <LoadingScreen />
+        <StartScreen />
       </main>
     </div>
   );

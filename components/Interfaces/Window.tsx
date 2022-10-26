@@ -23,6 +23,10 @@ export function Window(props: WindowProps) {
         </div>
         <EXPBar />
         <WindowSlot />
+        <input
+          placeholder="ID do player"
+          className="b:1|solid|white p:20 rounded"
+        />
       </div>
     </div>
   );
