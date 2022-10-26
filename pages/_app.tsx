@@ -1,5 +1,10 @@
-import '../styles/globals.css';
+import '@master/css';
+import '@master/keyframes.css';
+import '@master/normal.css';
+
 import '@rainbow-me/rainbowkit/styles.css';
+
+import '../styles/globals.css';
 
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

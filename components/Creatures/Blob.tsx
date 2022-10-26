@@ -1,18 +1,19 @@
-import useSound from "use-sound";
+import $ from '@master/literal';
+import useSound from 'use-sound';
 
 export type BlobProps = {
   side: "left" | "right";
   x: number;
   y: number;
-  scale?: number;
-  size?: number;
 };
 
 export function Blob(props: BlobProps) {
-  const { side, x, y, scale, size } = {
-    scale: 1,
+  const scale = 1;
+
+  const size = 32 * scale;
+
+  const { side, x, y } = {
     side: "right",
-    size: 32,
     ...props,
   };
 
@@ -20,14 +21,16 @@ export function Blob(props: BlobProps) {
 
   return (
     <div
-      className="animate-blob absolute cursor-pointer"
-      style={{
-        backgroundImage: `url("/images/blob-${side}.png")`,
-        width: size * scale,
-        height: size * scale,
-        top: y,
-        left: x,
-      }}
+      className={$`
+        abs 
+        cursor:pointer
+        w:${size}
+        h:${size}
+        top:${y}
+        left:${x}
+        bg:url('/images/blob-${side}.png')
+        @blob|1s|steps(8)|infinite
+      `}
       onClick={() => play()}
     />
   );

@@ -533,6 +533,11 @@
   resolved "https://registry.yarnpkg.com/@master/css/-/css-1.37.2.tgz#045571d225b54545a4db454242d1137572d72c0c"
   integrity sha512-cSTElbPBimoVYmIpOCKyxS7sdg38OEdnbf2ktev3eSXg1AKG7e4hFCSXLw69PPf2qGNEdqqPxe/jOfHgTPXx8Q==
 
+"@master/keyframes.css@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@master/keyframes.css/-/keyframes.css-1.2.3.tgz#70539c19bdc4b51e7a526626b4513e3a4faa40e6"
+  integrity sha512-cbhIYNw+0xPlxi/oYtbRZ5etBDUJLkSTTJtUOAsU70AmnXNlzpG5oAVs+8kn3XrxhnArXScoe49Xy4iwc6gIGg==
+
 "@master/literal@1.0.11":
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/@master/literal/-/literal-1.0.11.tgz#4223d60dabcc58bc9972ad8247a22fc063f05bc5"

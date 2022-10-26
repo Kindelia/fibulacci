@@ -26,7 +26,10 @@ export function Stage(props: StageProps) {
 
   return (
     <>
-      <div onClick={handlePlay} className="bg-map h-screen w-full">
+      <div
+        onClick={handlePlay}
+        className="bg:url('/images/maps/castle.jpeg') h:100vh w:100%"
+      >
         {children}
       </div>
     </>

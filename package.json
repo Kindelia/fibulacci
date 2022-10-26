@@ -4,6 +4,7 @@
   "dependencies": {
     "@fxts/core": "0.10.1",
     "@master/css": "1.37.2",
+    "@master/keyframes.css": "^1.2.3",
     "@master/literal": "1.0.11",
     "@master/normal.css": "1.9.7",
     "@nanostores/persistent": "0.7.0",

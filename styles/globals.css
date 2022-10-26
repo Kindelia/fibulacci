@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Press Start 2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press Start 2P&display=swap");
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  font-family: "Press Start 2P", sans-serif;
+  color: white;
+}
 
-@layer base {
-  body {
-    @apply bg-black text-white;
+@keyframes blob {
+  from {
+    background-position-x: 0px;
   }
-  html {
-    @apply font-press-start-2p;
-    @apply leading-8;
+
+  to {
+    background-position-x: 256px;
   }
 }

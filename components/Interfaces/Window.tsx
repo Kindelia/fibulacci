@@ -7,20 +7,18 @@ type WindowProps = {};
 export function Window(props: WindowProps) {
   return (
     <div
-      className="absolute right-0 top-0"
+      className="abs right:0 top:0 w:500 h:100vh"
       style={{
         borderImageSource: "url(/images/window.png)",
         borderImageSlice: "24 24 24 24 fill",
         borderImageWidth: "24px 24px 24px 24px",
-        width: 500,
-        height: "100vh",
       }}
     >
-      <div className="flex flex-col h-screen justify-center items-center gap-10">
-        <div className="w-3/4 h-48 bg-orange-100 flex justify-center items-center">
-          <p className="text-black">MINIMAP</p>
+      <div className="flex flex:col h:100vh jc:space-around ai:center gap:10">
+        <div className="w:3/4 h:150 bg:orange-80 flex jc:center ai:center">
+          <p>MINIMAP</p>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex:col gap:2">
           <HPBar />
         </div>
         <EXPBar />

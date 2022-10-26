@@ -1,19 +1,22 @@
-import Image from "next/image";
+import $ from "@master/literal";
 
 export type EmptyBarProps = {};
 
 export function EmptyBar(_props: EmptyBarProps) {
-  const width = 130;
-  const height = 18;
-
   const scale = 3;
 
+  const width = 130 * scale;
+  const height = 18 * scale;
+
   return (
-    <Image
-      src="/images/empty-bar.png"
-      alt="Empty Bar"
-      width={width * scale}
-      height={height * scale}
+    <div
+      className={$`
+      bg:cover
+      bg:no-repeat
+      bg:url('/images/empty-bar.png')
+      h:${height}
+      w:${width}
+    `}
     />
   );
 }

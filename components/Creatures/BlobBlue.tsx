@@ -1,29 +1,37 @@
-export type BlobBlueProps = {
+import $ from '@master/literal';
+import useSound from 'use-sound';
+
+export type BlobProps = {
   side: "left" | "right";
   x: number;
   y: number;
-  scale?: number;
 };
 
-export function BlobBlue(props: BlobBlueProps) {
-  const size = 32;
+export function BlobBlue(props: BlobProps) {
+  const scale = 1;
 
-  const { side, x, y, scale } = {
-    scale: 1,
+  const size = 32 * scale;
+
+  const { side, x, y } = {
     side: "right",
     ...props,
   };
 
+  const [play] = useSound("/sounds/blob-voice.mp3", { volume: 0.9 });
+
   return (
     <div
-      className="animate-blob absolute"
-      style={{
-        backgroundImage: `url("/images/blob-blue-${side}.png")`,
-        width: size * scale,
-        height: size * scale,
-        top: y,
-        left: x,
-      }}
+      className={$`
+        abs 
+        cursor:pointer
+        w:${size}
+        h:${size}
+        top:${y}
+        left:${x}
+        bg:url('/images/blob-blue-${side}.png')
+        @blob|1s|steps(8)|infinite
+      `}
+      onClick={() => play()}
     />
   );
 }
