@@ -1,11 +1,11 @@
 import { ReactNode, useState } from "react";
 import useSound from "use-sound";
 
-type StageProps = {
+type PrincipalStageProps = {
   children: ReactNode;
 };
 
-export function Stage(props: StageProps) {
+export function PrincipalStage(props: PrincipalStageProps) {
   const { children } = props;
 
   const [isPlaying, setIsPlaying] = useState(false);
@@ -16,6 +16,8 @@ export function Stage(props: StageProps) {
   });
 
   function handlePlay() {
+    if (isPlaying) return;
+
     try {
       play();
       setIsPlaying(true);
