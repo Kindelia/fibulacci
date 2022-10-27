@@ -1,7 +1,8 @@
 {
   "name": "fib",
-  "version": "0.1.0",
+  "version": "1.0.0-beta",
   "dependencies": {
+    "kindelia-js": "file:../kindelia-js",
     "@fxts/core": "0.10.1",
     "@master/css": "1.37.2",
     "@master/keyframes.css": "^1.2.3",
