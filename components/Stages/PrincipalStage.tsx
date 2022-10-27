@@ -30,7 +30,7 @@ export function PrincipalStage(props: PrincipalStageProps) {
     <>
       <div
         onClick={handlePlay}
-        className="bg:url('/images/maps/castle.jpeg') h:100vh w:100%"
+        className="bg:url('/images/maps/world-terrain.png') h:100vh w:100%"
       >
         {children}
       </div>
