@@ -1,0 +1,375 @@
+// Apps.Flb.Kindelia.skill (x0: (U120)) (y0: (U120)) (x1: (U120)) (y1: (U120)) (id: (U120)) (skill: (U120)) : (U120)
+fun (Flb_kdl_skll x0 y0 x1 y1 id skill) {
+  (Flb_kdl_skll x0 y0 x1 y1 id skill) =
+    let comm = (+ skill #2);
+    let origin = (Flb_pos_new x0 y0);
+    let target = (Flb_pos_new x1 y1);
+    let data = (Flb_pos_tdat origin target);
+    (| (| id (<< data #16)) (<< comm #12))
+}
+
+// Apps.Flb.Pos.to_data (center: (Apps.Flb.Pos)) (target: (Apps.Flb.Pos)) : (U120)
+fun (Flb_pos_tdat center target) {
+  (Flb_pos_tdat center target) =
+    dup _2 _3 = target;
+    dup _0 _1 = center;
+    let cx = (Flb_pos_getx _0);
+    let cy = (Flb_pos_gety _1);
+    let tx = (Flb_pos_getx _2);
+    let ty = (Flb_pos_gety _3);
+    let func = @c dup _8 _9 = c;
+    dup _10 _11 = _8;
+    @t dup _4 _5 = t;
+    dup _6 _7 = _4;
+    (Bool_if (U120_gtns _9 _5) (| #8 (- _10 _6)) (- _7 _11));
+    dup _12 _13 = func;
+    let x = (!(!_12 cx) tx);
+    let y = (!(!_13 cy) ty);
+    (| x (<< y #4))
+}
+
+// U120.greater_than (a: (U120)) (b: (U120)) : (Bool)
+fun (U120_gtns a b) {
+  (U120_gtns a b) =
+    (U120_tbool (> a b))
+}
+
+// U120.new (hi: U60) (lo: U60) : (U120)
+fun (U120_new hi lo) {
+  (U120_new hi lo) =
+    (+ (<< hi #60) (>> (<< lo #60) #60))
+}
+
+// U120.to_bool (n: (U120)) : (Bool)
+fun (U120_tbool n) {
+  (U120_tbool #0) =
+    {Bool_false}
+  (U120_tbool ~) =
+    {Bool_true}
+}
+
+// Bool.false : (Bool)
+ctr {Bool_false}
+
+// Bool.true : (Bool)
+ctr {Bool_true}
+
+// Apps.Flb.Pos.Value.get_x (val: (U120)) : (U120)
+fun (Flb_pos_vgx val) {
+  (Flb_pos_vgx val) =
+    (& val #255)
+}
+
+// Apps.Flb.Pos.Value.get_y (val: (U120)) : (U120)
+fun (Flb_pos_vgy val) {
+  (Flb_pos_vgy val) =
+    (>> val #8)
+}
+
+// U120.less_than (a: (U120)) (b: (U120)) : (Bool)
+fun (U120_ltn a b) {
+  (U120_ltn a b) =
+    (U120_tbool (< a b))
+}
+
+// Apps.Flb.Pos.get_x (pos: (Apps.Flb.Pos)) : (U120)
+fun (Flb_pos_getx pos) {
+  (Flb_pos_getx pos) =
+    (& (Sigma_fst pos) #255)
+}
+
+// Sigma.fst -(a: Type) -(b: (_: a) Type) (s: (Sigma a b)) : a
+fun (Sigma_fst s) {
+  (Sigma_fst {Sigma_new x ~}) =
+    x
+}
+
+// Sigma.new -(a: Type) -(b: (_: a) Type) (fst: a) (snd: (b fst)) : (Sigma a b)
+ctr {Sigma_new fst snd}
+
+// Apps.Flb.Pos.get_y (pos: (Apps.Flb.Pos)) : (U120)
+fun (Flb_pos_gety pos) {
+  (Flb_pos_gety pos) =
+    (>> (Sigma_fst pos) #8)
+}
+
+// Bool.if -(a: Type) (b: (Bool)) (t: a) (f: a) : a
+fun (Bool_if b t f) {
+  (Bool_if {Bool_true} t ~) =
+    t
+  (Bool_if {Bool_false} ~ f) =
+    f
+}
+
+// U60.greater_than (a: U60) (b: U60) : (Bool)
+fun (U60_gtn a b) {
+  (U60_gtn a b) =
+    (U60_tbool (> a b))
+}
+
+// U60.to_bool (n: U60) : (Bool)
+fun (U60_tbool n) {
+  (U60_tbool #0) =
+    {Bool_false}
+  (U60_tbool ~) =
+    {Bool_true}
+}
+
+// Apps.Flb.Pos.new (x: (U120)) (y: (U120)) : (Apps.Flb.Pos)
+fun (Flb_pos_new x y) {
+  (Flb_pos_new x y) =
+    dup _2 _3 = x;
+    dup _0 _1 = y;
+    let x.val = (% _2 #160);
+    dup _10 _11 = x.val;
+    dup _12 _13 = _10;
+    let y.val = (% _0 #160);
+    dup _6 _7 = y.val;
+    dup _8 _9 = _6;
+    let e0 = {U120_mod_ilt _3 #160 (Flb_pos_160n)};
+    dup _4 _5 = e0;
+    let e1 = {U120_mod_ilt _1 #160 (Flb_pos_160n)};
+    {Sigma_new (Flb_pos_vnew _11 _7) {T2 (Flb_pos_vivx _12 _8 _4) (Flb_pos_vivy _13 _9 _5 e1)}}
+}
+
+// Pos.160_is_not_0 : (Not (Equal (U120) (U120.new 0 160) (U120.new 0 0)))
+fun (Flb_pos_160n) {
+  (Flb_pos_160n) =
+    @absurd (Equal_rewrt absurd {T0})
+}
+
+// Apps.Flb.Pos.Value.IsValid.y (x: (U120)) (y: (U120)) (e0: (Equal (Bool) (U120.less_than x (U120.new 0 160)) (Bool.true))) (e1: (Equal (Bool) (U120.less_than y (U120.new 0 160)) (Bool.true))) : (Equal (Bool) (U120.less_than (U120.shift_right (U120.bitwise_or (U120.shift_left y (U120.new 0 8)) x) (U120.new 0 8)) (U120.new 0 160)) (Bool.true))
+fun (Flb_pos_vivy x y e0 e1) {
+  (Flb_pos_vivy x y e0 e1) =
+    dup _8 _9 = x;
+    dup _10 _11 = _8;
+    dup _0 _1 = y;
+    dup _2 _3 = _0;
+    dup _4 _5 = _1;
+    dup _6 _7 = _2;
+    let e2 = {U120_ilt_clt _9 #160 #256 e0 {Equal_refl}};
+    let e3 = {U120_sr_zlel _10 #8 e2};
+    let e4 = {U120_sr_psor (<< _3 #8) _11 #8};
+    let e4.1 = (Equal_rewrt e3 e4);
+    let e5 = {U120_or_zr (>> (<< _4 #8) #8)};
+    let e4.2 = (Equal_rewrt e5 e4.1);
+    let e6 = {U120_sr_slle _5 #8};
+    let e7 = {U120_ile_clt (>> (<< _6 #8) #8) _7 #160 e6 e1};
+    let e7.1 = (Equal_rewrt (Equal_mirr e4.2) e7);
+    e7.1
+}
+
+// Equal.rewrite -(t: Type) -(a: t) -(b: t) (e: (Equal t a b)) -(p: (_: t) Type) (x: (p a)) : (p b)
+fun (Equal_rewrt e x) {
+  (Equal_rewrt {Equal_refl} x) =
+    x
+}
+
+// Equal.refl -(t: Type) -(a: t) : (Equal t a a)
+ctr {Equal_refl}
+
+// U120.IsLessThan.chain.less_than (a: (U120)) (b: (U120)) (c: (U120)) (e0: (U120.IsLessThan a b)) (e1: (U120.IsLessThan b c)) : (U120.IsLessThan a c)
+ctr {U120_ilt_clt a b c e0 e1}
+
+// U120.shift_right.zero_if_less_equal_length (a: (U120)) (b: (U120)) (e0: (Equal (Bool) (U120.less_than a (U120.shift_left (U120.new 0 1) b)) (Bool.true))) : (Equal (U120) (U120.shift_right a b) (U120.new 0 0))
+ctr {U120_sr_zlel a b e0}
+
+// Equal.mirror -(t: Type) -(a: t) -(b: t) (e: (Equal t a b)) : (Equal t b a)
+fun (Equal_mirr e) {
+  (Equal_mirr {Equal_refl}) =
+    {Equal_refl}
+}
+
+// U120.or.zero_right (a: (U120)) : (Equal (U120) (U120.bitwise_or a (U120.new 0 0)) a)
+ctr {U120_or_zr a}
+
+// U120.shift_right.shl_less_equal (a: (U120)) (b: (U120)) : (Equal (Bool) (U120.less_equal (U120.shift_right (U120.shift_left a b) b) a) (Bool.true))
+ctr {U120_sr_slle a b}
+
+// U120.less_equal (a: (U120)) (b: (U120)) : (Bool)
+fun (U120_lte a b) {
+  (U120_lte a b) =
+    (U120_tbool (<= a b))
+}
+
+// U120.shift_right.pass_or (a: (U120)) (b: (U120)) (c: (U120)) : (let x = (U120.shift_right (U120.bitwise_or a b) c); (let y = (U120.bitwise_or (U120.shift_right a c) (U120.shift_right b c)); (Equal (U120) x y)))
+ctr {U120_sr_psor a b c}
+
+// U120.IsLessEqual.chain.less_than (a: (U120)) (b: (U120)) (c: (U120)) (e0: (U120.IsLessEqual a b)) (e1: (U120.IsLessThan b c)) : (U120.IsLessThan a c)
+ctr {U120_ile_clt a b c e0 e1}
+
+// Pair.snd -(a: Type) -(b: Type) (pair: (Pair a b)) : b
+fun (Pair_snd pair) {
+  (Pair_snd {T2 ~ snd}) =
+    snd
+}
+
+// U120.div_mod (num: (U120)) (den: (U120)) : (Pair (U120) (U120))
+fun (U120_dms num den) {
+  (U120_dms ~ #0) =
+    {T2 (U60_tu120 (/ #0 #0)) (U60_tu120 (% #0 #0))}
+  (U120_dms num den) =
+    dup _0 _1 = num;
+    (Maybe_match (U120_msb _0) {T2 #0 #0} @msb.value let qr = {T2 #0 #0};
+    let idx = (U120_inc msb.value);
+    (U120_dm_go idx qr _1 den))
+}
+
+// U120.div_mod.go (idx: (U120)) (qr: (Pair (U120) (U120))) (num: (U120)) (den: (U120)) : (Pair (U120) (U120))
+fun (U120_dm_go idx qr num den) {
+  (U120_dm_go #0 qr ~ ~) =
+    qr
+  (U120_dm_go idx qr num den) =
+    dup _6 _7 = den;
+    dup _8 _9 = _6;
+    dup _4 _5 = num;
+    dup _2 _3 = qr;
+    dup _0 _1 = idx;
+    let quo = (Pair_fst _2);
+    dup _16 _17 = quo;
+    let rem = (Pair_snd _3);
+    let rem = (<< rem #1);
+    let bit = (U120_decs _0);
+    dup _14 _15 = bit;
+    let rem = (+ rem (U120_getb _4 _14));
+    dup _10 _11 = rem;
+    dup _12 _13 = _10;
+    let qr = (Bool_if (U120_gte _11 _7) let quo = (U120_setb _16 _15);
+    let rem = (- _12 _8);
+    {T2 quo rem} {T2 _17 _13});
+    (U120_dm_go (U120_decs _1) qr _5 _9)
+}
+
+// U60.to_u120 (num: U60) : (U120)
+fun (U60_tu120 num) {
+  (U60_tu120 num) =
+    (U120_new #0 num)
+}
+
+// Bool.or (a: (Bool)) (b: (Bool)) : (Bool)
+fun (Bool_or a b) {
+  (Bool_or {Bool_true} ~) =
+    {Bool_true}
+  (Bool_or {Bool_false} b) =
+    b
+}
+
+// U60.less_than (a: U60) (b: U60) : (Bool)
+fun (U60_ltn a b) {
+  (U60_ltn a b) =
+    (U60_tbool (< a b))
+}
+
+// U120.set_bit (num: (U120)) (bit: (U120)) : (U120)
+fun (U120_setb num bit) {
+  (U120_setb num bit) =
+    let bit = (<< #1 bit);
+    (| num bit)
+}
+
+// Maybe.match -(t: Type) (x: (Maybe t)) -(p: (x: (Maybe t)) Type) (none: (p (Maybe.none t))) (some: (value: t) (p (Maybe.some t value))) : (p x)
+fun (Maybe_match x none some) {
+  (Maybe_match {Maybe_none} none ~) =
+    none
+  (Maybe_match {Maybe_some value_} ~ some) =
+    (!some value_)
+}
+
+// Maybe.some -(t: Type) (value: t) : (Maybe t)
+ctr {Maybe_some value}
+
+// Maybe.none -(t: Type) : (Maybe t)
+ctr {Maybe_none}
+
+// U120.get_bit (num: (U120)) (bit: (U120)) : (U120)
+fun (U120_getb num bit) {
+  (U120_getb num bit) =
+    (& (>> num bit) #1)
+}
+
+// Pair.fst -(a: Type) -(b: Type) (pair: (Pair a b)) : a
+fun (Pair_fst pair) {
+  (Pair_fst {T2 fst ~}) =
+    fst
+}
+
+// U120.dec (num: (U120)) : (U120)
+fun (U120_decs num) {
+  (U120_decs num) =
+    (- num #1)
+}
+
+// U120.msb (n: (U120)) : (Maybe (U120))
+fun (U120_msb n) {
+  (U120_msb #0) =
+    {Maybe_none}
+  (U120_msb n) =
+    {Maybe_some (- (U120_msb_go n) #1)}
+}
+
+// U120.msb.go (n: (U120)) : (U120)
+fun (U120_msb_go n) {
+  (U120_msb_go #0) =
+    #0
+  (U120_msb_go n) =
+    (+ #1 (U120_msb_go (>> n #1)))
+}
+
+// U120.greater_equal (a: (U120)) (b: (U120)) : (Bool)
+fun (U120_gte a b) {
+  (U120_gte a b) =
+    (U120_tbool (>= a b))
+}
+
+// U120.inc (n: (U120)) : (U120)
+fun (U120_inc n) {
+  (U120_inc n) =
+    (+ n #1)
+}
+
+// U120.mod.is_less_than (a: (U120)) (b: (U120)) (e: (Not (Equal (U120) b (U120.new 0 0)))) : (U120.IsLessThan (U120.mod a b) b)
+ctr {U120_mod_ilt a b e}
+
+// Apps.Flb.Pos.Value.IsValid.x (x: (U120)) (y: (U120)) (e0: (Equal (Bool) (U120.less_than x (U120.new 0 160)) (Bool.true))) : (Equal (Bool) (U120.less_than (U120.bitwise_and (U120.bitwise_or (U120.shift_left y (U120.new 0 8)) x) (U120.new 0 255)) (U120.new 0 160)) (Bool.true))
+fun (Flb_pos_vivx x y e0) {
+  (Flb_pos_vivx x y e0) =
+    dup _2 _3 = x;
+    dup _4 _5 = _2;
+    dup _6 _7 = _3;
+    dup _8 _9 = _4;
+    dup _0 _1 = y;
+    let e1 = {U120_and_po (<< _0 #8) _5 #255};
+    let e2 = {U120_sl_mz _1 #8};
+    let e1.1 = (Equal_rewrt e2 e1);
+    let e3 = {U120_or_zl (& _6 #255)};
+    let e1.2 = (Equal_rewrt e3 e1.1);
+    let e4 = {U120_and_lea _7 #255};
+    let e5 = {U120_ile_clt (& _8 #255) _9 #160 e4 e0};
+    let e5.1 = (Equal_rewrt (Equal_mirr e1.2) e5);
+    e5.1
+}
+
+// U120.and.less_equal_a (a: (U120)) (b: (U120)) : (U120.IsLessEqual (U120.bitwise_and a b) a)
+ctr {U120_and_lea a b}
+
+// U120.shift_left.mask_zero (a: (U120)) (s: (U120)) : (let a = (U120.bitwise_and (U120.shift_left a s) (U120.sub (U120.shift_left (U120.new 0 1) s) (U120.new 0 1))); (let b = (U120.new 0 0); (Equal (U120) a b)))
+ctr {U120_sl_mz a s}
+
+// U120.and.pass_or (a: (U120)) (b: (U120)) (c: (U120)) : (let x = (U120.bitwise_and (U120.bitwise_or a b) c); (let y = (U120.bitwise_or (U120.bitwise_and a c) (U120.bitwise_and b c)); (Equal (U120) x y)))
+ctr {U120_and_po a b c}
+
+// U120.or.zero_left (a: (U120)) : (Equal (U120) (U120.bitwise_or (U120.new 0 0) a) a)
+ctr {U120_or_zl a}
+
+// U120.equal (a: (U120)) (b: (U120)) : (Bool)
+fun (U120_equal a b) {
+  (U120_equal a b) =
+    (U120_tbool (== a b))
+}
+
+// Apps.Flb.Pos.Value.new (x: (U120)) (y: (U120)) : _
+fun (Flb_pos_vnew x y) {
+  (Flb_pos_vnew x y) =
+    (| (<< y #8) x)
+}
+

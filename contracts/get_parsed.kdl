@@ -1,5 +1,6 @@
 run {
-  ask x = (Call 'Fic' {Fic_kdl_actg});
-  let r = (Fic_kdl_stpr x);
+  ask tick = (Tick);
+  ask x    = (Call 'Flb' {Flb_act_get});
+  let r    = (Flb_kdl_stpr x tick);
   (Done r)
 }

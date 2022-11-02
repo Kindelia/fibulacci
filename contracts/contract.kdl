@@ -1,14 +1,77 @@
-// Apps.Fic.Kindelia (action: (Apps.Fic.Kindelia.Act)) : (Kindelia.IO (Apps.Fic.Kindelia.Response))
-fun (Fic action) {
-  (Fic {Fic_kdl_anxt code}) =
-    {TAKE @state let blk = #0;
-    let result = (Fic_kdl_supd state code blk);
-    dup _0 _1 = result;
-    let state = (Pair_fst _0);
-    {SAVE state @~ {DONE {Fic_kdl_rnxt _1}}}}
-  (Fic {Fic_kdl_actg}) =
+
+// Apps.Flb.Kindelia (action: (Apps.Flb.Kindelia.Act)) : (Kindelia.IO (Apps.Flb.Kindelia.Response))
+fun (Flb action) {
+  (Flb {Flb_act_act code}) =
+    {TAKE @state {TICK @block let pair = (Flb_kdl_supd state code block);
+    dup _2 _3 = pair;
+    let events = (Pair_snd _2);
+    dup _0 _1 = events;
+    let state = (Pair_fst _3);
+    let result = (Bool_if (Data_BrauoRQ _0) {Flb_res_noac} {Flb_res_acte _1});
+    {SAVE state @~ {DONE result}}}}
+  (Flb {Flb_act_get}) =
     {TAKE @state dup _0 _1 = state;
-    {SAVE _0 @~ {DONE {Fic_kdl_rst _1}}}}
+    let result = {Flb_res_stat _0};
+    {SAVE _1 @~ {DONE result}}}
+  (Flb {Flb_act_join subj kgt}) =
+    dup _0 _1 = subj;
+    {TAKE @state dup _14 _15 = state;
+    dup _16 _17 = _14;
+    {TICK @~ let phase = (Flb_kdl_sgph _15);
+    (Flb_kdl_spma phase @phase.queue let queue = phase.queue;
+    let user = {Flb_kdl_spun _0 kgt};
+    let size = (U120_to_nat #10);
+    dup _8 _9 = size;
+    dup _10 _11 = _8;
+    dup _12 _13 = _9;
+    let pair = (Data_Limi7yc _10 queue user);
+    dup _6 _7 = pair;
+    let ~ = (Flb_kdl_spuk (Pair_fst _6));
+    let queue = (Pair_snd _7);
+    dup _2 _3 = queue;
+    dup _4 _5 = _2;
+    let cond = @x (U120_equal _1 (Flb_kdl_spuk x));
+    let find = (Data_LimiBjW _11 cond _3);
+    let phase = {Flb_kdl_splo _4};
+    let state = (Flb_kdl_ssph _16 phase);
+    {SAVE state @~ (Maybe_match find let floor = (Data_Limiu2F _12 (Data_Limiafd _13 _5));
+    let value = (Maybe_extNd2 floor #0 @x (Flb_kdl_spuk x));
+    let func = @x x;
+    let value = (!func value);
+    let result = {Flb_res_nojo value};
+    {DONE result} @find.value let position = find.value;
+    let func = @x x;
+    let position = (!func position);
+    let result = {Flb_res_join position};
+    {DONE result})} @~ {SAVE _17 @~ {DONE {Flb_res_wrph}}})}}
+  (Flb {Flb_act_strt}) =
+    {TAKE @state dup _2 _3 = state;
+    dup _4 _5 = _2;
+    dup _6 _7 = _3;
+    {TICK @tick dup _0 _1 = tick;
+    (Flb_kdl_smat _4 @state.phase @state.start @~ let phase = state.phase;
+    (Flb_kdl_spma phase @phase.queue let to_start = #300;
+    let duration = (U120_sub__CB _0 state.start);
+    let can_start = {Bool_true};
+    (Bool_if can_start let size = (U120_to_nat #10);
+    let starts = (Flb_map_inpo);
+    let acc = {Flb_kdl_tsne starts {PEmpty} (Flb_kdl_sgst _5) #0};
+    let data = (Data_LimiyVR size acc @~ (Flb_kdl_tstf) phase.queue);
+    (Flb_kdl_tsma data @~ @data.users @data.state @~ let phase = {Flb_kdl_spga data.users};
+    let timer = #0;
+    let state = data.state;
+    let state = {Flb_kdl_snew phase timer state};
+    let result = {Flb_res_star _1};
+    {SAVE state @~ {DONE result}}) {SAVE _6 @~ let result = {Flb_res_nost (U120_sub__CB to_start duration)};
+    {DONE result}}) @~ {SAVE _7 @~ {DONE {Flb_res_wrph}}}))}}
+  (Flb {Flb_act_rst}) =
+    {TAKE @state dup _0 _1 = state;
+    {TICK @~ (Flb_kdl_smat _0 @state.phase @~ @~ let phase = state.phase;
+    (Flb_kdl_spma phase @~ {SAVE _1 @~ {DONE {Flb_res_wrph}}} @~ let phase = (Flb_kdl_spil);
+    let state = (Flb_stt_buil);
+    let s_blk = #0;
+    let state = {Flb_kdl_snew phase s_blk state};
+    {SAVE state @~ {DONE {Flb_res_rese}}}))}}
 } with {
-    {Fic_kdl #0 (Fic_st_buld)}
+    {Flb_kdl_snew {Flb_kdl_spga {PEmpty}} #0 (Flb_stt_buil)}
 }
