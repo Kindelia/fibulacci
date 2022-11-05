@@ -1,6 +1,6 @@
-// Apps.Flb.Kindelia.walk (direction: (U120)) (id: (U120)) : (U120)
-fun (Flb_kdl_walk direction id) {
-  (Flb_kdl_walk direction id) =
+// Apps.Fim.Kindelia.walk (direction: (U120)) (id: (U120)) : (U120)
+fun (Fim_kdl_walk direction id) {
+  (Fim_kdl_walk direction id) =
     (| (+ #1024 id) (<< direction #16))
 }
 

@@ -1,0 +1,13 @@
+// Apps.Fim.Kindelia.intr (direction: (U120)) (id: (U120)) : (U120)
+fun (Fim_kdl_intr direction id) {
+  (Fim_kdl_intr direction id) =
+    let comm = #1;
+    (| (| id (<< direction #16)) (<< comm #12))
+}
+
+// U120.new (hi: U60) (lo: U60) : (U120)
+fun (U120_new hi lo) {
+  (U120_new hi lo) =
+    (+ (<< hi #60) (>> (<< lo #60) #60))
+}
+

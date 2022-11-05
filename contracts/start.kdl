@@ -1,4 +1,4 @@
 run {
-  ask x = (Call 'Flb' {Flb_act_act #0});
+  ask x = (Call 'Fim' {Fim_act_act #0});
   (Done x)
 }

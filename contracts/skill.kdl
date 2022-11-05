@@ -1,22 +1,22 @@
-// Apps.Flb.Kindelia.skill (x0: (U120)) (y0: (U120)) (x1: (U120)) (y1: (U120)) (id: (U120)) (skill: (U120)) : (U120)
-fun (Flb_kdl_skll x0 y0 x1 y1 id skill) {
-  (Flb_kdl_skll x0 y0 x1 y1 id skill) =
+// Apps.Fim.Kindelia.skill (x0: (U120)) (y0: (U120)) (x1: (U120)) (y1: (U120)) (id: (U120)) (skill: (U120)) : (U120)
+fun (Fim_kdl_skll x0 y0 x1 y1 id skill) {
+  (Fim_kdl_skll x0 y0 x1 y1 id skill) =
     let comm = (+ skill #2);
-    let origin = (Flb_pos_new x0 y0);
-    let target = (Flb_pos_new x1 y1);
-    let data = (Flb_pos_tdat origin target);
+    let origin = (Fim_pos_new x0 y0);
+    let target = (Fim_pos_new x1 y1);
+    let data = (Fim_pos_tdat origin target);
     (| (| id (<< data #16)) (<< comm #12))
 }
 
-// Apps.Flb.Pos.to_data (center: (Apps.Flb.Pos)) (target: (Apps.Flb.Pos)) : (U120)
-fun (Flb_pos_tdat center target) {
-  (Flb_pos_tdat center target) =
+// Apps.Fim.Pos.to_data (center: (Apps.Fim.Pos)) (target: (Apps.Fim.Pos)) : (U120)
+fun (Fim_pos_tdat center target) {
+  (Fim_pos_tdat center target) =
     dup _2 _3 = target;
     dup _0 _1 = center;
-    let cx = (Flb_pos_getx _0);
-    let cy = (Flb_pos_gety _1);
-    let tx = (Flb_pos_getx _2);
-    let ty = (Flb_pos_gety _3);
+    let cx = (Fim_pos_getx _0);
+    let cy = (Fim_pos_gety _1);
+    let tx = (Fim_pos_getx _2);
+    let ty = (Fim_pos_gety _3);
     let func = @c dup _8 _9 = c;
     dup _10 _11 = _8;
     @t dup _4 _5 = t;
@@ -54,15 +54,15 @@ ctr {Bool_false}
 // Bool.true : (Bool)
 ctr {Bool_true}
 
-// Apps.Flb.Pos.Value.get_x (val: (U120)) : (U120)
-fun (Flb_pos_vgx val) {
-  (Flb_pos_vgx val) =
+// Apps.Fim.Pos.Value.get_x (val: (U120)) : (U120)
+fun (Fim_pos_vgx val) {
+  (Fim_pos_vgx val) =
     (& val #255)
 }
 
-// Apps.Flb.Pos.Value.get_y (val: (U120)) : (U120)
-fun (Flb_pos_vgy val) {
-  (Flb_pos_vgy val) =
+// Apps.Fim.Pos.Value.get_y (val: (U120)) : (U120)
+fun (Fim_pos_vgy val) {
+  (Fim_pos_vgy val) =
     (>> val #8)
 }
 
@@ -72,9 +72,9 @@ fun (U120_ltn a b) {
     (U120_tbool (< a b))
 }
 
-// Apps.Flb.Pos.get_x (pos: (Apps.Flb.Pos)) : (U120)
-fun (Flb_pos_getx pos) {
-  (Flb_pos_getx pos) =
+// Apps.Fim.Pos.get_x (pos: (Apps.Fim.Pos)) : (U120)
+fun (Fim_pos_getx pos) {
+  (Fim_pos_getx pos) =
     (& (Sigma_fst pos) #255)
 }
 
@@ -87,9 +87,9 @@ fun (Sigma_fst s) {
 // Sigma.new -(a: Type) -(b: (_: a) Type) (fst: a) (snd: (b fst)) : (Sigma a b)
 ctr {Sigma_new fst snd}
 
-// Apps.Flb.Pos.get_y (pos: (Apps.Flb.Pos)) : (U120)
-fun (Flb_pos_gety pos) {
-  (Flb_pos_gety pos) =
+// Apps.Fim.Pos.get_y (pos: (Apps.Fim.Pos)) : (U120)
+fun (Fim_pos_gety pos) {
+  (Fim_pos_gety pos) =
     (>> (Sigma_fst pos) #8)
 }
 
@@ -115,9 +115,9 @@ fun (U60_tbool n) {
     {Bool_true}
 }
 
-// Apps.Flb.Pos.new (x: (U120)) (y: (U120)) : (Apps.Flb.Pos)
-fun (Flb_pos_new x y) {
-  (Flb_pos_new x y) =
+// Apps.Fim.Pos.new (x: (U120)) (y: (U120)) : (Apps.Fim.Pos)
+fun (Fim_pos_new x y) {
+  (Fim_pos_new x y) =
     dup _2 _3 = x;
     dup _0 _1 = y;
     let x.val = (% _2 #160);
@@ -126,21 +126,21 @@ fun (Flb_pos_new x y) {
     let y.val = (% _0 #160);
     dup _6 _7 = y.val;
     dup _8 _9 = _6;
-    let e0 = {U120_mod_ilt _3 #160 (Flb_pos_160n)};
+    let e0 = {U120_mod_ilt _3 #160 (Fim_pos_160n)};
     dup _4 _5 = e0;
-    let e1 = {U120_mod_ilt _1 #160 (Flb_pos_160n)};
-    {Sigma_new (Flb_pos_vnew _11 _7) {T2 (Flb_pos_vivx _12 _8 _4) (Flb_pos_vivy _13 _9 _5 e1)}}
+    let e1 = {U120_mod_ilt _1 #160 (Fim_pos_160n)};
+    {Sigma_new (Fim_pos_vnew _11 _7) {T2 (Fim_pos_vivx _12 _8 _4) (Fim_pos_vivy _13 _9 _5 e1)}}
 }
 
 // Pos.160_is_not_0 : (Not (Equal (U120) (U120.new 0 160) (U120.new 0 0)))
-fun (Flb_pos_160n) {
-  (Flb_pos_160n) =
+fun (Fim_pos_160n) {
+  (Fim_pos_160n) =
     @absurd (Equal_rewrt absurd {T0})
 }
 
-// Apps.Flb.Pos.Value.IsValid.y (x: (U120)) (y: (U120)) (e0: (Equal (Bool) (U120.less_than x (U120.new 0 160)) (Bool.true))) (e1: (Equal (Bool) (U120.less_than y (U120.new 0 160)) (Bool.true))) : (Equal (Bool) (U120.less_than (U120.shift_right (U120.bitwise_or (U120.shift_left y (U120.new 0 8)) x) (U120.new 0 8)) (U120.new 0 160)) (Bool.true))
-fun (Flb_pos_vivy x y e0 e1) {
-  (Flb_pos_vivy x y e0 e1) =
+// Apps.Fim.Pos.Value.IsValid.y (x: (U120)) (y: (U120)) (e0: (Equal (Bool) (U120.less_than x (U120.new 0 160)) (Bool.true))) (e1: (Equal (Bool) (U120.less_than y (U120.new 0 160)) (Bool.true))) : (Equal (Bool) (U120.less_than (U120.shift_right (U120.bitwise_or (U120.shift_left y (U120.new 0 8)) x) (U120.new 0 8)) (U120.new 0 160)) (Bool.true))
+fun (Fim_pos_vivy x y e0 e1) {
+  (Fim_pos_vivy x y e0 e1) =
     dup _8 _9 = x;
     dup _10 _11 = _8;
     dup _0 _1 = y;
@@ -330,9 +330,9 @@ fun (U120_inc n) {
 // U120.mod.is_less_than (a: (U120)) (b: (U120)) (e: (Not (Equal (U120) b (U120.new 0 0)))) : (U120.IsLessThan (U120.mod a b) b)
 ctr {U120_mod_ilt a b e}
 
-// Apps.Flb.Pos.Value.IsValid.x (x: (U120)) (y: (U120)) (e0: (Equal (Bool) (U120.less_than x (U120.new 0 160)) (Bool.true))) : (Equal (Bool) (U120.less_than (U120.bitwise_and (U120.bitwise_or (U120.shift_left y (U120.new 0 8)) x) (U120.new 0 255)) (U120.new 0 160)) (Bool.true))
-fun (Flb_pos_vivx x y e0) {
-  (Flb_pos_vivx x y e0) =
+// Apps.Fim.Pos.Value.IsValid.x (x: (U120)) (y: (U120)) (e0: (Equal (Bool) (U120.less_than x (U120.new 0 160)) (Bool.true))) : (Equal (Bool) (U120.less_than (U120.bitwise_and (U120.bitwise_or (U120.shift_left y (U120.new 0 8)) x) (U120.new 0 255)) (U120.new 0 160)) (Bool.true))
+fun (Fim_pos_vivx x y e0) {
+  (Fim_pos_vivx x y e0) =
     dup _2 _3 = x;
     dup _4 _5 = _2;
     dup _6 _7 = _3;
@@ -367,9 +367,9 @@ fun (U120_equal a b) {
     (U120_tbool (== a b))
 }
 
-// Apps.Flb.Pos.Value.new (x: (U120)) (y: (U120)) : _
-fun (Flb_pos_vnew x y) {
-  (Flb_pos_vnew x y) =
+// Apps.Fim.Pos.Value.new (x: (U120)) (y: (U120)) : _
+fun (Fim_pos_vnew x y) {
+  (Fim_pos_vnew x y) =
     (| (<< y #8) x)
 }
 
