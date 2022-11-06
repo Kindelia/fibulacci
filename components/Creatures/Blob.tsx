@@ -15,10 +15,7 @@ export function Blob(props: BlobProps) {
 
   const size = 32 * scale;
 
-  const { side, x, y } = {
-    side: "right",
-    ...props,
-  };
+  const { side, x, y } = props;
 
   const [play] = useSound("/sounds/blob-voice.mp3", { volume: 0.9 });
 
