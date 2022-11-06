@@ -1,9 +1,13 @@
 import * as F from "@fxts/core";
 import $ from "@master/literal";
+import { useStore } from "@nanostores/react";
+import { playerStore } from "../../stores/playerStore";
 
 export type EXPBarProps = {};
 
 export function EXPBar(props: EXPBarProps) {
+  const player = useStore(playerStore);
+
   const scale = 2;
 
   const width = 8 * scale;
@@ -13,7 +17,7 @@ export function EXPBar(props: EXPBarProps) {
     <div>
       <div className="flex jc:space-between mb:20">
         <p>EXP</p>
-        <p>Lvl. 1</p>
+        <p>Lvl. {player.level ?? 1}</p>
       </div>
       <div className="flex gap:10">
         {F.pipe(
