@@ -1,28 +1,48 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { api } from "../utils/axios";
+import kindelia from "kindelia-js";
+import { setGameStore } from "../stores/gameStore";
+import { NODE_URL } from "../utils/env";
 
-export function useMoveMutation() {
-//   const id = 727;
-//   const x = 0o0;
-//   const y = 0o4;
+enum EventMoveEnum {
+  "ArrowUp" = 0,
+  "ArrowLeft" = 1,
+  "ArrowDown" = 2,
+  "ArrowRight" = 3,
+}
 
-//   // 727 Moves up 
-//   // 100100000000001011010111 = #9437911
-//   // // 001011010111 = id 727
-//   // // 0000         = command move
-//   // // 10010000     = Coordinate (0, -1)
+export function usePlayerMoveMutation() {
+  return useMutation(
+    ["moveMutation"],
+    ({
+      player,
+      eventMove,
+    }: {
+      playerId: any;
+      eventMove: KeyboardEvent;
+    }) => {
+      return kindelia
+        .sendInteract({
+          nodeURL: NODE_URL,
+          isPublish: true,
+          code: `
+          run {
+              let code = (Flb_kdl_walk #${
+                EventMoveEnum[eventMove.key]
+              } #${player.id});
+              ask x = (Call 'Flb' {Flb_act_act code});
+              (Done x)
+          }
+      `,
+        })
+        .then((res) => {
+          console.log('DHUASUHDASHDUHAS', res.data)
 
+          if (res.data[0]["Ok"] === null) {
+            setGameStore({ isLoading: true, player });
+          }
 
-//   const command = `${x}${y}${0o4}${id}`;
-
-//   const data = `
-//     run {
-//         ask x = (Call 'Fib' {Fib_Act #${command}});
-//         (Done x)
-//     }
-//   `;
-
-//   return useMutation("moveMutation", () =>
-//     client.post("/publish", data).then((res) => res.data)
-//   );
+          return res;
+        });
+    }
+  );
 }
