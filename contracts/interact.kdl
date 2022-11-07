@@ -1,6 +1,6 @@
-// Apps.Fim.Kindelia.intr (direction: (U120)) (id: (U120)) : (U120)
-fun (Fim_kdl_intr direction id) {
-  (Fim_kdl_intr direction id) =
+// Apps.Fql.Kindelia.intr (direction: (U120)) (id: (U120)) : (U120)
+fun (Fql_kdl_intr direction id) {
+  (Fql_kdl_intr direction id) =
     let comm = #1;
     (| (| id (<< direction #16)) (<< comm #12))
 }
