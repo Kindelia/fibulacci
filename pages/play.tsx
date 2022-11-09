@@ -7,7 +7,7 @@ import { Player } from "../components/Player/Player";
 import { PrincipalStage } from "../components/Stages/PrincipalStage";
 import { useSkillMutation } from "../hooks/useSkillMutation";
 import { useStateQuery } from "../hooks/useStateQuery";
-import { gameStore } from "../stores/gameStore";
+import { gameStore, setGameStore } from "../stores/gameStore";
 
 export default function Play() {
   const game = useStore(gameStore);
@@ -38,6 +38,14 @@ export default function Play() {
   const creature = data.find((item) => item.num === "0");
 
   const creatures = [creature];
+
+  // if (game.isLoading && game?.player?.fat !== player.fat) {
+  //   setGameStore({ isLoading: false, player: null });
+  // }
+
+  // if (game.isLoading) {
+  //   return <p className="f:black f:bold">Estado processando...</p>;
+  // }
 
   return (
     <PrincipalStage>
