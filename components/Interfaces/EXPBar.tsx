@@ -1,30 +1,37 @@
 import * as F from "@fxts/core";
-import Image from "next/image";
+import $ from "@master/literal";
+import { useStore } from "@nanostores/react";
+import { playerStore } from "../../stores/playerStore";
 
 export type EXPBarProps = {};
 
 export function EXPBar(props: EXPBarProps) {
-  const width = 8 * 2;
-  const height = 8 * 2;
+  const player = useStore(playerStore);
 
-  const scale = 1;
+  const scale = 2;
+
+  const width = 8 * scale;
+  const height = 8 * scale;
 
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex jc:space-between mb:20">
         <p>EXP</p>
-        <p>Lvl. 1</p>
+        <p>Lvl. {player.level ?? 1}</p>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap:10">
         {F.pipe(
           F.range(14),
           F.map((i: number) => (
-            <Image
+            <div
+              className={$`
+                bg:url('/images/exp-full.png')
+                w:${width}
+                h:${height}
+                bg:no-repeat
+                bg:cover
+              `}
               key={i}
-              src="/images/exp-full.png"
-              alt="EXP Bar"
-              width={width * scale}
-              height={height * scale}
             />
           )),
           F.toArray

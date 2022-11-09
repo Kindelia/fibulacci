@@ -1,26 +1,26 @@
-import * as F from '@fxts/core';
-import Image from 'next/image';
+import * as F from "@fxts/core";
+import $ from "@master/literal";
 
 type WindowSlotProps = {};
 
 export function WindowSlot(_props: WindowSlotProps) {
-  const size = 32;
   const scale = 2.8;
+  const size = 32 * scale;
 
   return (
-    <div className="flex flex-row flex-wrap w-[400px] justify-center items-center">
+    <div className="flex flex:row flex:wrap w:400 jc:center ai:center">
       {F.pipe(
         F.range(16),
         F.map((i: number) => (
-          <Image
+          <div
+            className={$`
+              bg:url('/images/window-slot.png')
+              w:${size}
+              h:${size}
+              bg:cover
+              bg:no-repeat
+            `}
             key={i}
-            src="/images/window-slot.png"
-            alt="Window Slot"
-            width={size * scale}
-            height={size * scale}
-            // scale={2}
-            // x={x + i * 64}
-            // y={y + j * 64}
           />
         )),
         F.toArray

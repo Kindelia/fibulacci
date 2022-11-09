@@ -1,44 +1,39 @@
-import Image from "next/image";
-import { useWindowSize } from "react-use";
-import { EmptyBar } from "./EmptyBar";
-// import { EmptyBar } from "./EmptyBar";
+import $ from '@master/literal';
+
+import { EmptyBar } from './EmptyBar';
 
 export type HPBarProps = {};
 
 export function HPBar(_props: HPBarProps) {
-  const width = 130;
-  const height = 18;
-
   const scale = 3;
 
+  const width = 130 * scale;
+  const height = 18 * scale;
+
   return (
-    <div
-      style={{
-        width: width * scale,
-        height: height * scale,
-        position: "relative",
-      }}
-    >
+    <div className={$`rel w:${width} h:${height}`}>
       <EmptyBar />
       <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: width * scale,
-          height: height * scale,
-          overflow: "hidden",
-        }}
+        className={$`
+          abs 
+          h:${height} 
+          left:0 
+          overflow:hidden
+          top:0
+          w:${width - 100} 
+        `}
       >
-        <Image
-          src="/images/hp-bar.png"
-          alt="HP Bar"
-          width={width * scale}
-          height={height * scale}
-          layout="fixed"
+        <div
+          className={$`
+            bg:cover
+            bg:no-repeat
+            bg:url('/images/hp-bar.png')
+            h:${height}
+            w:${width}
+          `}
         />
       </div>
-      <p className="absolute top-1/4 left-2/4 font-press-start-2p">HP</p>
+      <p className="abs top:36% left:45%">HP</p>
     </div>
   );
 }

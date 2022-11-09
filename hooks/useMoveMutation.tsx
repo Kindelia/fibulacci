@@ -1,28 +1,50 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { api } from "../utils/axios";
+import { useMutation } from "@tanstack/react-query";
+import kindelia from "kindelia-js";
 
-export function useMoveMutation() {
-//   const id = 727;
-//   const x = 0o0;
-//   const y = 0o4;
+import { setGameStore } from "../stores/gameStore";
+import { FIB_CONTRACT } from "../utils/contract";
+import { NODE_URL } from "../utils/env";
 
-//   // 727 Moves up 
-//   // 100100000000001011010111 = #9437911
-//   // // 001011010111 = id 727
-//   // // 0000         = command move
-//   // // 10010000     = Coordinate (0, -1)
+enum EventMoveEnum {
+  "ArrowUp" = 0,
+  "ArrowLeft" = 1,
+  "ArrowDown" = 2,
+  "ArrowRight" = 3,
+}
 
+export function usePlayerMoveMutation() {
+  return useMutation(
+    ["moveMutation"],
+    ({
+      playerId,
+      eventMove,
+    }: {
+      playerId: string;
+      eventMove: KeyboardEvent;
+    }) => {
+      return kindelia
+        .sendInteract({
+          nodeURL: NODE_URL,
+          isPublish: true,
+          code: `
+          run {
+              let code = (
+                ${FIB_CONTRACT.FIB_KDL_WALK} 
+                #${EventMoveEnum[eventMove.key]} 
+                #${playerId}
+              );
+              ask x = (Call 'Fql' {${FIB_CONTRACT.FIB_ACT_ACT} code});
+              (Done x)
+          }
+      `,
+        })
+        .then((res) => {
+          if (res.data[0]["Ok"] === null) {
+            setGameStore({ isLoading: true, player: null });
+          }
 
-//   const command = `${x}${y}${0o4}${id}`;
-
-//   const data = `
-//     run {
-//         ask x = (Call 'Fib' {Fib_Act #${command}});
-//         (Done x)
-//     }
-//   `;
-
-//   return useMutation("moveMutation", () =>
-//     client.post("/publish", data).then((res) => res.data)
-//   );
+          return res;
+        });
+    }
+  );
 }
