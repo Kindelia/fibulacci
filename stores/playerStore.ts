@@ -24,6 +24,7 @@ const initialPlayerState: Player = {
   rt: "",
   s0: "",
   s4: "",
+  fat: "",
   level: 1,
 };
 

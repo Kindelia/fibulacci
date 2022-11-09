@@ -24,6 +24,7 @@ export type FibObject = {
   rt: string;
   s0: string;
   s4: string;
+  fat: string;
 };
 
 export function useStateQuery() {
@@ -66,7 +67,6 @@ export function useStateQuery() {
                 return acc;
               }, {})
             );
-          return res;
         }),
     {
       refetchInterval: 1,
