@@ -6,17 +6,15 @@
 - Yarn: min 1.22.19
 
 # Clone
-
 ```bash
-git clone https://github.com/kindelia/kindelia-js
-git clone https://github.com/kindelia/fibullaci
+git clone git@github.com:Kindelia/kindelia-js.git
+git clone git@github.com:Kindelia/fibulacci.git
 ```
 
 # Install
-
 ```bash
-cd fibullaci && yarn install && yarn build
-cd ../kindelia-js && yarn install
+cd kindelia-js && yarn install && yarn build && cd ..
+cd fibulacci && yarn install
 ```
 
 # Run
