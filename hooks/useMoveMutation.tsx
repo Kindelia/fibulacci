@@ -39,8 +39,6 @@ export function usePlayerMoveMutation() {
       `,
         })
         .then((res) => {
-          console.log("DHUASUHDASHDUHAS", res.data);
-
           if (res.data[0]["Ok"] === null) {
             setGameStore({ isLoading: true, player: null });
           }

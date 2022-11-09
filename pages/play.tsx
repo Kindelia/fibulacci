@@ -37,17 +37,6 @@ export default function Play() {
   const player = data.find((item) => item.num === "1");
   const creature = data.find((item) => item.num === "0");
 
-  console.log(
-    JSON.stringify(
-      {
-        player,
-        creature,
-      },
-      null,
-      4
-    )
-  );
-
   const creatures = [creature];
 
   return (
