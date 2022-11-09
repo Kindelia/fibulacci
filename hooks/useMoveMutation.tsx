@@ -4,6 +4,7 @@ import kindelia from "kindelia-js";
 import { setGameStore } from "../stores/gameStore";
 import { FIB_CONTRACT } from "../utils/contract";
 import { NODE_URL } from "../utils/env";
+import { FibObject } from "./useStateQuery";
 
 enum EventMoveEnum {
   "ArrowUp" = 0,
@@ -16,10 +17,10 @@ export function usePlayerMoveMutation() {
   return useMutation(
     ["moveMutation"],
     ({
-      playerId,
+      player,
       eventMove,
     }: {
-      playerId: string;
+      player: FibObject;
       eventMove: KeyboardEvent;
     }) => {
       return kindelia
@@ -31,7 +32,7 @@ export function usePlayerMoveMutation() {
               let code = (
                 ${FIB_CONTRACT.FIB_KDL_WALK} 
                 #${EventMoveEnum[eventMove.key]} 
-                #${playerId}
+                #${player.num}
               );
               ask x = (Call 'Fql' {${FIB_CONTRACT.FIB_ACT_ACT} code});
               (Done x)
@@ -40,7 +41,7 @@ export function usePlayerMoveMutation() {
         })
         .then((res) => {
           if (res.data[0]["Ok"] === null) {
-            setGameStore({ isLoading: true, player: null });
+            setGameStore({ isLoading: true, player });
           }
 
           return res;
