@@ -1,0 +1,9 @@
+fun (Id x) {
+  (Id x) = x
+} 
+
+run {
+  ask x = (Call 'Fpt' {Fpt_act_join #30 #28});
+  let m = (Id x );
+  (Done m)
+}

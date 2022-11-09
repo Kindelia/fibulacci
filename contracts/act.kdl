@@ -1,4 +1,0 @@
-run {
-  ask x = (Call 'Fql' {Fql_act_act #132098});
-  (Done x)
-}

@@ -1,4 +1,4 @@
 run {
-  ask x = (Call 'Fql' {Fql_act_act #0});
+  ask x = (Call 'Fpt' {Fpt_act_strt});
   (Done x)
 }

@@ -1,133 +1,155 @@
-// Apps.Fql.Kindelia.State.parse (response: (Apps.Fql.Kindelia.Response)) (tick: (U120)) : (Triple (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))) (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))) (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))))
-fun (Fql_kdl_sttp response tick) {
-  (Fql_kdl_sttp {Fql_res_stat state} tick) =
-    let state = (Fql_kdl_sgst state);
-    (Fql_st_parss state tick)
-  (Fql_kdl_sttp ~ ~) =
+// Apps.Fpt.Kindelia.State.parse (response: (Apps.Fpt.Kindelia.Response)) (tick: (U120)) : (Triple (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))) (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))) (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))))
+fun (Fpt_kdl_sttp response tick) {
+  (Fpt_kdl_sttp {Fpt_res_stat state} tick) =
+    let state = (Fpt_kdl_sgst state);
+    (Fpt_st_parss state tick)
+  (Fpt_kdl_sttp ~ ~) =
     {Triple_new {BrTree_leaf} {BrTree_leaf} {BrTree_leaf}}
 }
 
-// Apps.Fql.State.parse.to_tree (parsed: (Apps.Fql.State.parse.Triple)) : (Triple (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))) (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))) (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))))
-fun (Fql_st_prss parsed) {
-  (Fql_st_prss parsed) =
+// Data.BraunTree.leaf -(a: Type) : (Data.BraunTree a)
+ctr {BrTree_leaf}
+
+// Apps.Fpt.State.parse.to_tree (parsed: (Apps.Fpt.State.parse.Triple)) : (Triple (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))) (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))) (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))))
+fun (Fpt_st_prss parsed) {
+  (Fpt_st_prss parsed) =
     let f = @list (BrTree_mkary list);
     let f = @list (BrTree_mkary (List_map list f));
     (Triple_map parsed f)
 }
 
-// Apps.Fql.State.parse (state: (Apps.Fql.State)) (frame: (U120)) : (Triple (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))) (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))) (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))))
-fun (Fql_st_parss state frame) {
-  (Fql_st_parss state frame) =
-    let func = (Apps_Fql_p5H #0 #0 (Fql_tbl_bses) (Fql_st_gtbl state) frame);
+// Apps.Fpt.State.parse (state: (Apps.Fpt.State)) (frame: (U120)) : (Triple (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))) (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))) (Data.BraunTree (Data.BraunTree (Pair (U120) (U120)))))
+fun (Fpt_st_parss state frame) {
+  (Fpt_st_parss state frame) =
+    let func = (Apps_Fpt_4FM #0 #0 (Fpt_tbl_bses) (Fpt_st_gtbl state) frame);
     let parsed = (!func {Triple_new {List_nil} {List_nil} {List_nil}});
-    (Fql_st_prss parsed)
+    (Fpt_st_prss parsed)
 }
 
-fun (Apps_Fql_a92 x0 x1 x2 x3 x4 x5 x6) {
-  (Apps_Fql_a92 depth id {Bt_base2} tail lft rgt frame) =
+fun (Apps_Fpt_QyC x0 x1 x2 x3 x4 x5 x6) {
+  (Apps_Fpt_QyC depth id {Bt_base2} tail lft rgt frame) =
     dup _6 _7 = frame;
-    dup _4 _5 = id;
-    dup _2 _3 = depth;
+    dup _4 _5 = depth;
+    dup _2 _3 = id;
     dup _0 _1 = tail;
-    @x let new_depth = (U120_inc _2);
+    @x let new_depth = (U120_inc _4);
     dup _8 _9 = new_depth;
-    let a = (Apps_Fql_p5H _8 _4 _0 lft _6);
-    let b = (Apps_Fql_p5H _9 (| _5 (<< #1 _3)) _1 rgt _7);
+    let a = (Apps_Fpt_4FM _8 _2 _0 lft _6);
+    let b = (Apps_Fpt_4FM _9 (| _3 (<< #1 _5)) _1 rgt _7);
     (!a (!b x))
 }
 
-// Apps.Fql.State.parse.table (depth: (U120)) (id: (U120)) (bases: (List (Data.BaseTree.Base))) (map: (Data.BaseTree bases (U120))) (frame: (U120)) : (_: (Apps.Fql.State.parse.Triple)) (Apps.Fql.State.parse.Triple)
-fun (Apps_Fql_p5H depth id bases map frame) {
-  (Apps_Fql_p5H ~ ~ {List_nil} #0 ~) =
+// Apps.Fpt.State.parse.table (depth: (U120)) (id: (U120)) (bases: (List (Data.BaseTree.Base))) (map: (Data.BaseTree bases (U120))) (frame: (U120)) : (_: (Apps.Fpt.State.parse.Triple)) (Apps.Fpt.State.parse.Triple)
+fun (Apps_Fpt_4FM depth id bases map frame) {
+  (Apps_Fpt_4FM ~ ~ {List_nil} #0 ~) =
     @x x
-  (Apps_Fql_p5H ~ id {List_nil} entity frame) =
+  (Apps_Fpt_4FM ~ id {List_nil} entity frame) =
     dup _0 _1 = id;
-    (Apps_Fql_3lN (U120_log2 _0) _1 entity frame)
-  (Apps_Fql_p5H depth id {List_cons .0 tail} {Bt_bin_tie lft rgt} frame) =
-    (Apps_Fql_a92 depth id .0 tail lft rgt frame)
+    (Apps_Fpt_tyX (U120_log2 _0) _1 entity frame)
+  (Apps_Fpt_4FM depth id {List_cons .0 tail} {Bt_bin_tie lft rgt} frame) =
+    (Apps_Fpt_QyC depth id .0 tail lft rgt frame)
 }
 
-// Apps.Fql.State.parse.id (type: (U120)) (id: (Apps.Fql.Id)) (entity: (Apps.Fql.Entity)) (frame: (U120)) : (_: (Apps.Fql.State.parse.Triple)) (Apps.Fql.State.parse.Triple)
-fun (Apps_Fql_3lN type id entity frame) {
-  (Apps_Fql_3lN #7 id entity frame) =
-    @x let npc = (Apps_Fql_B_e id entity frame);
-    (Apps_Fql_nQA npc x)
-  (Apps_Fql_3lN #8 ~ ~ ~) =
+// Apps.Fpt.State.parse.id (type: (U120)) (id: (Apps.Fpt.Id)) (entity: (Apps.Fpt.Entity)) (frame: (U120)) : (_: (Apps.Fpt.State.parse.Triple)) (Apps.Fpt.State.parse.Triple)
+fun (Apps_Fpt_tyX type id entity frame) {
+  (Apps_Fpt_tyX #7 id entity frame) =
+    @x let npc = (Apps_Fpt_7mo id entity frame);
+    (Apps_Fpt_zZT npc x)
+  (Apps_Fpt_tyX #8 ~ ~ ~) =
     @x x
-  (Apps_Fql_3lN #9 id entity frame) =
-    @x let monster = (Apps_Fql_fWe id entity frame);
-    (Apps_Fql_BkX monster x)
-  (Apps_Fql_3lN #10 id entity frame) =
-    @x let player = (Fql_plr_pase id entity frame);
-    (Apps_Fql_H6A player x)
-  (Apps_Fql_3lN #11 id entity frame) =
-    @x let player = (Fql_plr_pase id entity frame);
-    (Apps_Fql_H6A player x)
-  (Apps_Fql_3lN ~ ~ ~ ~) =
+  (Apps_Fpt_tyX #9 id entity frame) =
+    @x let monster = (Apps_Fpt_R9F id entity frame);
+    (Apps_Fpt_wOe monster x)
+  (Apps_Fpt_tyX #10 id entity frame) =
+    @x let player = (Fpt_plr_pase id entity frame);
+    (Apps_Fpt_m58 player x)
+  (Apps_Fpt_tyX #11 id entity frame) =
+    @x let player = (Fpt_plr_pase id entity frame);
+    (Apps_Fpt_m58 player x)
+  (Apps_Fpt_tyX ~ ~ ~ ~) =
     @x x
 }
 
-// Apps.Fql.State.parse.join_npc (npcs: (List (Apps.Fql.Attributes))) (b: (Apps.Fql.State.parse.Triple)) : (Apps.Fql.State.parse.Triple)
-fun (Apps_Fql_nQA npcs b) {
-  (Apps_Fql_nQA npc {Triple_new n m p}) =
+// Apps.Fpt.State.parse.join_npc (npcs: (List (Apps.Fpt.Attributes))) (b: (Apps.Fpt.State.parse.Triple)) : (Apps.Fpt.State.parse.Triple)
+fun (Apps_Fpt_zZT npcs b) {
+  (Apps_Fpt_zZT npc {Triple_new n m p}) =
     {Triple_new (List_concat n npc) m p}
 }
 
-// Apps.Fql.State.parse.join_monster (monsters: (List (Apps.Fql.Attributes))) (b: (Apps.Fql.State.parse.Triple)) : (Apps.Fql.State.parse.Triple)
-fun (Apps_Fql_BkX monsters b) {
-  (Apps_Fql_BkX monster {Triple_new n m p}) =
+// Apps.Fpt.State.parse.join_monster (monsters: (List (Apps.Fpt.Attributes))) (b: (Apps.Fpt.State.parse.Triple)) : (Apps.Fpt.State.parse.Triple)
+fun (Apps_Fpt_wOe monsters b) {
+  (Apps_Fpt_wOe monster {Triple_new n m p}) =
     {Triple_new n (List_concat monster m) p}
 }
 
-// Apps.Fql.State.parse.join_player (players: (List (Apps.Fql.Attributes))) (b: (Apps.Fql.State.parse.Triple)) : (Apps.Fql.State.parse.Triple)
-fun (Apps_Fql_H6A players b) {
-  (Apps_Fql_H6A player {Triple_new n m p}) =
+// Apps.Fpt.State.parse.join_player (players: (List (Apps.Fpt.Attributes))) (b: (Apps.Fpt.State.parse.Triple)) : (Apps.Fpt.State.parse.Triple)
+fun (Apps_Fpt_m58 players b) {
+  (Apps_Fpt_m58 player {Triple_new n m p}) =
     {Triple_new n m (List_concat p player)}
 }
 
-// Apps.Fql.State.parse.id_07 (id: (Apps.Fql.Id)) (entity: (Apps.Fql.Entity)) (frame: (U120)) : (List (Apps.Fql.Attributes))
-fun (Apps_Fql_B_e id entity frame) {
-  (Apps_Fql_B_e #128 entity ~) =
-    (Fql_npc_bcpr #128 entity)
-  (Apps_Fql_B_e #129 entity ~) =
-    (Fql_npc_bcpr #129 entity)
-  (Apps_Fql_B_e #130 entity ~) =
-    (Fql_npc_bcpr #130 entity)
-  (Apps_Fql_B_e #134 entity frame) =
-    (Fql_npc_phpr entity frame)
-  (Apps_Fql_B_e ~ ~ ~) =
+// Apps.Fpt.State.parse.id_07 (id: (Apps.Fpt.Id)) (entity: (Apps.Fpt.Entity)) (frame: (U120)) : (List (Apps.Fpt.Attributes))
+fun (Apps_Fpt_7mo id entity frame) {
+  (Apps_Fpt_7mo #128 entity ~) =
+    (Fpt_npc_bcpr #128 entity)
+  (Apps_Fpt_7mo #129 entity ~) =
+    (Fpt_npc_bcpr #129 entity)
+  (Apps_Fpt_7mo #130 entity ~) =
+    (Fpt_npc_bcpr #130 entity)
+  (Apps_Fpt_7mo #134 entity frame) =
+    (Fpt_npc_phpr entity frame)
+  (Apps_Fpt_7mo ~ ~ ~) =
     {List_nil}
 }
 
-// Apps.Fql.State.parse.id_08 (id: (Apps.Fql.Id)) (entity: (Apps.Fql.Entity)) (frame: (U120)) : (List (Apps.Fql.Attributes))
-fun (Apps_Fql_uj9 id entity frame) {
-  (Apps_Fql_uj9 ~ ~ ~) =
+// Apps.Fpt.State.parse.id_08 (id: (Apps.Fpt.Id)) (entity: (Apps.Fpt.Entity)) (frame: (U120)) : (List (Apps.Fpt.Attributes))
+fun (Apps_Fpt_wCp id entity frame) {
+  (Apps_Fpt_wCp ~ ~ ~) =
     {List_nil}
 }
 
-// Apps.Fql.State.parse.id_09 (id: (Apps.Fql.Id)) (entity: (Apps.Fql.Entity)) (frame: (U120)) : (List (Apps.Fql.Attributes))
-fun (Apps_Fql_fWe id entity frame) {
-  (Apps_Fql_fWe #512 entity ~) =
-    (Fql_mon_bprs #512 entity)
-  (Apps_Fql_fWe #513 entity ~) =
-    (Fql_mon_bprs #513 entity)
-  (Apps_Fql_fWe #514 entity ~) =
-    (Fql_mon_bprs #514 entity)
-  (Apps_Fql_fWe ~ ~ ~) =
+// Apps.Fpt.State.parse.id_09 (id: (Apps.Fpt.Id)) (entity: (Apps.Fpt.Entity)) (frame: (U120)) : (List (Apps.Fpt.Attributes))
+fun (Apps_Fpt_R9F id entity frame) {
+  (Apps_Fpt_R9F #512 entity ~) =
+    (Fpt_mon_bprs #512 entity)
+  (Apps_Fpt_R9F #513 entity ~) =
+    (Fpt_mon_bprs #513 entity)
+  (Apps_Fpt_R9F #514 entity ~) =
+    (Fpt_mon_bprs #514 entity)
+  (Apps_Fpt_R9F ~ ~ ~) =
     {List_nil}
 }
 
-// U120.new (hi: U60) (lo: U60) : (U120)
-fun (U120_new hi lo) {
-  (U120_new hi lo) =
-    (+ (<< hi #60) (>> (<< lo #60) #60))
+// Triple.new -(a: Type) -(b: Type) -(c: Type) (fst: a) (snd: b) (trd: c) : (Triple a b c)
+ctr {Triple_new fst snd trd}
+
+// List.concat -(a: Type) (xs: (List a)) (ys: (List a)) : (List a)
+fun (List_concat xs ys) {
+  (List_concat {List_nil} ys) =
+    ys
+  (List_concat {List_cons head tail} ys) =
+    {List_cons head (List_concat tail ys)}
 }
 
-// U120.inc (n: (U120)) : (U120)
-fun (U120_inc n) {
-  (U120_inc n) =
-    (+ n #1)
+// List.cons -(t: Type) (head: t) (tail: (List t)) : (List t)
+ctr {List_cons head tail}
+
+// List.nil -(t: Type) : (List t)
+ctr {List_nil}
+
+// Apps.Fpt.Npc.bat_cave.parse (id: (Apps.Fpt.Id)) (entity: (Apps.Fpt.Entity)) : (List (Apps.Fpt.Attributes))
+fun (Fpt_npc_bcpr id entity) {
+  (Fpt_npc_bcpr id entity) =
+    let can_spawn = (U120_is0 entity);
+    let status = (Bool_if can_spawn {String_cons #114 {String_cons #101 {String_cons #97 {String_cons #100 {String_cons #121 {String_nil}}}}}} {String_cons #110 {String_cons #111 {String_cons #116 {String_cons #32 {String_cons #114 {String_cons #101 {String_cons #97 {String_cons #100 {String_cons #121 {String_nil}}}}}}}}}});
+    {List_cons {List_cons {T2 (Kindelia_tcO {String_cons #116 {String_cons #121 {String_cons #112 {String_cons #101 {String_nil}}}}}) (Kindelia_tcO {String_cons #98 {String_cons #97 {String_cons #116 {String_cons #32 {String_cons #99 {String_cons #97 {String_cons #118 {String_cons #101 {String_nil}}}}}}}}})} {List_cons {T2 (Kindelia_tcO {String_cons #105 {String_cons #100 {String_nil}}}) (Kindelia_9T_ (- id #128))} {List_cons {T2 (Kindelia_tcO {String_cons #115 {String_cons #116 {String_cons #97 {String_cons #116 {String_cons #117 {String_cons #115 {String_nil}}}}}}}) (Kindelia_tcO status)} {List_nil}}}} {List_nil}}
 }
+
+// String.nil : (String)
+ctr {String_nil}
+
+// String.cons (head: U60) (tail: (String)) : (String)
+ctr {String_cons head tail}
 
 // Bool.if -(a: Type) (b: (Bool)) (t: a) (f: a) : a
 fun (Bool_if b t f) {
@@ -143,10 +165,53 @@ ctr {Bool_false}
 // Bool.true : (Bool)
 ctr {Bool_true}
 
-// U60.less_than (a: U60) (b: U60) : (Bool)
-fun (U60_ltn a b) {
-  (U60_ltn a b) =
-    (U60_tbool (< a b))
+// Kindelia.Convert.to_kstring (string: (String)) : (U120)
+fun (Kindelia_tcO string) {
+  (Kindelia_tcO string) =
+    (Kindelia__0Q string #0)
+}
+
+// Kindelia.Convert.to_kstring.aux (string: (String)) (kdl_str: (U120)) : (U120)
+fun (Kindelia__0Q string kdl_str) {
+  (Kindelia__0Q {String_nil} kdl_str) =
+    kdl_str
+  (Kindelia__0Q {String_cons h t} kdl_str) =
+    dup _2 _3 = t;
+    dup _0 _1 = kdl_str;
+    let char = (Kindelia_oiK h);
+    (Maybe_match char (Kindelia__0Q _2 _0) @char.value let kdl_str = (| char.value (<< _1 #6));
+    (Kindelia__0Q _3 kdl_str))
+}
+
+// U120.new (hi: U60) (lo: U60) : (U120)
+fun (U120_new hi lo) {
+  (U120_new hi lo) =
+    (+ (<< hi #60) (>> (<< lo #60) #60))
+}
+
+// Kindelia.Convert.to_kchar (char: (Char)) : (Maybe (U120))
+fun (Kindelia_oiK char) {
+  (Kindelia_oiK char) =
+    dup _0 _1 = char;
+    dup _2 _3 = _0;
+    dup _4 _5 = _1;
+    dup _6 _7 = _2;
+    dup _8 _9 = _3;
+    dup _10 _11 = _4;
+    dup _12 _13 = _5;
+    (Bool_if (Char_is_dN91 _6) {Maybe_some (U120_new #0 (- _7 #47))} (Bool_if (Char_between #65 _8 #91) {Maybe_some (U120_new #0 (- _9 #54))} (Bool_if (Char_between #97 _10 #123) {Maybe_some (U120_new #0 (- _11 #60))} (Bool_if (Char_equal _12 #46) {Maybe_some #0} (Bool_if (Char_equal _13 #95) {Maybe_some #63} {Maybe_none})))))
+}
+
+// Char.equal (a: (Char)) (b: (Char)) : (Bool)
+fun (Char_equal a b) {
+  (Char_equal a b) =
+    (U60_equal a b)
+}
+
+// U60.equal (a: U60) (b: U60) : (Bool)
+fun (U60_equal a b) {
+  (U60_equal a b) =
+    (U60_tbool (== a b))
 }
 
 // U60.to_bool (n: U60) : (Bool)
@@ -157,6 +222,170 @@ fun (U60_tbool n) {
     {Bool_true}
 }
 
+// Maybe.none -(t: Type) : (Maybe t)
+ctr {Maybe_none}
+
+// Char.is_decimal (c: (Char)) : (Bool)
+fun (Char_is_dN91 c) {
+  (Char_is_dN91 c) =
+    (Char_between #48 c #57)
+}
+
+// Char.between (a: (Char)) (b: (Char)) (c: (Char)) : (Bool)
+fun (Char_between a b c) {
+  (Char_between a b c) =
+    (U60_between a b c)
+}
+
+// U60.between (small: U60) (val: U60) (big: U60) : (Bool)
+fun (U60_between small val big) {
+  (U60_between small val big) =
+    dup _0 _1 = val;
+    (U60_tbool (& (<= small _0) (< _1 big)))
+}
+
+// Maybe.some -(t: Type) (value: t) : (Maybe t)
+ctr {Maybe_some value}
+
+// Maybe.match -(t: Type) (x: (Maybe t)) -(p: (x: (Maybe t)) Type) (none: (p (Maybe.none t))) (some: (value: t) (p (Maybe.some t value))) : (p x)
+fun (Maybe_match x none some) {
+  (Maybe_match {Maybe_none} none ~) =
+    none
+  (Maybe_match {Maybe_some value_} ~ some) =
+    (!some value_)
+}
+
+// Kindelia.Convert.num_to_kstring (num: (U120)) : (U120)
+fun (Kindelia_9T_ num) {
+  (Kindelia_9T_ num) =
+    let text = (!(U120_show num) {String_nil});
+    (Kindelia_fPO text #0)
+}
+
+// Kindelia.Convert.num_to_kstring.aux (num: (String)) (kdl_str: (U120)) : (U120)
+fun (Kindelia_fPO num kdl_str) {
+  (Kindelia_fPO {String_nil} kdl_str) =
+    kdl_str
+  (Kindelia_fPO {String_cons h t} kdl_str) =
+    let n = (Kindelia_j1D h);
+    let kdl_str = (| n (<< kdl_str #6));
+    (Kindelia_fPO t kdl_str)
+}
+
+// Kindelia.Convert.num_to_kstring.char (char: (Char)) : (U120)
+fun (Kindelia_j1D char) {
+  (Kindelia_j1D char) =
+    (U120_new #0 (- char #47))
+}
+
+// U120.show (num: (U120)) : (Show)
+fun (U120_show num) {
+  (U120_show #0) =
+    @str {String_cons #48 str}
+  (U120_show num) =
+    dup _0 _1 = num;
+    @str let ten = #10;
+    dup _2 _3 = ten;
+    (Pair_match (U120_dms _0 _2) @dm.fst @dm.snd let digit = (U120_low dm.snd);
+    let rest = dm.fst;
+    let next = {String_cons (+ #48 digit) str};
+    let func = (Bool_if (U120_ltn _1 _3) @h h @h (!(U120_show rest) h));
+    (!func next))
+}
+
+// Pair.match -(a: Type) -(b: Type) (x: (Pair a b)) -(p: (x: (Pair a b)) Type) (new: (fst: a) (snd: b) (p (Pair.new a b fst snd))) : (p x)
+fun (Pair_match x new) {
+  (Pair_match {T2 fst_ snd_} new) =
+    (!(!new fst_) snd_)
+}
+
+// U120.less_than (a: (U120)) (b: (U120)) : (Bool)
+fun (U120_ltn a b) {
+  (U120_ltn a b) =
+    (U120_tbool (< a b))
+}
+
+// U120.to_bool (n: (U120)) : (Bool)
+fun (U120_tbool n) {
+  (U120_tbool #0) =
+    {Bool_false}
+  (U120_tbool ~) =
+    {Bool_true}
+}
+
+// U120.low (n: (U120)) : U60
+fun (U120_low n) {
+  (U120_low n) =
+    (>> (<< n #60) #60)
+}
+
+// U120.div_mod (num: (U120)) (den: (U120)) : (Pair (U120) (U120))
+fun (U120_dms num den) {
+  (U120_dms ~ #0) =
+    {T2 (U60_tu120 (/ #0 #0)) (U60_tu120 (% #0 #0))}
+  (U120_dms num den) =
+    dup _0 _1 = num;
+    (Maybe_match (U120_msb _0) {T2 #0 #0} @msb.value let qr = {T2 #0 #0};
+    let idx = (U120_inc msb.value);
+    (U120_dm_go idx qr _1 den))
+}
+
+// U120.div_mod.go (idx: (U120)) (qr: (Pair (U120) (U120))) (num: (U120)) (den: (U120)) : (Pair (U120) (U120))
+fun (U120_dm_go idx qr num den) {
+  (U120_dm_go #0 qr ~ ~) =
+    qr
+  (U120_dm_go idx qr num den) =
+    dup _8 _9 = idx;
+    dup _6 _7 = qr;
+    dup _4 _5 = num;
+    dup _0 _1 = den;
+    dup _2 _3 = _0;
+    let quo = (Pair_fst _6);
+    dup _16 _17 = quo;
+    let rem = (Pair_snd _7);
+    let rem = (<< rem #1);
+    let bit = (U120_decs _8);
+    dup _14 _15 = bit;
+    let rem = (+ rem (U120_getb _4 _14));
+    dup _10 _11 = rem;
+    dup _12 _13 = _10;
+    let qr = (Bool_if (U120_gte _11 _1) let quo = (U120_setb _16 _15);
+    let rem = (- _12 _2);
+    {T2 quo rem} {T2 _17 _13});
+    (U120_dm_go (U120_decs _9) qr _5 _3)
+}
+
+// U120.set_bit (num: (U120)) (bit: (U120)) : (U120)
+fun (U120_setb num bit) {
+  (U120_setb num bit) =
+    let bit = (<< #1 bit);
+    (| num bit)
+}
+
+// U120.dec (num: (U120)) : (U120)
+fun (U120_decs num) {
+  (U120_decs num) =
+    (- num #1)
+}
+
+// U60.greater_than (a: U60) (b: U60) : (Bool)
+fun (U60_gtn a b) {
+  (U60_gtn a b) =
+    (U60_tbool (> a b))
+}
+
+// Pair.snd -(a: Type) -(b: Type) (pair: (Pair a b)) : b
+fun (Pair_snd pair) {
+  (Pair_snd {T2 ~ snd}) =
+    snd
+}
+
+// U120.get_bit (num: (U120)) (bit: (U120)) : (U120)
+fun (U120_getb num bit) {
+  (U120_getb num bit) =
+    (& (>> num bit) #1)
+}
+
 // Bool.or (a: (Bool)) (b: (Bool)) : (Bool)
 fun (Bool_or a b) {
   (Bool_or {Bool_true} ~) =
@@ -165,37 +394,108 @@ fun (Bool_or a b) {
     b
 }
 
-// Apps.Fql.State.get_table (state: (Apps.Fql.State)) : (Apps.Fql.Table)
-fun (Fql_st_gtbl state) {
-  (Fql_st_gtbl {Fql_st_new ~ tbl}) =
-    tbl
+// U60.less_than (a: U60) (b: U60) : (Bool)
+fun (U60_ltn a b) {
+  (U60_ltn a b) =
+    (U60_tbool (< a b))
 }
 
-// List.nil -(t: Type) : (List t)
-ctr {List_nil}
+// U120.msb (n: (U120)) : (Maybe (U120))
+fun (U120_msb n) {
+  (U120_msb #0) =
+    {Maybe_none}
+  (U120_msb n) =
+    {Maybe_some (- (U120_msb_go n) #1)}
+}
+
+// U120.msb.go (n: (U120)) : (U120)
+fun (U120_msb_go n) {
+  (U120_msb_go #0) =
+    #0
+  (U120_msb_go n) =
+    (+ #1 (U120_msb_go (>> n #1)))
+}
+
+// Pair.fst -(a: Type) -(b: Type) (pair: (Pair a b)) : a
+fun (Pair_fst pair) {
+  (Pair_fst {T2 fst ~}) =
+    fst
+}
+
+// U120.inc (n: (U120)) : (U120)
+fun (U120_inc n) {
+  (U120_inc n) =
+    (+ n #1)
+}
+
+// U120.greater_equal (a: (U120)) (b: (U120)) : (Bool)
+fun (U120_gte a b) {
+  (U120_gte a b) =
+    (U120_tbool (>= a b))
+}
+
+// U60.to_u120 (num: U60) : (U120)
+fun (U60_tu120 num) {
+  (U60_tu120 num) =
+    (U120_new #0 num)
+}
+
+// U120.is_zero (n: (U120)) : (Bool)
+fun (U120_is0 n) {
+  (U120_is0 #0) =
+    {Bool_true}
+  (U120_is0 ~) =
+    {Bool_false}
+}
 
 // Data.BaseTree.Base.2 : (Data.BaseTree.Base)
 ctr {Bt_base2}
 
+// Apps.Fpt.State.get_table (state: (Apps.Fpt.State)) : (Apps.Fpt.Table)
+fun (Fpt_st_gtbl state) {
+  (Fpt_st_gtbl {Fpt_st_new ~ tbl}) =
+    tbl
+}
+
+// Apps.Fpt.State.new (map: (Apps.Fpt.Map)) (tab: (Apps.Fpt.Table)) : (Apps.Fpt.State)
+ctr {Fpt_st_new map tab}
+
+// Apps.Fpt.Map.Bases : (List (Data.BaseTree.Base))
+fun (Fpt_map_base) {
+  (Fpt_map_base) =
+    {List_cons {Bt_base5} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_nil}}}}}}}}}}}
+}
+
 // Data.BaseTree.Base.5 : (Data.BaseTree.Base)
 ctr {Bt_base5}
 
-// List.cons -(t: Type) (head: t) (tail: (List t)) : (List t)
-ctr {List_cons head tail}
-
-// Apps.Fql.Table.Bases : (List (Data.BaseTree.Base))
-fun (Fql_tbl_bses) {
-  (Fql_tbl_bses) =
+// Apps.Fpt.Table.Bases : (List (Data.BaseTree.Base))
+fun (Fpt_tbl_bses) {
+  (Fpt_tbl_bses) =
     {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_nil}}}}}}}}}}}}}
 }
 
-// Apps.Fql.State.new (map: (Apps.Fql.Map)) (tab: (Apps.Fql.Table)) : (Apps.Fql.State)
-ctr {Fql_st_new map tab}
+// Triple.map -(a: Type) -(b: Type) (triple: (Triple a a a)) (f: (_: a) b) : (Triple b b b)
+fun (Triple_map triple f) {
+  (Triple_map {Triple_new fst snd trd} f) =
+    dup _0 _1 = f;
+    dup _2 _3 = _0;
+    {Triple_new (!_1 fst) (!_2 snd) (!_3 trd)}
+}
 
-// Apps.Fql.Map.Bases : (List (Data.BaseTree.Base))
-fun (Fql_map_base) {
-  (Fql_map_base) =
-    {List_cons {Bt_base5} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_cons {Bt_base2} {List_nil}}}}}}}}}}}
+// Apps.Fpt.Npc.phoenix.parse (entity: (Apps.Fpt.Entity)) (frame: (U120)) : (List (Apps.Fpt.Attributes))
+fun (Fpt_npc_phpr entity frame) {
+  (Fpt_npc_phpr entity frame) =
+    let duration = (U120_sub_Rov entity frame);
+    {List_cons {List_cons {T2 (Kindelia_tcO {String_cons #116 {String_cons #121 {String_cons #112 {String_cons #101 {String_nil}}}}}) (Kindelia_tcO {String_cons #112 {String_cons #104 {String_cons #111 {String_cons #101 {String_cons #110 {String_cons #105 {String_cons #120 {String_nil}}}}}}}})} {List_cons {T2 (Kindelia_tcO {String_cons #100 {String_cons #117 {String_cons #114 {String_cons #97 {String_cons #116 {String_cons #105 {String_cons #111 {String_cons #110 {String_nil}}}}}}}}}) (Kindelia_9T_ duration)} {List_nil}}} {List_nil}}
+}
+
+// U120.sub_saturated (a: (U120)) (b: (U120)) : (U120)
+fun (U120_sub_Rov a b) {
+  (U120_sub_Rov a b) =
+    dup _2 _3 = a;
+    dup _0 _1 = b;
+    (Bool_if (U120_ltn _0 _2) (- _3 _1) #0)
 }
 
 // Data.BraunTree.make_array -(a: Type) (xs: (List a)) : (Data.BraunTree a)
@@ -207,105 +507,35 @@ fun (BrTree_mkary xs) {
     (List_match trees {BrTree_leaf} @trees.head @~ trees.head)
 }
 
-// List.match -(t: Type) (x: (List t)) -(p: (x: (List t)) Type) (nil: (p (List.nil t))) (cons: (head: t) (tail: (List t)) (p (List.cons t head tail))) : (p x)
-fun (List_match x nil cons) {
-  (List_match {List_nil} nil ~) =
-    nil
-  (List_match {List_cons head_ tail_} ~ cons) =
-    (!(!cons head_) tail_)
+// Data.BraunTree.create_rows -(a: Type) (k: (U120)) (xs: (List a)) : (List (Pair (U120) (List a)))
+fun (BrTree_crrow k xs) {
+  (BrTree_crrow ~ {List_nil}) =
+    {List_nil}
+  (BrTree_crrow k xs) =
+    dup _2 _3 = k;
+    dup _4 _5 = _2;
+    dup _6 _7 = _3;
+    dup _0 _1 = xs;
+    let head = {T2 _4 (List_take _0 (U120_to_nat _5))};
+    let tail = (BrTree_crrow (* _6 #2) (List_drop _1 (U120_to_nat _7)));
+    {List_cons head tail}
 }
 
-// Data.BraunTree.build -(a: Type) (rows: (Pair (U120) (List a))) (ts: (List (Data.BraunTree a))) : (List (Data.BraunTree a))
-fun (BrTree_build rows ts) {
-  (BrTree_build rows ts) =
-    dup _0 _1 = rows;
-    let k = (U120_to_nat (Pair_fst _0));
-    dup _4 _5 = k;
-    let xs = (Pair_snd _1);
-    let pair = (List_spli94p (List_concat ts (List_repeat (Nat_double _4) {BrTree_leaf})) _5);
-    dup _2 _3 = pair;
-    let ts0 = (Pair_fst _2);
-    let ts1 = (Pair_snd _3);
-    (List_zip_c4Z @a @b @c (BrTree_mknde a b c) xs ts0 ts1)
+// List.drop -(a: Type) (xs: (List a)) (n: (Nat)) : (List a)
+fun (List_drop xs n) {
+  (List_drop xs {Nat_zero}) =
+    xs
+  (List_drop {List_cons ~ tail} {Nat_succ pred}) =
+    (List_drop tail pred)
+  (List_drop {List_nil} ~) =
+    {List_nil}
 }
-
-// Nat.double (x: (Nat)) : (Nat)
-fun (Nat_double x) {
-  (Nat_double {Nat_succ x}) =
-    {Nat_succ {Nat_succ (Nat_double x)}}
-  (Nat_double {Nat_zero}) =
-    {Nat_zero}
-}
-
-// Nat.succ (pred: (Nat)) : (Nat)
-ctr {Nat_succ pred}
 
 // Nat.zero : (Nat)
 ctr {Nat_zero}
 
-// List.repeat -(a: Type) (times: (Nat)) (val: a) : (List a)
-fun (List_repeat times val) {
-  (List_repeat {Nat_zero} ~) =
-    {List_nil}
-  (List_repeat {Nat_succ pred} val) =
-    dup _0 _1 = val;
-    {List_cons _0 (List_repeat pred _1)}
-}
-
-// Pair.fst -(a: Type) -(b: Type) (pair: (Pair a b)) : a
-fun (Pair_fst pair) {
-  (Pair_fst {T2 fst ~}) =
-    fst
-}
-
-// List.concat -(a: Type) (xs: (List a)) (ys: (List a)) : (List a)
-fun (List_concat xs ys) {
-  (List_concat {List_nil} ys) =
-    ys
-  (List_concat {List_cons head tail} ys) =
-    {List_cons head (List_concat tail ys)}
-}
-
-// Data.BraunTree.leaf -(a: Type) : (Data.BraunTree a)
-ctr {BrTree_leaf}
-
-// List.zip_with_3 -(a: Type) -(b: Type) -(c: Type) -(d: Type) (f: (_: a) (_: b) (_: c) d) (as: (List a)) (bs: (List b)) (cs: (List c)) : (List d)
-fun (List_zip_c4Z f as bs cs) {
-  (List_zip_c4Z f {List_cons ah at} {List_cons bh bt} {List_cons ch ct}) =
-    dup _0 _1 = f;
-    {List_cons (!(!(!_0 ah) bh) ch) (List_zip_c4Z _1 at bt ct)}
-  (List_zip_c4Z ~ ~ ~ ~) =
-    {List_nil}
-}
-
-// Pair.snd -(a: Type) -(b: Type) (pair: (Pair a b)) : b
-fun (Pair_snd pair) {
-  (Pair_snd {T2 ~ snd}) =
-    snd
-}
-
-// List.split_at -(a: Type) (xs: (List a)) (n: (Nat)) : (Pair (List a) (List a))
-fun (List_spli94p xs n) {
-  (List_spli94p xs {Nat_zero}) =
-    {T2 {List_nil} xs}
-  (List_spli94p {List_nil} {Nat_succ ~}) =
-    {T2 {List_nil} {List_nil}}
-  (List_spli94p {List_cons x xs} {Nat_succ n}) =
-    let tail = (List_spli94p xs n);
-    dup _0 _1 = tail;
-    let fst = (Pair_fst _0);
-    let snd = (Pair_snd _1);
-    {T2 {List_cons x fst} snd}
-}
-
-// Data.BraunTree.make_node -(a: Type) (val: a) (lft: (Data.BraunTree a)) (rgt: (Data.BraunTree a)) : (Data.BraunTree a)
-fun (BrTree_mknde val lft rgt) {
-  (BrTree_mknde val lft rgt) =
-    {BrTree_node val lft rgt}
-}
-
-// Data.BraunTree.node -(a: Type) (val: a) (lft: (Data.BraunTree a)) (rgt: (Data.BraunTree a)) : (Data.BraunTree a)
-ctr {BrTree_node val lft rgt}
+// Nat.succ (pred: (Nat)) : (Nat)
+ctr {Nat_succ pred}
 
 // U120.to_nat (num: (U120)) : (Nat)
 fun (U120_to_nat num) {
@@ -313,35 +543,6 @@ fun (U120_to_nat num) {
     {Nat_zero}
   (U120_to_nat n) =
     {Nat_succ (U120_to_nat (- n #1))}
-}
-
-// U60.greater_than (a: U60) (b: U60) : (Bool)
-fun (U60_gtn a b) {
-  (U60_gtn a b) =
-    (U60_tbool (> a b))
-}
-
-// List.foldr -(a: Type) -(b: Type) (nil: b) (cons: (_: a) (_: b) b) (xs: (List a)) : b
-fun (List_foldr nil cons xs) {
-  (List_foldr nil ~ {List_nil}) =
-    nil
-  (List_foldr nil cons {List_cons x.h x.t}) =
-    dup _0 _1 = cons;
-    (!(!_0 x.h) (List_foldr nil _1 x.t))
-}
-
-// Data.BraunTree.create_rows -(a: Type) (k: (U120)) (xs: (List a)) : (List (Pair (U120) (List a)))
-fun (BrTree_crrow k xs) {
-  (BrTree_crrow ~ {List_nil}) =
-    {List_nil}
-  (BrTree_crrow k xs) =
-    dup _6 _7 = xs;
-    dup _0 _1 = k;
-    dup _2 _3 = _0;
-    dup _4 _5 = _1;
-    let head = {T2 _2 (List_take _6 (U120_to_nat _3))};
-    let tail = (BrTree_crrow (* _4 #2) (List_drop _7 (U120_to_nat _5)));
-    {List_cons head tail}
 }
 
 // List.take -(a: Type) (xs: (List a)) (n: (Nat)) : (List a)
@@ -354,24 +555,24 @@ fun (List_take xs n) {
     {List_nil}
 }
 
-// U120.low (n: (U120)) : U60
-fun (U120_low n) {
-  (U120_low n) =
-    (>> (<< n #60) #60)
+// U120.high (n: (U120)) : U60
+fun (U120_highs n) {
+  (U120_highs n) =
+    (>> n #60)
 }
 
 // U60.mul.carrying (a: U60) (b: U60) : (U120)
 fun (U60_mul_car a b) {
   (U60_mul_car a b) =
-    dup _2 _3 = b;
-    dup _0 _1 = a;
-    let alo = (>> (<< _0 #30) #30);
+    dup _2 _3 = a;
+    dup _0 _1 = b;
+    let alo = (>> (<< _2 #30) #30);
     dup _18 _19 = alo;
-    let ahi = (>> _1 #30);
+    let ahi = (>> _3 #30);
     dup _16 _17 = ahi;
-    let blo = (>> (<< _2 #30) #30);
+    let blo = (>> (<< _0 #30) #30);
     dup _14 _15 = blo;
-    let bhi = (>> _3 #30);
+    let bhi = (>> _1 #30);
     dup _12 _13 = bhi;
     let mul0 = (* _18 _14);
     let mul1 = (* _19 _12);
@@ -413,21 +614,131 @@ fun (U60_add_ow a b) {
     {T2 ovr _3}
 }
 
-// U120.high (n: (U120)) : U60
-fun (U120_highs n) {
-  (U120_highs n) =
-    (>> n #60)
+// List.foldr -(a: Type) -(b: Type) (nil: b) (cons: (_: a) (_: b) b) (xs: (List a)) : b
+fun (List_foldr nil cons xs) {
+  (List_foldr nil ~ {List_nil}) =
+    nil
+  (List_foldr nil cons {List_cons x.h x.t}) =
+    dup _0 _1 = cons;
+    (!(!_0 x.h) (List_foldr nil _1 x.t))
 }
 
-// List.drop -(a: Type) (xs: (List a)) (n: (Nat)) : (List a)
-fun (List_drop xs n) {
-  (List_drop xs {Nat_zero}) =
-    xs
-  (List_drop {List_cons ~ tail} {Nat_succ pred}) =
-    (List_drop tail pred)
-  (List_drop {List_nil} ~) =
+// List.match -(t: Type) (x: (List t)) -(p: (x: (List t)) Type) (nil: (p (List.nil t))) (cons: (head: t) (tail: (List t)) (p (List.cons t head tail))) : (p x)
+fun (List_match x nil cons) {
+  (List_match {List_nil} nil ~) =
+    nil
+  (List_match {List_cons head_ tail_} ~ cons) =
+    (!(!cons head_) tail_)
+}
+
+// Data.BraunTree.build -(a: Type) (rows: (Pair (U120) (List a))) (ts: (List (Data.BraunTree a))) : (List (Data.BraunTree a))
+fun (BrTree_build rows ts) {
+  (BrTree_build rows ts) =
+    dup _0 _1 = rows;
+    let k = (U120_to_nat (Pair_fst _0));
+    dup _4 _5 = k;
+    let xs = (Pair_snd _1);
+    let pair = (List_spli4hG (List_concat ts (List_repeat (Nat_double _4) {BrTree_leaf})) _5);
+    dup _2 _3 = pair;
+    let ts0 = (Pair_fst _2);
+    let ts1 = (Pair_snd _3);
+    (List_zip_rUE @a @b @c (BrTree_mknde a b c) xs ts0 ts1)
+}
+
+// List.zip_with_3 -(a: Type) -(b: Type) -(c: Type) -(d: Type) (f: (_: a) (_: b) (_: c) d) (as: (List a)) (bs: (List b)) (cs: (List c)) : (List d)
+fun (List_zip_rUE f as bs cs) {
+  (List_zip_rUE f {List_cons ah at} {List_cons bh bt} {List_cons ch ct}) =
+    dup _0 _1 = f;
+    {List_cons (!(!(!_0 ah) bh) ch) (List_zip_rUE _1 at bt ct)}
+  (List_zip_rUE ~ ~ ~ ~) =
     {List_nil}
 }
+
+// List.split_at -(a: Type) (xs: (List a)) (n: (Nat)) : (Pair (List a) (List a))
+fun (List_spli4hG xs n) {
+  (List_spli4hG xs {Nat_zero}) =
+    {T2 {List_nil} xs}
+  (List_spli4hG {List_nil} {Nat_succ ~}) =
+    {T2 {List_nil} {List_nil}}
+  (List_spli4hG {List_cons x xs} {Nat_succ n}) =
+    let tail = (List_spli4hG xs n);
+    dup _0 _1 = tail;
+    let fst = (Pair_fst _0);
+    let snd = (Pair_snd _1);
+    {T2 {List_cons x fst} snd}
+}
+
+// List.repeat -(a: Type) (times: (Nat)) (val: a) : (List a)
+fun (List_repeat times val) {
+  (List_repeat {Nat_zero} ~) =
+    {List_nil}
+  (List_repeat {Nat_succ pred} val) =
+    dup _0 _1 = val;
+    {List_cons _0 (List_repeat pred _1)}
+}
+
+// Nat.double (x: (Nat)) : (Nat)
+fun (Nat_double x) {
+  (Nat_double {Nat_succ x}) =
+    {Nat_succ {Nat_succ (Nat_double x)}}
+  (Nat_double {Nat_zero}) =
+    {Nat_zero}
+}
+
+// Data.BraunTree.make_node -(a: Type) (val: a) (lft: (Data.BraunTree a)) (rgt: (Data.BraunTree a)) : (Data.BraunTree a)
+fun (BrTree_mknde val lft rgt) {
+  (BrTree_mknde val lft rgt) =
+    {BrTree_node val lft rgt}
+}
+
+// Data.BraunTree.node -(a: Type) (val: a) (lft: (Data.BraunTree a)) (rgt: (Data.BraunTree a)) : (Data.BraunTree a)
+ctr {BrTree_node val lft rgt}
+
+// Apps.Fpt.Monster.bat.parse (id: (Apps.Fpt.Id)) (entity: (Apps.Fpt.Entity)) : (List (Apps.Fpt.Attributes))
+fun (Fpt_mon_bprs id entity) {
+  (Fpt_mon_bprs id entity) =
+    dup _0 _1 = entity;
+    dup _2 _3 = _0;
+    {List_cons {List_cons {T2 (Kindelia_tcO {String_cons #116 {String_cons #121 {String_cons #112 {String_cons #101 {String_nil}}}}}) (Kindelia_tcO {String_cons #98 {String_cons #97 {String_cons #116 {String_nil}}}})} {List_cons {T2 (Kindelia_tcO {String_cons #105 {String_cons #100 {String_nil}}}) (Kindelia_9T_ (- id #512))} {List_cons {T2 (Kindelia_tcO {String_cons #120 {String_nil}}) (Kindelia_9T_ (Fpt_plr_pgx _1))} {List_cons {T2 (Kindelia_tcO {String_cons #121 {String_nil}}) (Kindelia_9T_ (Fpt_plr_pgy _2))} {List_cons {T2 (Kindelia_tcO {String_cons #104 {String_cons #112 {String_nil}}}) (Kindelia_9T_ (Fpt_plr_hpg _3))} {List_cons {T2 (Kindelia_tcO {String_cons #109 {String_cons #97 {String_cons #120 {String_cons #95 {String_cons #104 {String_cons #112 {String_nil}}}}}}}) (Kindelia_9T_ #100)} {List_nil}}}}}}} {List_nil}}
+}
+
+// Apps.Fpt.Player.hp.get (player: (Apps.Fpt.Player)) : (U120)
+fun (Fpt_plr_hpg player) {
+  (Fpt_plr_hpg player) =
+    (Fpt_g_u120 player #16 #13)
+}
+
+// Apps.Fpt.U120.get (chunk: (U120)) (pos: (U120)) (size: (U120)) : (U120)
+fun (Fpt_g_u120 chunk pos size) {
+  (Fpt_g_u120 chunk pos size) =
+    let mask = (- (<< #1 size) #1);
+    let num = (& (>> chunk pos) mask);
+    num
+}
+
+// Apps.Fpt.Player.pos.get_x (player: (Apps.Fpt.Player)) : (U120)
+fun (Fpt_plr_pgx player) {
+  (Fpt_plr_pgx player) =
+    (Fpt_g_u120 player #0 #8)
+}
+
+// Apps.Fpt.Player.pos.get_y (player: (Apps.Fpt.Player)) : (U120)
+fun (Fpt_plr_pgy player) {
+  (Fpt_plr_pgy player) =
+    (Fpt_g_u120 player #8 #8)
+}
+
+// List.map -(a: Type) -(b: Type) (xs: (List a)) (f: (_: a) b) : (List b)
+fun (List_map xs f) {
+  (List_map {List_nil} ~) =
+    {List_nil}
+  (List_map {List_cons head tail} f) =
+    dup _0 _1 = f;
+    {List_cons (!_0 head) (List_map tail _1)}
+}
+
+// Data.BaseTree.Bin.tie -(r: Type) (b0: r) (b1: r) : (Data.BaseTree.Bin r)
+ctr {Bt_bin_tie b0 b1}
 
 // U120.log2 (n: (U120)) : (U120)
 fun (U120_log2 n) {
@@ -443,29 +754,9 @@ fun (U120_log2_go count n) {
     (U120_log2_go (U120_inc count) (>> n #1))
 }
 
-// List.map -(a: Type) -(b: Type) (xs: (List a)) (f: (_: a) b) : (List b)
-fun (List_map xs f) {
-  (List_map {List_nil} ~) =
-    {List_nil}
-  (List_map {List_cons head tail} f) =
-    dup _0 _1 = f;
-    {List_cons (!_0 head) (List_map tail _1)}
-}
-
-// Triple.map -(a: Type) -(b: Type) (triple: (Triple a a a)) (f: (_: a) b) : (Triple b b b)
-fun (Triple_map triple f) {
-  (Triple_map {Triple_new fst snd trd} f) =
-    dup _0 _1 = f;
-    dup _2 _3 = _0;
-    {Triple_new (!_1 fst) (!_2 snd) (!_3 trd)}
-}
-
-// Triple.new -(a: Type) -(b: Type) -(c: Type) (fst: a) (snd: b) (trd: c) : (Triple a b c)
-ctr {Triple_new fst snd trd}
-
-// Apps.Fql.Player.parse (id: (Apps.Fql.Id)) (player: (Apps.Fql.Player)) (frame: (U120)) : (List (Apps.Fql.Attributes))
-fun (Fql_plr_pase id player frame) {
-  (Fql_plr_pase id player frame) =
+// Apps.Fpt.Player.parse (id: (Apps.Fpt.Id)) (player: (Apps.Fpt.Player)) (frame: (U120)) : (List (Apps.Fpt.Attributes))
+fun (Fpt_plr_pase id player frame) {
+  (Fpt_plr_pase id player frame) =
     dup _0 _1 = player;
     dup _2 _3 = _0;
     dup _4 _5 = _1;
@@ -481,348 +772,56 @@ fun (Fql_plr_pase id player frame) {
     dup _24 _25 = _11;
     dup _26 _27 = _12;
     dup _28 _29 = _13;
-    dup _30 _31 = _14;
-    let player_num = (U120_sub_Muh id #1024);
-    let cd = (U120_sub_Muh (Fql_plr_cdg _15) frame);
-    {List_cons {List_cons {T2 (Kindelia_B0M {String_cons #116 {String_cons #121 {String_cons #112 {String_cons #101 {String_nil}}}}}) (Kindelia_B0M {String_cons #112 {String_cons #108 {String_cons #97 {String_cons #121 {String_cons #101 {String_cons #114 {String_nil}}}}}}})} {List_cons {T2 (Kindelia_B0M {String_cons #110 {String_cons #117 {String_cons #109 {String_nil}}}}) (Kindelia_Ao3 player_num)} {List_cons {T2 (Kindelia_B0M {String_cons #120 {String_nil}}) (Kindelia_Ao3 (Fql_plr_pgx _16))} {List_cons {T2 (Kindelia_B0M {String_cons #121 {String_nil}}) (Kindelia_Ao3 (Fql_plr_pgy _17))} {List_cons {T2 (Kindelia_B0M {String_cons #104 {String_cons #112 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_hpg _18))} {List_cons {T2 (Kindelia_B0M {String_cons #120 {String_cons #112 {String_cons #95 {String_cons #116 {String_cons #111 {String_cons #116 {String_nil}}}}}}}) (Kindelia_Ao3 (Fql_plr_xp_g _19))} {List_cons {T2 (Kindelia_B0M {String_cons #114 {String_cons #116 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_rtg _20))} {List_cons {T2 (Kindelia_B0M {String_cons #115 {String_cons #108 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_slg _21))} {List_cons {T2 (Kindelia_B0M {String_cons #103 {String_cons #100 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_gget _22))} {List_cons {T2 (Kindelia_B0M {String_cons #99 {String_cons #100 {String_nil}}}) (Kindelia_Ao3 cd)} {List_cons {T2 (Kindelia_B0M {String_cons #115 {String_cons #48 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_skg _23 #0))} {List_cons {T2 (Kindelia_B0M {String_cons #115 {String_cons #49 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_skg _24 #1))} {List_cons {T2 (Kindelia_B0M {String_cons #115 {String_cons #50 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_skg _25 #2))} {List_cons {T2 (Kindelia_B0M {String_cons #115 {String_cons #51 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_skg _26 #3))} {List_cons {T2 (Kindelia_B0M {String_cons #115 {String_cons #52 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_skg _27 #4))} {List_cons {T2 (Kindelia_B0M {String_cons #115 {String_cons #53 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_skg _28 #5))} {List_cons {T2 (Kindelia_B0M {String_cons #115 {String_cons #54 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_skg _29 #6))} {List_cons {T2 (Kindelia_B0M {String_cons #115 {String_cons #55 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_skg _30 #7))} {List_cons {T2 (Kindelia_B0M {String_cons #102 {String_cons #97 {String_cons #116 {String_nil}}}}) (Kindelia_Ao3 (Fql_plr_cdg _31))} {List_nil}}}}}}}}}}}}}}}}}}}} {List_nil}}
+    let player_num = (U120_sub_Rov id #1024);
+    let cd = (U120_sub_Rov (Fpt_plr_cdg _14) frame);
+    {List_cons {List_cons {T2 (Kindelia_tcO {String_cons #116 {String_cons #121 {String_cons #112 {String_cons #101 {String_nil}}}}}) (Kindelia_tcO {String_cons #112 {String_cons #108 {String_cons #97 {String_cons #121 {String_cons #101 {String_cons #114 {String_nil}}}}}}})} {List_cons {T2 (Kindelia_tcO {String_cons #110 {String_cons #117 {String_cons #109 {String_nil}}}}) (Kindelia_9T_ player_num)} {List_cons {T2 (Kindelia_tcO {String_cons #120 {String_nil}}) (Kindelia_9T_ (Fpt_plr_pgx _15))} {List_cons {T2 (Kindelia_tcO {String_cons #121 {String_nil}}) (Kindelia_9T_ (Fpt_plr_pgy _16))} {List_cons {T2 (Kindelia_tcO {String_cons #104 {String_cons #112 {String_nil}}}) (Kindelia_9T_ (Fpt_plr_hpg _17))} {List_cons {T2 (Kindelia_tcO {String_cons #120 {String_cons #112 {String_cons #95 {String_cons #116 {String_cons #111 {String_cons #116 {String_nil}}}}}}}) (Kindelia_9T_ (Fpt_plr_xp_g _18))} {List_cons {T2 (Kindelia_tcO {String_cons #114 {String_cons #116 {String_nil}}}) (Kindelia_9T_ (Fpt_plr_rtg _19))} {List_cons {T2 (Kindelia_tcO {String_cons #115 {String_cons #108 {String_nil}}}) (Kindelia_9T_ (Fpt_plr_slg _20))} {List_cons {T2 (Kindelia_tcO {String_cons #103 {String_cons #100 {String_nil}}}) (Kindelia_9T_ (Fpt_plr_gget _21))} {List_cons {T2 (Kindelia_tcO {String_cons #99 {String_cons #100 {String_nil}}}) (Kindelia_9T_ cd)} {List_cons {T2 (Kindelia_tcO {String_cons #115 {String_cons #48 {String_nil}}}) (Kindelia_9T_ (Fpt_plr_skg _22 #0))} {List_cons {T2 (Kindelia_tcO {String_cons #115 {String_cons #49 {String_nil}}}) (Kindelia_9T_ (Fpt_plr_skg _23 #1))} {List_cons {T2 (Kindelia_tcO {String_cons #115 {String_cons #50 {String_nil}}}) (Kindelia_9T_ (Fpt_plr_skg _24 #2))} {List_cons {T2 (Kindelia_tcO {String_cons #115 {String_cons #51 {String_nil}}}) (Kindelia_9T_ (Fpt_plr_skg _25 #3))} {List_cons {T2 (Kindelia_tcO {String_cons #115 {String_cons #52 {String_nil}}}) (Kindelia_9T_ (Fpt_plr_skg _26 #4))} {List_cons {T2 (Kindelia_tcO {String_cons #115 {String_cons #53 {String_nil}}}) (Kindelia_9T_ (Fpt_plr_skg _27 #5))} {List_cons {T2 (Kindelia_tcO {String_cons #115 {String_cons #54 {String_nil}}}) (Kindelia_9T_ (Fpt_plr_skg _28 #6))} {List_cons {T2 (Kindelia_tcO {String_cons #102 {String_cons #97 {String_cons #116 {String_nil}}}}) (Kindelia_9T_ (Fpt_plr_cdg _29))} {List_nil}}}}}}}}}}}}}}}}}}} {List_nil}}
 }
 
-// Apps.Fql.Player.xp.get (player: (Apps.Fql.Player)) : (U120)
-fun (Fql_plr_xp_g player) {
-  (Fql_plr_xp_g player) =
-    (Fql_g_u120 player #29 #12)
+// Apps.Fpt.Player.rt.get (player: (Apps.Fpt.Player)) : (U120)
+fun (Fpt_plr_rtg player) {
+  (Fpt_plr_rtg player) =
+    (Fpt_g_u120 player #41 #3)
 }
 
-// Apps.Fql.U120.get (chunk: (U120)) (pos: (U120)) (size: (U120)) : (U120)
-fun (Fql_g_u120 chunk pos size) {
-  (Fql_g_u120 chunk pos size) =
-    let mask = (- (<< #1 size) #1);
-    let num = (& (>> chunk pos) mask);
-    num
+// Apps.Fpt.Player.xp.get (player: (Apps.Fpt.Player)) : (U120)
+fun (Fpt_plr_xp_g player) {
+  (Fpt_plr_xp_g player) =
+    (Fpt_g_u120 player #29 #12)
 }
 
-// Apps.Fql.Player.hp.get (player: (Apps.Fql.Player)) : (U120)
-fun (Fql_plr_hpg player) {
-  (Fql_plr_hpg player) =
-    (Fql_g_u120 player #16 #13)
+// Apps.Fpt.Player.cd.get (player: (Apps.Fpt.Player)) : (U120)
+fun (Fpt_plr_cdg player) {
+  (Fpt_plr_cdg player) =
+    (Fpt_g_u120 player #59 #12)
 }
 
-// Apps.Fql.Player.skills.get (player: (Apps.Fql.Player)) (slot: (U120)) : (U120)
-fun (Fql_plr_skg player slot) {
-  (Fql_plr_skg player slot) =
-    (Fql_g_u120 player (+ #71 (* slot #7)) #7)
+// Apps.Fpt.Player.gd.get (player: (Apps.Fpt.Player)) : (U120)
+fun (Fpt_plr_gget player) {
+  (Fpt_plr_gget player) =
+    (Fpt_g_u120 player #47 #12)
 }
 
-// String.nil : (String)
-ctr {String_nil}
-
-// String.cons (head: U60) (tail: (String)) : (String)
-ctr {String_cons head tail}
-
-// Kindelia.Convert.num_to_kstring (num: (U120)) : (U120)
-fun (Kindelia_Ao3 num) {
-  (Kindelia_Ao3 num) =
-    let text = (!(U120_show num) {String_nil});
-    (Kindelia_r2i text #0)
+// Apps.Fpt.Player.skills.get (player: (Apps.Fpt.Player)) (slot: (U120)) : (U120)
+fun (Fpt_plr_skg player slot) {
+  (Fpt_plr_skg player slot) =
+    (Fpt_g_u120 player (+ #71 (* slot #7)) #7)
 }
 
-// Kindelia.Convert.num_to_kstring.aux (num: (String)) (kdl_str: (U120)) : (U120)
-fun (Kindelia_r2i num kdl_str) {
-  (Kindelia_r2i {String_nil} kdl_str) =
-    kdl_str
-  (Kindelia_r2i {String_cons h t} kdl_str) =
-    let n = (Kindelia_e3W h);
-    let kdl_str = (| n (<< kdl_str #6));
-    (Kindelia_r2i t kdl_str)
+// Apps.Fpt.Player.sl.get (player: (Apps.Fpt.Player)) : (U120)
+fun (Fpt_plr_slg player) {
+  (Fpt_plr_slg player) =
+    (Fpt_g_u120 player #44 #3)
 }
 
-// Kindelia.Convert.num_to_kstring.char (char: (Char)) : (U120)
-fun (Kindelia_e3W char) {
-  (Kindelia_e3W char) =
-    (U120_new #0 (- char #47))
-}
-
-// U120.show (num: (U120)) : (Show)
-fun (U120_show num) {
-  (U120_show #0) =
-    @str {String_cons #48 str}
-  (U120_show num) =
-    dup _0 _1 = num;
-    @str let ten = #10;
-    dup _2 _3 = ten;
-    (Pair_match (U120_dms _0 _2) @dm.fst @dm.snd let digit = (U120_low dm.snd);
-    let rest = dm.fst;
-    let next = {String_cons (+ #48 digit) str};
-    let func = (Bool_if (U120_ltn _1 _3) @h h @h (!(U120_show rest) h));
-    (!func next))
-}
-
-// U120.div_mod (num: (U120)) (den: (U120)) : (Pair (U120) (U120))
-fun (U120_dms num den) {
-  (U120_dms ~ #0) =
-    {T2 (U60_tu120 (/ #0 #0)) (U60_tu120 (% #0 #0))}
-  (U120_dms num den) =
-    dup _0 _1 = num;
-    (Maybe_match (U120_msb _0) {T2 #0 #0} @msb.value let qr = {T2 #0 #0};
-    let idx = (U120_inc msb.value);
-    (U120_dm_go idx qr _1 den))
-}
-
-// U120.div_mod.go (idx: (U120)) (qr: (Pair (U120) (U120))) (num: (U120)) (den: (U120)) : (Pair (U120) (U120))
-fun (U120_dm_go idx qr num den) {
-  (U120_dm_go #0 qr ~ ~) =
-    qr
-  (U120_dm_go idx qr num den) =
-    dup _6 _7 = den;
-    dup _8 _9 = _6;
-    dup _4 _5 = idx;
-    dup _2 _3 = num;
-    dup _0 _1 = qr;
-    let quo = (Pair_fst _0);
-    dup _16 _17 = quo;
-    let rem = (Pair_snd _1);
-    let rem = (<< rem #1);
-    let bit = (U120_decs _4);
-    dup _14 _15 = bit;
-    let rem = (+ rem (U120_getb _2 _14));
-    dup _10 _11 = rem;
-    dup _12 _13 = _10;
-    let qr = (Bool_if (U120_gte _11 _7) let quo = (U120_setb _16 _15);
-    let rem = (- _12 _8);
-    {T2 quo rem} {T2 _17 _13});
-    (U120_dm_go (U120_decs _5) qr _3 _9)
-}
-
-// U60.to_u120 (num: U60) : (U120)
-fun (U60_tu120 num) {
-  (U60_tu120 num) =
-    (U120_new #0 num)
-}
-
-// Maybe.match -(t: Type) (x: (Maybe t)) -(p: (x: (Maybe t)) Type) (none: (p (Maybe.none t))) (some: (value: t) (p (Maybe.some t value))) : (p x)
-fun (Maybe_match x none some) {
-  (Maybe_match {Maybe_none} none ~) =
-    none
-  (Maybe_match {Maybe_some value_} ~ some) =
-    (!some value_)
-}
-
-// Maybe.some -(t: Type) (value: t) : (Maybe t)
-ctr {Maybe_some value}
-
-// Maybe.none -(t: Type) : (Maybe t)
-ctr {Maybe_none}
-
-// U120.dec (num: (U120)) : (U120)
-fun (U120_decs num) {
-  (U120_decs num) =
-    (- num #1)
-}
-
-// U120.get_bit (num: (U120)) (bit: (U120)) : (U120)
-fun (U120_getb num bit) {
-  (U120_getb num bit) =
-    (& (>> num bit) #1)
-}
-
-// U120.set_bit (num: (U120)) (bit: (U120)) : (U120)
-fun (U120_setb num bit) {
-  (U120_setb num bit) =
-    let bit = (<< #1 bit);
-    (| num bit)
-}
-
-// U120.msb (n: (U120)) : (Maybe (U120))
-fun (U120_msb n) {
-  (U120_msb #0) =
-    {Maybe_none}
-  (U120_msb n) =
-    {Maybe_some (- (U120_msb_go n) #1)}
-}
-
-// U120.msb.go (n: (U120)) : (U120)
-fun (U120_msb_go n) {
-  (U120_msb_go #0) =
-    #0
-  (U120_msb_go n) =
-    (+ #1 (U120_msb_go (>> n #1)))
-}
-
-// U120.greater_equal (a: (U120)) (b: (U120)) : (Bool)
-fun (U120_gte a b) {
-  (U120_gte a b) =
-    (U120_tbool (>= a b))
-}
-
-// U120.to_bool (n: (U120)) : (Bool)
-fun (U120_tbool n) {
-  (U120_tbool #0) =
-    {Bool_false}
-  (U120_tbool ~) =
-    {Bool_true}
-}
-
-// Pair.match -(a: Type) -(b: Type) (x: (Pair a b)) -(p: (x: (Pair a b)) Type) (new: (fst: a) (snd: b) (p (Pair.new a b fst snd))) : (p x)
-fun (Pair_match x new) {
-  (Pair_match {T2 fst_ snd_} new) =
-    (!(!new fst_) snd_)
-}
-
-// U120.less_than (a: (U120)) (b: (U120)) : (Bool)
-fun (U120_ltn a b) {
-  (U120_ltn a b) =
-    (U120_tbool (< a b))
-}
-
-// U120.sub_saturated (a: (U120)) (b: (U120)) : (U120)
-fun (U120_sub_Muh a b) {
-  (U120_sub_Muh a b) =
-    dup _2 _3 = b;
-    dup _0 _1 = a;
-    (Bool_if (U120_ltn _2 _0) (- _1 _3) #0)
-}
-
-// Apps.Fql.Player.pos.get_x (player: (Apps.Fql.Player)) : (U120)
-fun (Fql_plr_pgx player) {
-  (Fql_plr_pgx player) =
-    (Fql_g_u120 player #0 #8)
-}
-
-// Apps.Fql.Player.gd.get (player: (Apps.Fql.Player)) : (U120)
-fun (Fql_plr_gget player) {
-  (Fql_plr_gget player) =
-    (Fql_g_u120 player #47 #12)
-}
-
-// Kindelia.Convert.to_kstring (string: (String)) : (U120)
-fun (Kindelia_B0M string) {
-  (Kindelia_B0M string) =
-    (Kindelia_IJw string #0)
-}
-
-// Kindelia.Convert.to_kstring.aux (string: (String)) (kdl_str: (U120)) : (U120)
-fun (Kindelia_IJw string kdl_str) {
-  (Kindelia_IJw {String_nil} kdl_str) =
-    kdl_str
-  (Kindelia_IJw {String_cons h t} kdl_str) =
-    dup _2 _3 = kdl_str;
-    dup _0 _1 = t;
-    let char = (Kindelia_SVY h);
-    (Maybe_match char (Kindelia_IJw _0 _2) @char.value let kdl_str = (| char.value (<< _3 #6));
-    (Kindelia_IJw _1 kdl_str))
-}
-
-// Kindelia.Convert.to_kchar (char: (Char)) : (Maybe (U120))
-fun (Kindelia_SVY char) {
-  (Kindelia_SVY char) =
-    dup _0 _1 = char;
-    dup _2 _3 = _0;
-    dup _4 _5 = _1;
-    dup _6 _7 = _2;
-    dup _8 _9 = _3;
-    dup _10 _11 = _4;
-    dup _12 _13 = _5;
-    (Bool_if (Char_is_dOnv _6) {Maybe_some (U120_new #0 (- _7 #47))} (Bool_if (Char_between #65 _8 #91) {Maybe_some (U120_new #0 (- _9 #54))} (Bool_if (Char_between #97 _10 #123) {Maybe_some (U120_new #0 (- _11 #60))} (Bool_if (Char_equal _12 #46) {Maybe_some #0} (Bool_if (Char_equal _13 #95) {Maybe_some #63} {Maybe_none})))))
-}
-
-// Char.between (a: (Char)) (b: (Char)) (c: (Char)) : (Bool)
-fun (Char_between a b c) {
-  (Char_between a b c) =
-    (U60_between a b c)
-}
-
-// U60.between (small: U60) (val: U60) (big: U60) : (Bool)
-fun (U60_between small val big) {
-  (U60_between small val big) =
-    dup _0 _1 = val;
-    (U60_tbool (& (<= small _0) (< _1 big)))
-}
-
-// Char.equal (a: (Char)) (b: (Char)) : (Bool)
-fun (Char_equal a b) {
-  (Char_equal a b) =
-    (U60_equal a b)
-}
-
-// U60.equal (a: U60) (b: U60) : (Bool)
-fun (U60_equal a b) {
-  (U60_equal a b) =
-    (U60_tbool (== a b))
-}
-
-// Char.is_decimal (c: (Char)) : (Bool)
-fun (Char_is_dOnv c) {
-  (Char_is_dOnv c) =
-    (Char_between #48 c #57)
-}
-
-// Apps.Fql.Player.sl.get (player: (Apps.Fql.Player)) : (U120)
-fun (Fql_plr_slg player) {
-  (Fql_plr_slg player) =
-    (Fql_g_u120 player #44 #3)
-}
-
-// Apps.Fql.Player.rt.get (player: (Apps.Fql.Player)) : (U120)
-fun (Fql_plr_rtg player) {
-  (Fql_plr_rtg player) =
-    (Fql_g_u120 player #41 #3)
-}
-
-// Apps.Fql.Player.pos.get_y (player: (Apps.Fql.Player)) : (U120)
-fun (Fql_plr_pgy player) {
-  (Fql_plr_pgy player) =
-    (Fql_g_u120 player #8 #8)
-}
-
-// Apps.Fql.Player.cd.get (player: (Apps.Fql.Player)) : (U120)
-fun (Fql_plr_cdg player) {
-  (Fql_plr_cdg player) =
-    (Fql_g_u120 player #59 #12)
-}
-
-// Apps.Fql.Npc.bat_cave.parse (id: (Apps.Fql.Id)) (entity: (Apps.Fql.Entity)) : (List (Apps.Fql.Attributes))
-fun (Fql_npc_bcpr id entity) {
-  (Fql_npc_bcpr id entity) =
-    let can_spawn = (U120_is0 entity);
-    let status = (Bool_if can_spawn {String_cons #114 {String_cons #101 {String_cons #97 {String_cons #100 {String_cons #121 {String_nil}}}}}} {String_cons #110 {String_cons #111 {String_cons #116 {String_cons #32 {String_cons #114 {String_cons #101 {String_cons #97 {String_cons #100 {String_cons #121 {String_nil}}}}}}}}}});
-    {List_cons {List_cons {T2 (Kindelia_B0M {String_cons #116 {String_cons #121 {String_cons #112 {String_cons #101 {String_nil}}}}}) (Kindelia_B0M {String_cons #98 {String_cons #97 {String_cons #116 {String_cons #32 {String_cons #99 {String_cons #97 {String_cons #118 {String_cons #101 {String_nil}}}}}}}}})} {List_cons {T2 (Kindelia_B0M {String_cons #105 {String_cons #100 {String_nil}}}) (Kindelia_Ao3 (- id #128))} {List_cons {T2 (Kindelia_B0M {String_cons #115 {String_cons #116 {String_cons #97 {String_cons #116 {String_cons #117 {String_cons #115 {String_nil}}}}}}}) (Kindelia_B0M status)} {List_nil}}}} {List_nil}}
-}
-
-// U120.is_zero (n: (U120)) : (Bool)
-fun (U120_is0 n) {
-  (U120_is0 #0) =
-    {Bool_true}
-  (U120_is0 ~) =
-    {Bool_false}
-}
-
-// Apps.Fql.Npc.phoenix.parse (entity: (Apps.Fql.Entity)) (frame: (U120)) : (List (Apps.Fql.Attributes))
-fun (Fql_npc_phpr entity frame) {
-  (Fql_npc_phpr entity frame) =
-    let duration = (U120_sub_Muh entity frame);
-    {List_cons {List_cons {T2 (Kindelia_B0M {String_cons #116 {String_cons #121 {String_cons #112 {String_cons #101 {String_nil}}}}}) (Kindelia_B0M {String_cons #112 {String_cons #104 {String_cons #111 {String_cons #101 {String_cons #110 {String_cons #105 {String_cons #120 {String_nil}}}}}}}})} {List_cons {T2 (Kindelia_B0M {String_cons #100 {String_cons #117 {String_cons #114 {String_cons #97 {String_cons #116 {String_cons #105 {String_cons #111 {String_cons #110 {String_nil}}}}}}}}}) (Kindelia_Ao3 duration)} {List_nil}}} {List_nil}}
-}
-
-// Apps.Fql.Monster.bat.parse (id: (Apps.Fql.Id)) (entity: (Apps.Fql.Entity)) : (List (Apps.Fql.Attributes))
-fun (Fql_mon_bprs id entity) {
-  (Fql_mon_bprs id entity) =
-    dup _0 _1 = entity;
-    dup _2 _3 = _0;
-    {List_cons {List_cons {T2 (Kindelia_B0M {String_cons #116 {String_cons #121 {String_cons #112 {String_cons #101 {String_nil}}}}}) (Kindelia_B0M {String_cons #98 {String_cons #97 {String_cons #116 {String_nil}}}})} {List_cons {T2 (Kindelia_B0M {String_cons #105 {String_cons #100 {String_nil}}}) (Kindelia_Ao3 (- id #512))} {List_cons {T2 (Kindelia_B0M {String_cons #120 {String_nil}}) (Kindelia_Ao3 (Fql_plr_pgx _1))} {List_cons {T2 (Kindelia_B0M {String_cons #121 {String_nil}}) (Kindelia_Ao3 (Fql_plr_pgy _2))} {List_cons {T2 (Kindelia_B0M {String_cons #104 {String_cons #112 {String_nil}}}) (Kindelia_Ao3 (Fql_plr_hpg _3))} {List_cons {T2 (Kindelia_B0M {String_cons #109 {String_cons #97 {String_cons #120 {String_cons #95 {String_cons #104 {String_cons #112 {String_nil}}}}}}}) (Kindelia_Ao3 #100)} {List_nil}}}}}}} {List_nil}}
-}
-
-// Data.BaseTree.Bin.tie -(r: Type) (b0: r) (b1: r) : (Data.BaseTree.Bin r)
-ctr {Bt_bin_tie b0 b1}
-
-// Apps.Fql.Kindelia.Response.state (state: (Apps.Fql.Kindelia.State)) : (Apps.Fql.Kindelia.Response)
-ctr {Fql_res_stat state}
-
-// Apps.Fql.Kindelia.State.get_state (state: (Apps.Fql.Kindelia.State)) : (Apps.Fql.State)
-fun (Fql_kdl_sgst state) {
-  (Fql_kdl_sgst {Fql_kdl_snew ~ ~ state}) =
+// Apps.Fpt.Kindelia.State.get_state (state: (Apps.Fpt.Kindelia.State)) : (Apps.Fpt.State)
+fun (Fpt_kdl_sgst state) {
+  (Fpt_kdl_sgst {Fpt_kdl_snew ~ ~ state}) =
     state
 }
 
-// Apps.Fql.Kindelia.State.new (phase: (Apps.Fql.Kindelia.State.Phase)) (start: (U120)) (state: (Apps.Fql.State)) : (Apps.Fql.Kindelia.State)
-ctr {Fql_kdl_snew phase start state}
+// Apps.Fpt.Kindelia.State.new (phase: (Apps.Fpt.Kindelia.State.Phase)) (start: (U120)) (state: (Apps.Fpt.State)) : (Apps.Fpt.Kindelia.State)
+ctr {Fpt_kdl_snew phase start state}
+
+// Apps.Fpt.Kindelia.Response.state (state: (Apps.Fpt.Kindelia.State)) : (Apps.Fpt.Kindelia.Response)
+ctr {Fpt_res_stat state}
 

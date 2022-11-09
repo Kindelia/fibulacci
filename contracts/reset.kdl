@@ -1,0 +1,5 @@
+
+run {
+  ask x = (Call 'Fpt' {Fpt_act_rst});
+  (Done x)
+}

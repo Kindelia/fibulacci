@@ -1,0 +1,7 @@
+
+run {
+  // x0, y0, x1, y1, player_num, skill_slot
+  let code = (Fpt_kdl_skll #45 #140 #45 #140 #1024 #0);
+  ask x = (Call 'Fpt' {Fpt_act_act code});
+  (Done (Id x))
+}
