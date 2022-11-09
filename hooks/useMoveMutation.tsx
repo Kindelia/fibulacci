@@ -1,6 +1,8 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import kindelia from "kindelia-js";
+
 import { setGameStore } from "../stores/gameStore";
+import { FIB_CONTRACT } from "../utils/contract";
 import { NODE_URL } from "../utils/env";
 
 enum EventMoveEnum {
@@ -14,10 +16,10 @@ export function usePlayerMoveMutation() {
   return useMutation(
     ["moveMutation"],
     ({
-      player,
+      playerId,
       eventMove,
     }: {
-      playerId: any;
+      playerId: string;
       eventMove: KeyboardEvent;
     }) => {
       return kindelia
@@ -26,19 +28,21 @@ export function usePlayerMoveMutation() {
           isPublish: true,
           code: `
           run {
-              let code = (Flb_kdl_walk #${
-                EventMoveEnum[eventMove.key]
-              } #${player.id});
-              ask x = (Call 'Flb' {Flb_act_act code});
+              let code = (
+                ${FIB_CONTRACT.FIB_KDL_WALK} 
+                #${EventMoveEnum[eventMove.key]} 
+                #${playerId}
+              );
+              ask x = (Call 'Fql' {${FIB_CONTRACT.FIB_ACT_ACT} code});
               (Done x)
           }
       `,
         })
         .then((res) => {
-          console.log('DHUASUHDASHDUHAS', res.data)
+          console.log("DHUASUHDASHDUHAS", res.data);
 
           if (res.data[0]["Ok"] === null) {
-            setGameStore({ isLoading: true, player });
+            setGameStore({ isLoading: true, player: null });
           }
 
           return res;

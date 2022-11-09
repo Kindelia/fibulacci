@@ -1,38 +1,35 @@
-import { persistentAtom } from '@nanostores/persistent';
+import { persistentAtom } from "@nanostores/persistent";
+import { FibObject } from "../hooks/useStateQuery";
 
-type Player = {
-  exp?: number;
-  hp?: number;
+type Player = FibObject & {
   level?: number;
-  maxHp?: number;
-  maxMp?: number;
-  movements?: string[];
-  mp?: number;
-  name?: string;
-  score?: number;
-  speed?: number;
-  x?: number;
-  y?: number;
 };
 
 const initialPlayerState: Player = {
-  exp: 0,
-  hp: 100,
+  type: "Player",
+  num: "",
+  y: "5",
+  sl: "",
+  s5: "",
+  s1: "",
+  xp_tot: "",
+  cd: "",
+  s7: "",
+  s3: "",
+  x: "5",
+  hp: "",
+  gd: "",
+  s6: "",
+  s2: "",
+  rt: "",
+  s0: "",
+  s4: "",
   level: 1,
-  maxHp: 100,
-  maxMp: 100,
-  movements: [],
-  mp: 100,
-  name: "Anony",
-  score: 0,
-  speed: 1,
-  x: 20,
-  y: 30,
 };
 
 export const playerStore = persistentAtom<Player>(
   "player",
-  {...initialPlayerState},
+  { ...initialPlayerState },
   {
     encode: JSON.stringify,
     decode: JSON.parse,
@@ -40,25 +37,14 @@ export const playerStore = persistentAtom<Player>(
 );
 
 export function setPlayer(player: Player) {
-  const currentPlayer = playerStore.get();
-
-  console.log("currentPlayer", currentPlayer);
-  console.log("player", player);
-  console.log("merge", {
-    ...currentPlayer,
-    ...player,
-    movements: [...currentPlayer.movements, ...player.movements],
-  });
-
   playerStore.set({
-    ...currentPlayer,
     ...player,
-    movements: [...currentPlayer.movements, ...player.movements],
+    level: Number(player.xp_tot) / 10,
   });
 }
 
 export function resetPlayer() {
   playerStore.set({
-    ...initialPlayerState
+    ...initialPlayerState,
   });
 }

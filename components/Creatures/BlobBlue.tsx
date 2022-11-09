@@ -6,6 +6,7 @@ export type BlobBlueProps = {
   side: "left" | "right";
   x: number;
   y: number;
+  hp: number;
 };
 
 export function BlobBlue(props: BlobBlueProps) {
@@ -15,7 +16,7 @@ export function BlobBlue(props: BlobBlueProps) {
 
   const size = 32 * scale;
 
-  const { side, x, y } = {
+  const { side, x, y, hp } = {
     side: "right",
     ...props,
   };
@@ -36,8 +37,9 @@ export function BlobBlue(props: BlobBlueProps) {
   }
 
   return (
-    <div
-      className={$`
+    <>
+      <div
+        className={$`
         abs 
         cursor:pointer
         w:${size}
@@ -47,7 +49,9 @@ export function BlobBlue(props: BlobBlueProps) {
         bg:url('/images/blob-blue-${side}.png')
         @blob|1s|steps(8)|infinite
       `}
-      onClick={handlePlaySound}
-    />
+        onClick={handlePlaySound}
+      />
+      <p className={$`abs top:${y - 10} left:${x - 20} f:10`}>HP: {hp}</p>
+    </>
   );
 }

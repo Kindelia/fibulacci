@@ -19,7 +19,7 @@ export function HPBar(_props: HPBarProps) {
           h:${height} 
           left:0 
           overflow:hidden
-          top:0 
+          top:0
           w:${width - 100} 
         `}
       >
@@ -33,7 +33,7 @@ export function HPBar(_props: HPBarProps) {
           `}
         />
       </div>
-      <p className="abs top:20 left:2/4">HP</p>
+      <p className="abs top:36% left:45%">HP</p>
     </div>
   );
 }

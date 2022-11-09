@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { StartScreen } from '../components/StartScreen';
+import { StartScreen } from '../components/Screens/StartScreen';
 
 export default function Home() {
   return (

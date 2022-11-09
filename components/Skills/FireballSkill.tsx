@@ -12,7 +12,7 @@ export function FireballSkill(props: FireballSkillProps) {
 
   const [isPlayingSound, setIsPlayingSound] = useState(false);
 
-  const [play, { stop }] = useSound("/sounds/fireball.mp3");
+  const [play] = useSound("/sounds/fireball.mp3");
 
   function handlePlaySound() {
     if (isPlayingSound) return;
@@ -37,7 +37,7 @@ export function FireballSkill(props: FireballSkillProps) {
         top:${y} 
         left:${x} 
         abs 
-        @fireball|2s|steps(8)|infinite
+        @fireball|2s|steps(8)
       `}
     />
   );

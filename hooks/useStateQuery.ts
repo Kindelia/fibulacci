@@ -2,6 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import kindelia, { name } from "kindelia-js";
+import { FIB_CONTRACT, FIB_CONTRACT_NAME } from "../utils/contract";
 import { NODE_URL } from "../utils/env";
 
 export type FibObject = {
@@ -36,11 +37,11 @@ export function useStateQuery() {
           code: `
             run {
               ask tick = (Tick);
-              ask x    = (Call 'Flb' {Flb_act_get});
-              let r    = (Flb_kdl_stpr x tick);
+              ask x    = (Call '${FIB_CONTRACT_NAME}' {${FIB_CONTRACT.FIB_ACT_GET}});
+              let r    = (${FIB_CONTRACT.FIB_KDL_STTP} x tick);
               (Done r)
             }
-          `,
+          `, 
         })
         .then((res) => {
           const numbList = JSON.stringify(res.data).match(

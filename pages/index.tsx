@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { LoadingScreen } from '../components/LoadingScreen';
+import { LoadingScreen } from '../components/Screens/LoadingScreen';
 
 export default function Home() {
   return (

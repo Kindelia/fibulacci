@@ -1,12 +1,14 @@
-import { ReactNode, useState } from "react";
+import $ from "@master/literal";
+import { ReactNode, useEffect, useState } from "react";
 import useSound from "use-sound";
 
 type PrincipalStageProps = {
   children: ReactNode;
+  ref: any;
 };
 
 export function PrincipalStage(props: PrincipalStageProps) {
-  const { children } = props;
+  const { children, ref } = props;
 
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -26,14 +28,26 @@ export function PrincipalStage(props: PrincipalStageProps) {
     }
   }
 
+  useEffect(() => {}, [ref]);
+
   return (
-    <>
+    <div
+      className={$`
+      h:${5120 * 2}
+      w:${5120 * 2}
+      bg:black
+      scrollbar:none
+    `}
+    >
       <div
         onClick={handlePlay}
-        className="bg:url('/images/maps/world-terrain.png') h:100vh w:100%"
+        className="bg:url('/images/maps/world-terrain.png') h:5120 w:5120 abs top:50% left:50%"
+        ref={ref}
       >
-        {children}
+        <div className="bg:url('/images/maps/world-objects.png') h:5120 w:5120">
+          {children}
+        </div>
       </div>
-    </>
+    </div>
   );
 }
