@@ -20,7 +20,7 @@ type PlayerProps = {
 
 export function Player(props: PlayerProps) {
   const { player } = props;
-  const { x, y, num: playerId } = player;
+  const { x, y } = player;
 
   const playerMoveMutation = usePlayerMoveMutation();
 
@@ -36,28 +36,28 @@ export function Player(props: PlayerProps) {
   useKey("ArrowUp", (eventMove: KeyboardEvent) =>
     playerMoveMutation.mutate({
       eventMove,
-      playerId,
+      player,
     })
   );
 
   useKey("ArrowDown", (eventMove: KeyboardEvent) =>
     playerMoveMutation.mutate({
       eventMove,
-      playerId,
+      player,
     })
   );
 
   useKey("ArrowLeft", (eventMove: KeyboardEvent) =>
     playerMoveMutation.mutate({
       eventMove,
-      playerId,
+      player,
     })
   );
 
   useKey("ArrowRight", (eventMove: KeyboardEvent) =>
     playerMoveMutation.mutate({
       eventMove,
-      playerId,
+      player,
     })
   );
 
