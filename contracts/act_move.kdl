@@ -1,7 +1,8 @@
 
+
 run {
   // Direction, id
   let code = (Fpt_kdl_walk #2 #0);
   ask x = (Call 'Fpt' {Fpt_act_act code});
-  (Done (Id x))
+  (Done x)
 }
