@@ -1,5 +1,7 @@
+// Resets the state back to the lobby phase
+// Can only be used if state is on the game phase
 
 run {
-  ask x = (Call 'Fpt' {Fpt_act_rst});
+  ask x = (Call 'Fiv' {Fiv_act_rst});
   (Done x)
 }

@@ -1,9 +1,9 @@
-fun (Id x) {
-  (Id x) = x
-} 
+// Joins the game
+// If game is in the lobby phase, joins a queue to enter the game
+// If game is in the game phase, joins the game and places a character in the map
 
 run {
-  ask x = (Call 'Fpt' {Fpt_act_join #30 #28});
-  let m = (Id x );
-  (Done m)
+  // Wallet and Kgt invested
+  ask x = (Call 'Fiv' {Fiv_act_join #39 #30});
+  (Done x)
 }

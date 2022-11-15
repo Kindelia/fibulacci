@@ -1,4 +1,8 @@
+// Leaves lobby phase and starts the game
+// Places all players in the queue at the map
+// Can only be used when game is at the lobby mode
+
 run {
-  ask x = (Call 'Fpt' {Fpt_act_strt});
+  ask x = (Call 'Fiv' {Fiv_act_strt});
   (Done x)
 }

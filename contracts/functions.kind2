@@ -1,0 +1,347 @@
+// #kdl_state = Apps.Fiv.Kindelia.State.Build
+// #kdl_name = Fiv
+// Apps.Fiv.Kindelia (action: Apps.Fiv.Kindelia.Act) : Kindelia.IO Apps.Fiv.Kindelia.Response 
+// Apps.Fiv.Kindelia (Apps.Fiv.Kindelia.Act.action code) = 
+//   (Kindelia.IO.do_take state =>
+//     (Kindelia.IO.do_tick block =>
+//       match Apps.Fiv.Kindelia.State state {
+//         new =>
+//           let phs = state.phase
+//           match Apps.Fiv.Kindelia.State.Phase phs {
+//             game =>
+//               let pair   = Apps.Fiv.Kindelia.State.update state code block
+//               let events = Pair.snd pair
+//               let state  = Pair.fst pair
+//               let result = if (Data.BraunTree.is_empty events) {Apps.Fiv.Kindelia.Response.act_fail} else {Apps.Fiv.Kindelia.Response.acted events}
+//               (Kindelia.IO.do_save state _ =>
+//                 (Kindelia.IO.done result)
+//               )
+//             lobby =>
+//               let result = Apps.Fiv.Kindelia.Response.wrong_phase
+//               (Kindelia.IO.do_save state _ =>
+//                 (Kindelia.IO.done result)
+//               )
+//           }
+//       }
+//     )
+//   )
+// Apps.Fiv.Kindelia (Apps.Fiv.Kindelia.Act.get) = 
+//   (Kindelia.IO.do_take state =>
+//     let result = Apps.Fiv.Kindelia.Response.state state
+//     (Kindelia.IO.do_save state _ =>
+//       (Kindelia.IO.done result))
+//   )
+// Apps.Fiv.Kindelia (Apps.Fiv.Kindelia.Act.join subj kgt) =
+//   (Kindelia.IO.do_take s =>
+//     (Kindelia.IO.do_tick tick =>
+//       match Apps.Fiv.Kindelia.State s {
+//         new =>
+//           let phs = s.phase
+//           match Apps.Fiv.Kindelia.State.Phase phs {
+//             game  => Apps.Fiv.Kindelia.join_game subj s.start phs.players s.state
+//             lobby => Apps.Fiv.Kindelia.join_lobby subj kgt s.start s.state phs.queue
+//             }
+//         }
+//     )
+//   )
+// Apps.Fiv.Kindelia (Apps.Fiv.Kindelia.Act.start) =
+//   (Kindelia.IO.do_take state =>
+//     (Kindelia.IO.do_tick tick =>
+//       match Apps.Fiv.Kindelia.State state {
+//         new => 
+//           let phase = state.phase
+//           match Apps.Fiv.Kindelia.State.Phase phase {
+//             game  => 
+//               (Kindelia.IO.do_save state _ =>
+//                 (Kindelia.IO.done Apps.Fiv.Kindelia.Response.wrong_phase)
+//               )
+//             lobby => 
+//               let to_start  = U120.new 0 300
+//               let duration  = U120.sub_saturated tick state.start
+//                // TODO consider time of the loby to see if should be started or not
+//               // let can_start = U120.greater_equal duration to_start
+//               let can_start = Bool.true
+//               if can_start {
+//                 let starts = Apps.Fiv.Map.initial_positions
+//                 let acc    = Apps.Fiv.Kindelia.To_start.new starts User.Sipher.PatriciaTree.empty (Apps.Fiv.Kindelia.State.get_state state) (U120.new 0 0)
+//                 let fold   = List.fold phase.queue
+//                 let data   = fold acc Apps.Fiv.Kindelia.To_start.to_fold 
+//                 match Apps.Fiv.Kindelia.To_start data {
+//                   new => 
+//                     let phase  = Apps.Fiv.Kindelia.State.Phase.game data.users
+//                     let timer  = U120.new 0 0
+//                     let state  = data.state 
+//                     let state  = Apps.Fiv.Kindelia.State.new phase timer state
+//                     let result = Apps.Fiv.Kindelia.Response.started tick
+//                     (Kindelia.IO.do_save state _ =>
+//                       (Kindelia.IO.done result)
+//                     )
+//                 }
+//               }
+//               else {
+//                 (Kindelia.IO.do_save state _ =>
+//                   let result = Apps.Fiv.Kindelia.Response.start_fail (U120.sub_saturated to_start duration)
+//                   (Kindelia.IO.done result)
+//                 )   
+//               }
+//           }
+//       }
+//     )
+//   )
+// Apps.Fiv.Kindelia (Apps.Fiv.Kindelia.Act.reset) =
+//   (Kindelia.IO.do_take state =>
+//     (Kindelia.IO.do_tick tick =>
+//       match Apps.Fiv.Kindelia.State state {
+//         new => 
+//           let phase = state.phase
+//           match Apps.Fiv.Kindelia.State.Phase phase {
+//             lobby => 
+//               (Kindelia.IO.do_save state _ =>
+//                 (Kindelia.IO.done Apps.Fiv.Kindelia.Response.wrong_phase)
+//               )
+//             game => 
+//               let phase  = Apps.Fiv.Kindelia.State.Phase.init_lobby
+//               let state  = Apps.Fiv.State.Build
+//               let s_blk  = U120.new 0 0
+//               let state  = Apps.Fiv.Kindelia.State.new phase s_blk state
+//               (Kindelia.IO.do_save state _ =>
+//                 (Kindelia.IO.done Apps.Fiv.Kindelia.Response.reseted)
+//               )
+//           }
+//       }
+//     )
+//   )
+
+// #kdl_name = Fiv_kdl_jgam
+// Apps.Fiv.Kindelia.join_game (subj: U120) (start: U120) (players: User.Sipher.PatriciaTree) (state: Apps.Fiv.State) : Kindelia.IO Apps.Fiv.Kindelia.Response {
+//   let pos     = List.map Apps.Fiv.Map.initial_positions (x => Apps.Fiv.Pos.new (Apps.Fiv.Pos.Value.get_x x) (Apps.Fiv.Pos.Value.get_y x)) 
+//   let p       = Apps.Fiv.Kindelia.State.join pos state players subj
+//   match Maybe p {
+//     none => 
+//         let result = Apps.Fiv.Kindelia.Response.join_fail
+//         (Kindelia.IO.do_save (Apps.Fiv.Kindelia.State.new (Apps.Fiv.Kindelia.State.Phase.game players) start state) _ =>
+//         (Kindelia.IO.done result)
+//       )
+//     some =>
+//       match Pair p.value {
+//         new =>
+//           let players = User.Sipher.PatriciaTree.set players subj p.value.snd
+//           let state   = Apps.Fiv.Kindelia.State.new (Apps.Fiv.Kindelia.State.Phase.game players) start p.value.fst
+//           (Kindelia.IO.do_save state _ =>
+//             let result = Apps.Fiv.Kindelia.Response.joined p.value.snd
+//             (Kindelia.IO.done result)
+//           )
+//       }
+//   }
+// }
+
+// #kdl_name = Fiv_kdl_jlob
+// Apps.Fiv.Kindelia.join_lobby (subj: U120) (kgt: U120) (start: U120) (state: Apps.Fiv.State) (queue: List Apps.Fiv.Kindelia.State.Phase.User) : Kindelia.IO Apps.Fiv.Kindelia.Response {
+//   let find    = Apps.Fiv.Kindelia.State.Phase.queue.find queue subj
+//   match Maybe find {
+//     none =>
+//       let user    = Apps.Fiv.Kindelia.State.Phase.User.new subj kgt
+//       let queue   = Apps.Fiv.Kindelia.State.Phase.queue.add  queue user
+//       let find    = Apps.Fiv.Kindelia.State.Phase.queue.find queue subj
+//       let phase   = Apps.Fiv.Kindelia.State.Phase.lobby queue
+//       (Kindelia.IO.do_save (Apps.Fiv.Kindelia.State.new phase start state ) _ =>
+//         let result = 
+//           match Maybe find {
+//             some => Apps.Fiv.Kindelia.Response.queued find.value        
+//             none => 
+//               let floor  = List.last queue
+//               let value  = Maybe.extract floor (U120.new 0 0) (x => Apps.Fiv.Kindelia.State.Phase.User.kgt x)
+//               Apps.Fiv.Kindelia.Response.queue_fail value
+//           }
+//         (Kindelia.IO.done result)
+//       )
+//     some =>
+//       let phase   = Apps.Fiv.Kindelia.State.Phase.lobby queue
+//       let state   = Apps.Fiv.Kindelia.State.new phase start state
+//       let result  = Apps.Fiv.Kindelia.Response.queue_fail (U120.new 0 0)
+//       (Kindelia.IO.do_save state _ =>
+//         (Kindelia.IO.done result)
+//       )
+//   }
+// }
+
+
+#kdl_state = Apps.Fiv.Kindelia.State.Build
+#kdl_name = Fiv
+Apps.Fiv.Kindelia (action: Apps.Fiv.Kindelia.Act) : Kindelia.IO Apps.Fiv.Kindelia.Response 
+Apps.Fiv.Kindelia (Apps.Fiv.Kindelia.Act.action code) = do Kindelia.IO {
+  ask state = Kindelia.IO.take
+  match Apps.Fiv.Kindelia.State state {
+    new => do Kindelia.IO {
+      ask block = Kindelia.IO.tick
+      let phs = state.phase
+      match Apps.Fiv.Kindelia.State.Phase phs {
+        game => do Kindelia.IO {
+          let p      = Apps.Fiv.Kindelia.State.update state code block
+          let state  = Pair.fst p
+          // let events = Pair.snd pair
+          // let result = if (Data.BraunTree.is_empty events) {Apps.Fiv.Kindelia.Response.act_fail} else {Apps.Fiv.Kindelia.Response.acted events}
+          let result = Apps.Fiv.Kindelia.Response.none
+          ask          Kindelia.IO.save state
+          return result
+        }
+        lobby => do Kindelia.IO {
+          let result = Apps.Fiv.Kindelia.Response.wrong_phase
+          ask          Kindelia.IO.save state
+          return result
+        }
+      }
+    }
+  }
+  }
+Apps.Fiv.Kindelia (Apps.Fiv.Kindelia.Act.get) = do Kindelia.IO {
+  ask state  = Kindelia.IO.take
+  let result = Apps.Fiv.Kindelia.Response.state state
+  ask          Kindelia.IO.save state
+  return result
+  }
+Apps.Fiv.Kindelia (Apps.Fiv.Kindelia.Act.join subj kgt) = do Kindelia.IO {
+  ask s      = Kindelia.IO.take
+  ask tick   = Kindelia.IO.tick
+  match Apps.Fiv.Kindelia.State s {
+    new =>
+      let phs = s.phase
+      match Apps.Fiv.Kindelia.State.Phase phs {
+        game  => Apps.Fiv.Kindelia.join_game subj s.start phs.players s.state
+        lobby => Apps.Fiv.Kindelia.join_lobby subj kgt s.start s.state phs.queue
+        }
+    }
+}
+Apps.Fiv.Kindelia (Apps.Fiv.Kindelia.Act.start) = do Kindelia.IO {
+  ask state  = Kindelia.IO.take
+  ask tick   = Kindelia.IO.tick
+  match Apps.Fiv.Kindelia.State state {
+    new => do Kindelia.IO {
+      let phase = state.phase
+      match Apps.Fiv.Kindelia.State.Phase phase {
+        game  => do Kindelia.IO {
+          ask Kindelia.IO.save state
+          return Apps.Fiv.Kindelia.Response.wrong_phase
+        }
+        lobby =>
+          let to_start  = U120.new 0 300
+          let duration  = U120.sub_saturated tick state.start
+          // TODO consider time of the loby to see if should be started or not
+          // let can_start = U120.greater_equal duration to_start
+          let can_start = Bool.true
+          if can_start {
+            let starts = Apps.Fiv.Map.initial_positions
+            let acc    = Apps.Fiv.Kindelia.To_start.new starts User.Sipher.PatriciaTree.empty (Apps.Fiv.Kindelia.State.get_state state) (U120.new 0 0)
+            let fold   = List.fold phase.queue
+            let data   = fold acc Apps.Fiv.Kindelia.To_start.to_fold 
+            match Apps.Fiv.Kindelia.To_start data {
+              new => do Kindelia.IO {
+                let phase  = Apps.Fiv.Kindelia.State.Phase.game data.users
+                let timer  = U120.new 0 0
+                let state  = data.state 
+                let state  = Apps.Fiv.Kindelia.State.new phase timer state
+                let result = Apps.Fiv.Kindelia.Response.started tick
+                ask          Kindelia.IO.save state
+                return result
+              }
+            }
+          }
+          else { do Kindelia.IO {
+            ask        Kindelia.IO.save state
+            let result = Apps.Fiv.Kindelia.Response.start_fail (U120.sub_saturated to_start duration)
+            return result
+          } 
+          }
+      }
+    }
+  }
+}
+Apps.Fiv.Kindelia (Apps.Fiv.Kindelia.Act.reset) = do Kindelia.IO {
+  ask state  = Kindelia.IO.take
+  ask tick   = Kindelia.IO.tick
+  match Apps.Fiv.Kindelia.State state {
+    new => 
+      let phase = state.phase
+      match Apps.Fiv.Kindelia.State.Phase phase {
+        lobby => do Kindelia.IO {
+          ask    Kindelia.IO.save state
+          return Apps.Fiv.Kindelia.Response.wrong_phase
+        }
+        game => do Kindelia.IO {
+          let phase  = Apps.Fiv.Kindelia.State.Phase.init_lobby
+          let state  = Apps.Fiv.State.Build
+          let s_blk  = U120.new 0 0
+          let state  = Apps.Fiv.Kindelia.State.new phase s_blk state
+          ask    Kindelia.IO.save state
+          return Apps.Fiv.Kindelia.Response.reseted
+        }
+      }
+  }
+  }
+
+#kdl_name = Fiv_kdl_jgam
+Apps.Fiv.Kindelia.join_game (subj: U120) (start: U120) (players: User.Sipher.PatriciaTree) (state: Apps.Fiv.State) : Kindelia.IO Apps.Fiv.Kindelia.Response {
+  let pos     = List.map Apps.Fiv.Map.initial_positions (x => Apps.Fiv.Pos.new (Apps.Fiv.Pos.Value.get_x x) (Apps.Fiv.Pos.Value.get_y x)) 
+  let p       = Apps.Fiv.Kindelia.State.join pos state players subj
+  let none    = 
+    do Kindelia.IO {
+      let result = Apps.Fiv.Kindelia.Response.join_fail
+      let state  = Apps.Fiv.Kindelia.State.new (Apps.Fiv.Kindelia.State.Phase.game players) start state
+      ask          Kindelia.IO.save state
+      return result
+    }
+  let some    =
+    p.value =>
+      match Pair p.value {
+        new => do Kindelia.IO {
+          let players = User.Sipher.PatriciaTree.set players subj p.value.snd
+          let state   = Apps.Fiv.Kindelia.State.new (Apps.Fiv.Kindelia.State.Phase.game players) start p.value.fst
+          let result = Apps.Fiv.Kindelia.Response.joined p.value.snd
+          ask          Kindelia.IO.save state
+          return result
+        }
+      }
+  Maybe.extract p none some 
+}
+
+#kdl_name = Fiv_kdl_jlob
+Apps.Fiv.Kindelia.join_lobby (subj: U120) (kgt: U120) (start: U120) (state: Apps.Fiv.State) (queue: List Apps.Fiv.Kindelia.State.Phase.User) : Kindelia.IO Apps.Fiv.Kindelia.Response {
+  let find    = Apps.Fiv.Kindelia.State.Phase.queue.find queue subj
+  match Maybe find {
+    none => do Kindelia.IO {
+      let user    = Apps.Fiv.Kindelia.State.Phase.User.new subj kgt
+      let queue   = Apps.Fiv.Kindelia.State.Phase.queue.add  queue user
+      let find    = Apps.Fiv.Kindelia.State.Phase.queue.find queue subj
+      let phase   = Apps.Fiv.Kindelia.State.Phase.lobby queue
+      let state   = Apps.Fiv.Kindelia.State.new phase start state
+      let result = 
+        match Maybe find {
+          some => Apps.Fiv.Kindelia.Response.queued find.value        
+          none => 
+            let floor  = List.last queue
+            let value  = Maybe.extract floor (U120.new 0 0) (x => Apps.Fiv.Kindelia.State.Phase.User.kgt x)
+            Apps.Fiv.Kindelia.Response.queue_fail value
+        }
+      ask           Kindelia.IO.save state
+      return result
+    }
+    some =>  do Kindelia.IO {
+      let phase   = Apps.Fiv.Kindelia.State.Phase.lobby queue
+      let state   = Apps.Fiv.Kindelia.State.new phase start state
+      let result  = Apps.Fiv.Kindelia.Response.queue_fail (U120.new 0 0)
+      ask           Kindelia.IO.save state
+      return result
+    }
+  }
+}
+
+
+#kdl_name = Fiv_funs
+Funs : U120 {
+  let skill = Apps.Fiv.Kindelia.skill (U120.new 0 0) (U120.new 0 0) (U120.new 0 0) (U120.new 0 0) (U120.new 0 0) (U120.new 0 0)
+  let parse = Apps.Fiv.Kindelia.State.parse Apps.Fiv.Kindelia.Response.wrong_phase (U120.new 0 0)
+  let walk  = Apps.Fiv.Kindelia.walk (U120.new 0 0) (U120.new 0 0)
+  let start = Apps.Fiv.Kindelia.State.Build
+  let itr   = Apps.Fiv.Kindelia.interact (U120.new 0 0) (U120.new 0 0)
+  U120.new 0 0
+}

@@ -1,7 +1,12 @@
+// Uses a skill from a character's skill slot at a point
+// receives origin and destination, so it sends the delta to the contract
+// Id on map = player_num + 1024
+
+// Can only be used if the game is on game phase
 
 run {
   // x0, y0, x1, y1, player_num, skill_slot
-  let code = (Fpt_kdl_skll #45 #140 #45 #140 #1024 #0);
-  ask x = (Call 'Fpt' {Fpt_act_act code});
+  let code = (Fiv_kdl_skll #45 #142 #46 #140 #0 #0);
+  ask x = (Call 'Fiv' {Fiv_act_act code});
   (Done x)
 }

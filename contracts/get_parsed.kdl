@@ -1,6 +1,8 @@
+// Return the table but as a BraunTree, with only the relevant data
+
 run {
   ask tick = (Tick);
-  ask x    = (Call 'Fpt' {Fpt_act_get});
-  let r    = (Fpt_kdl_sttp x tick);
+  ask x    = (Call 'Fiv' {Fiv_act_get});
+  let r    = (Fiv_kdl_sttp x tick);
   (Done r)
 }
