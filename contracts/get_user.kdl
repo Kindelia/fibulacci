@@ -3,6 +3,6 @@
 
 run {
   ask state  = (Call 'Fiv' {Fiv_act_get});
-  let r      = (Fiv_get_user #0 state);
+  let r      = (Fiv_g_user #0 state);
   (Done r)
 }
