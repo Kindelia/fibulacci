@@ -1,0 +1,8 @@
+// Return the user for a wallet
+// Change #0 to wallet
+
+run {
+  ask state  = (Call 'Fiv' {Fiv_act_get});
+  let r      = (Fiv_get_user #0 state);
+  (Done r)
+}

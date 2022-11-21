@@ -1,0 +1,14 @@
+fun (U27IiE7ORtsJ x0 x1 x2 x3) {
+  (U27IiE7ORtsJ wallet {Fib_kdl_spga players} ~ ~) =
+    (PGet players wallet)
+  (U27IiE7ORtsJ ~ ~ ~ ~) =
+    {Maybe_none}
+}
+
+// Apps.Fib.Kindelia.State.get_user (wallet: (U120)) (state: (Apps.Fib.Kindelia.State)) : (Maybe (U120))
+fun (Fib_get_user wallet state) {
+  (Fib_get_user wallet {Fib_kdl_snew .0 start state}) =
+    (U27IiE7ORtsJ wallet .0 start state)
+  (Fib_get_user ~ ~) =
+    {Maybe_none}
+}
