@@ -6,6 +6,7 @@ export type BlobProps = {
   side: "left" | "right";
   x: number;
   y: number;
+  enableDebug?: boolean;
 };
 
 export function Blob(props: BlobProps) {
@@ -15,7 +16,7 @@ export function Blob(props: BlobProps) {
 
   const size = 32 * scale;
 
-  const { side, x, y } = props;
+  const { side, x, y, enableDebug } = props;
 
   const [play] = useSound("/sounds/blob-voice.mp3", { volume: 0.9 });
 
@@ -33,8 +34,9 @@ export function Blob(props: BlobProps) {
   }
 
   return (
-    <div
-      className={$`
+    <>
+      <div
+        className={$`
         abs 
         cursor:pointer
         w:${size}
@@ -44,7 +46,13 @@ export function Blob(props: BlobProps) {
         bg:url('/images/blob-${side}.png')
         @blob|1s|steps(8)|infinite
       `}
-      onClick={handlePlaySound}
-    />
+        onClick={handlePlaySound}
+      />
+      {enableDebug ? (
+        <p className={$`abs top:${y - 10} left:${x - 20} f:10`}>
+          {JSON.stringify(props)}
+        </p>
+      ) : null}
+    </>
   );
 }
