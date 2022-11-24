@@ -1,6 +1,6 @@
 {
   "name": "fib",
-  "version": "1.0.0-beta",
+  "version": "0.1.0-beta",
   "dependencies": {
     "@fxts/core": "0.11.0",
     "@master/css": "1.37.7",

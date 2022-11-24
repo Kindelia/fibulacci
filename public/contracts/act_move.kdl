@@ -11,7 +11,7 @@
 
 run {
   // Direction, player_num
-  let code = (Fiv_kdl_walk #2 #0);
+  let code = (Fiv_kdl_walk #1 #0);
   ask x = (Call 'Fiv' {Fiv_act_act code});
   (Done x)
 }
