@@ -1,14 +1,14 @@
 // @ts-nocheck
-
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import kindelia, { name } from "kindelia-js";
-import { FIB_CONTRACT, FIB_CONTRACT_NAME } from "../utils/contract";
+
 import { NODE_URL } from "../utils/env";
 
 export type FibObject = {
 	type: string;
 	num: string;
-	y: string;
+	y: number	;
 	sl: string;
 	s5: string;
 	s1: string;
@@ -16,7 +16,7 @@ export type FibObject = {
 	cd: string;
 	s7: string;
 	s3: string;
-	x: string;
+	x: number;
 	hp: string;
 	gd: string;
 	s6: string;
@@ -30,46 +30,42 @@ export type FibObject = {
 export function useStateQuery() {
 	return useQuery<FibObject[]>(
 		["stateQuery"],
-		() =>
-			kindelia
-				.sendInteract({
-					nodeURL: NODE_URL,
-					isPublish: false,
-					code: `
-            run {
-              ask tick = (Tick);
-              ask x    = (Call '${FIB_CONTRACT_NAME}' {${FIB_CONTRACT.FIB_ACT_GET}});
-              let r    = (${FIB_CONTRACT.FIB_KDL_STTP} x tick);
-              (Done r)
-            }
-          `,
-				})
-				.then((res) => {
-					const numbList = JSON.stringify(res.data).match(
-						/(?<=numb":").*?(?="})/g,
-					);
+		async () => {
+			const code = (await (
+				await axios.get("/contracts/get_parsed.kdl", {})
+			).data) as string;
 
-					return numbList
-						.map((numb) => name.num_to_name(BigInt(numb)))
-						.reduce((acc, curr) => {
-							if (curr === "type") {
-								acc.push([]);
-							}
+			const response = await kindelia.sendInteract({
+				nodeURL: NODE_URL,
+				isPublish: false,
+				code,
+			});
 
-							acc[acc.length - 1].push(curr);
+			const numbList = JSON.stringify(response.data).match(
+				/(?<=numb":").*?(?="})/g,
+			);
 
-							return acc;
-						}, [])
-						.map((numbList: string[]) =>
-							numbList.reduce((acc: {}, curr: string, currIndex) => {
-								if (currIndex % 2 === 0) {
-									acc[curr] = numbList[currIndex + 1];
-								}
+			return numbList ?? []
+				.map((numb) => name.num_to_name(BigInt(numb)))
+				.reduce((acc, curr) => {
+					if (curr === "type") {
+						acc.push([]);
+					}
 
-								return acc;
-							}, {}),
-						);
-				}),
+					acc[acc.length - 1].push(curr);
+
+					return acc;
+				}, [])
+				.map((numbList: string[]) =>
+					numbList.reduce((acc: {}, curr: string, currIndex) => {
+						if (currIndex % 2 === 0) {
+							acc[curr] = numbList[currIndex + 1];
+						}
+
+						return acc;
+					}, {}),
+				);
+		},
 		{
 			refetchInterval: 1,
 			cacheTime: 0,

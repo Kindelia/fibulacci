@@ -17,17 +17,23 @@ body {
   }
 }
 
-@keyframes fireball {
+/* fireball background-position x init background-position y */
+@keyframes fireballX {
   from {
     background-position-x: 256px;
   }
 
   to {
     background-position-x: 0px;
-  }  
+  }
+}
 
+@keyframes fireballY {
   from {
-    
-    background-position-x: 256px;
+    background-position-y: 64px;
+  }
+
+  to {
+    background-position-y: 0px;
   }
 }
