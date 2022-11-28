@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import kindelia from "kindelia-js";
 
 import { setGameStore } from "../stores/gameStore";
-import { FIB_CONTRACT } from "../utils/contract";
 import { NODE_URL } from "../utils/env";
 import { FibObject } from "./useStateQuery";
 
@@ -16,28 +16,22 @@ enum EventMoveEnum {
 export function usePlayerMoveMutation() {
   return useMutation(
     ["moveMutation"],
-    ({
+    async ({
       player,
       eventMove,
     }: {
       player: FibObject;
       eventMove: KeyboardEvent;
     }) => {
+      const code = await (await axios.get("/contracts/act_move.kdl")).data
+        .replace("#0", `#${player.num}`)
+        .replace("#1", `#${EventMoveEnum[eventMove.key]}`);
+
       return kindelia
         .sendInteract({
           nodeURL: NODE_URL,
           isPublish: true,
-          code: `
-          run {
-              let code = (
-                ${FIB_CONTRACT.FIB_KDL_WALK} 
-                #${EventMoveEnum[eventMove.key]} 
-                #${player.num}
-              );
-              ask x = (Call 'Fql' {${FIB_CONTRACT.FIB_ACT_ACT} code});
-              (Done x)
-          }
-      `,
+          code,
         })
         .then((res) => {
           if (res.data[0]["Ok"] === null) {

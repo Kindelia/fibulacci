@@ -32,6 +32,7 @@ export function PrincipalStage(props: PrincipalStageProps) {
 
   return (
     <div
+      id="principal-stage"
       className={$`
       h:${5120 * 2}
       w:${5120 * 2}

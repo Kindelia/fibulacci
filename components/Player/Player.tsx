@@ -1,7 +1,8 @@
-import { useEffect } from "react";
-import { useEffectOnce, useInterval, useKey } from "react-use";
-import { usePlayerMoveMutation } from "../../hooks/useMoveMutation";
+import { useStore } from "@nanostores/react";
+import { useInterval, useKey } from "react-use";
 
+import { usePlayerMoveMutation } from "../../hooks/useMoveMutation";
+import { addGameStoreEvent, gameStore } from "../../stores/gameStore";
 import { Blob } from "../Creatures/Blob";
 import { Window } from "../Interfaces/Window";
 import { FireballSkill } from "../Skills/FireballSkill";
@@ -14,20 +15,29 @@ type PlayerProps = {
   };
 };
 
-// window?.addEventListener("click", (e) => {
-//   console.log(e.clientX, e.clientY);
-// });
+if (typeof window !== "undefined") {
+  window.addEventListener("click", (e) => {
+    addGameStoreEvent({
+      type: "fireball",
+      position: {
+        x: e.offsetX,
+        y: e.offsetY,
+      },
+      ms: 5000,
+    });
+  });
+}
 
 export function Player(props: PlayerProps) {
-  const { player } = props;
-  const { x, y } = player;
+  const { player } = useStore(gameStore);
+  const game = useStore(gameStore);
 
   const playerMoveMutation = usePlayerMoveMutation();
 
   useInterval(() => {
     window?.scrollTo({
-      top: y * 32,
-      left: x * 32,
+      top: player.y * 32,
+      left: player.x * 32,
     });
   }, 500);
 
@@ -63,9 +73,20 @@ export function Player(props: PlayerProps) {
 
   return (
     <>
-      <Blob side="right" x={x * speed} y={y * speed} />
-      {/* <FireballSkill x={x * 32 + 10} y={y * 32 + 10} /> */}
-      <Window x={x * speed} y={y * speed} />
+      <Blob
+        side="right"
+        x={player.x * speed}
+        y={player.y * speed}
+        enableDebug
+      />
+      <Window x={player.x * speed} y={player.y * speed} />
+      {game.events.map((e) => {
+        return {
+          fireball: (
+            <FireballSkill x={e.position.x} y={e.position.y} id={e.id} />
+          ),
+        }[e.type];
+      })}
     </>
   );
 }

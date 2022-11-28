@@ -1,6 +1,6 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectButton, useConnectModal } from "@rainbow-me/rainbowkit";
 import Router from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useEffectOnce } from "react-use";
 import useSound from "use-sound";
 import { useAccount } from "wagmi";
@@ -8,7 +8,8 @@ import { useAccount } from "wagmi";
 import { LogoIcon } from "../Icons/LogoIcon";
 
 export function StartScreen() {
-  const x = useAccount();
+  const account = useAccount();
+  const { openConnectModal } = useConnectModal();
 
   const [isPlayingSound, setIsPlayingSound] = useState(false);
 
@@ -25,6 +26,11 @@ export function StartScreen() {
     }
   }
   function goToPlay() {
+    if (!account.address) {
+      openConnectModal();
+      return;
+    }
+
     Router.push("/play");
   }
 
@@ -46,7 +52,6 @@ export function StartScreen() {
       >
         START
       </button>
-      <ConnectButton chainStatus={"none"} />
       <p onClick={goToCredits} className="cursor:pointer">
         CREDITS
       </p>
