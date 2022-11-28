@@ -6,7 +6,7 @@
 
 run {
   // x0, y0, x1, y1, player_num, skill_slot
-  let code = (Fiv_kdl_skll #45 #142 #46 #140 #0 #0);
+  let code = (Fiv_kdl_skll #0 #1 #2 #3 #4 #5);
   ask x = (Call 'Fiv' {Fiv_act_act code});
   (Done x)
 }

@@ -4,6 +4,6 @@
 
 run {
   // Wallet and Kgt invested
-  ask x = (Call 'Fiv' {Fiv_act_join #39 #30});
+  ask x = (Call 'Fiv' {Fiv_act_join #0 #1});
   (Done x)
 }

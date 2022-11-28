@@ -1,14 +1,15 @@
 // Apps.Fiv.Kindelia (action: (Apps.Fiv.Kindelia.Act)) : (Kindelia.IO (Apps.Fiv.Kindelia.Response))
 fun (Fiv action) {
   (Fiv {Fiv_act_act code}) =
-    (KIOBind (KIOTake) @state dup _0 _1 = state;
-    dup _2 _3 = _0;
-    (Fiv_kdl_smat _1 @state.phase @~ @~ (KIOBind (KIOTick) @block let phs = state.phase;
+    (KIOBind (KIOTake) @state dup _2 _3 = state;
+    dup _4 _5 = _2;
+    (Fiv_kdl_smat _3 @state.phase @~ @~ (KIOBind (KIOTick) @block let phs = state.phase;
     (Fiv_kdl_spma phs @~ let result = {Fiv_res_wrph};
-    (KIOBind (KIOSave _2) @~ {DONE result}) @~ let p = (Fiv_kdl_supd _3 code block);
-    let state = (Pair_fst p);
-    let result = {Fiv_res_no};
-    (KIOBind (KIOSave state) @~ {DONE result})))))
+    (KIOBind (Fiv_save _4) @~ (Fiv_done result)) @~ let p = (Fiv_kdl_supd _5 code block);
+    (Pair_match p @p.fst @p.snd dup _0 _1 = p.snd;
+    (KIOBind (Fiv_save p.fst) @~ (Bool_if (BrTree_isemp _0) let result = {Fiv_res_noac};
+    (Fiv_done result) let result = {Fiv_res_acte _1};
+    (Fiv_done result))))))))
   (Fiv {Fiv_act_get}) =
     (KIOBind (KIOTake) @state dup _0 _1 = state;
     let result = {Fiv_res_stat _0};
@@ -37,16 +38,16 @@ fun (Fiv action) {
     let state = data.state;
     let state = {Fiv_kdl_snew phase timer state};
     let result = {Fiv_res_star _1};
-    (KIOBind (KIOSave state) @~ {DONE result})) (KIOBind (KIOSave _6) @~ let result = {Fiv_res_nost (U120_sub_sat to_start duration)};
-    {DONE result})) @~ (KIOBind (KIOSave _7) @~ {DONE {Fiv_res_wrph}})))))
+    (KIOBind (Fiv_save state) @~ (Fiv_done result))) (KIOBind (Fiv_save _6) @~ let result = {Fiv_res_nost (U120_sub_sat to_start duration)};
+    (Fiv_done result))) @~ (KIOBind (Fiv_save _7) @~ {DONE {Fiv_res_wrph}})))))
   (Fiv {Fiv_act_rst}) =
     (KIOBind (KIOTake) @state dup _0 _1 = state;
     (KIOBind (KIOTick) @~ (Fiv_kdl_smat _0 @state.phase @~ @~ let phase = state.phase;
-    (Fiv_kdl_spma phase @~ (KIOBind (KIOSave _1) @~ {DONE {Fiv_res_wrph}}) @~ let phase = (Fiv_kdl_spil);
+    (Fiv_kdl_spma phase @~ (KIOBind (Fiv_save _1) @~ {DONE {Fiv_res_wrph}}) @~ let phase = (Fiv_kdl_spil);
     let state = (Fiv_stt_buil);
     let s_blk = #0;
     let state = {Fiv_kdl_snew phase s_blk state};
-    (KIOBind (KIOSave state) @~ {DONE {Fiv_res_rese}})))))
+    (KIOBind (Fiv_save state) @~ {DONE {Fiv_res_rese}})))))
 } with {
     {Fiv_kdl_snew (Fiv_kdl_spil) #0 (Fiv_stt_buil)}
 }
