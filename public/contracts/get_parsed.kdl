@@ -2,7 +2,7 @@
 
 run {
   ask tick = (Tick);
-  ask x    = (Call 'Fiv' {Fiv_act_get});
-  let r    = (Fiv_kdl_sttp x tick);
+  ask x    = (Call 'Fit' {Fit_act_get});
+  let r    = (Fit_kdl_sttp x tick);
   (Done r)
 }

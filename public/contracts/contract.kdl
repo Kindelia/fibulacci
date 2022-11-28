@@ -1,53 +1,53 @@
-// Apps.Fiv.Kindelia (action: (Apps.Fiv.Kindelia.Act)) : (Kindelia.IO (Apps.Fiv.Kindelia.Response))
-fun (Fiv action) {
-  (Fiv {Fiv_act_act code}) =
+// Apps.Fit.Kindelia (action: (Apps.Fit.Kindelia.Act)) : (Kindelia.IO (Apps.Fit.Kindelia.Response))
+fun (Fit action) {
+  (Fit {Fit_act_act code}) =
     (KIOBind (KIOTake) @state dup _2 _3 = state;
     dup _4 _5 = _2;
-    (Fiv_kdl_smat _3 @state.phase @~ @~ (KIOBind (KIOTick) @block let phs = state.phase;
-    (Fiv_kdl_spma phs @~ let result = {Fiv_res_wrph};
-    (KIOBind (Fiv_save _4) @~ (Fiv_done result)) @~ let p = (Fiv_kdl_supd _5 code block);
+    (Fit_kdl_smat _3 @state.phase @~ @~ (KIOBind (KIOTick) @block let phs = state.phase;
+    (Fit_kdl_spma phs @~ let result = {Fit_res_wrph};
+    (KIOBind (Fit_save _4) @~ (Fit_done result)) @~ let p = (Fit_kdl_supd _5 code block);
     (Pair_match p @p.fst @p.snd dup _0 _1 = p.snd;
-    (KIOBind (Fiv_save p.fst) @~ (Bool_if (BrTree_isemp _0) let result = {Fiv_res_noac};
-    (Fiv_done result) let result = {Fiv_res_acte _1};
-    (Fiv_done result))))))))
-  (Fiv {Fiv_act_get}) =
+    (KIOBind (Fit_save p.fst) @~ (Bool_if (BrTree_isemp _0) let result = {Fit_res_noac};
+    (Fit_done result) let result = {Fit_res_acte _1};
+    (Fit_done result))))))))
+  (Fit {Fit_act_get}) =
     (KIOBind (KIOTake) @state dup _0 _1 = state;
-    let result = {Fiv_res_stat _0};
+    let result = {Fit_res_stat _0};
     (KIOBind (KIOSave _1) @~ {DONE result}))
-  (Fiv {Fiv_act_join subj kgt}) =
+  (Fit {Fit_act_join subj kgt}) =
     dup _0 _1 = subj;
-    (KIOBind (KIOTake) @s (KIOBind (KIOTick) @~ (Fiv_kdl_smat s @s.phase @s.start dup _4 _5 = s.start;
+    (KIOBind (KIOTake) @s (KIOBind (KIOTick) @~ (Fit_kdl_smat s @s.phase @s.start dup _4 _5 = s.start;
     @s.state dup _2 _3 = s.state;
     let phs = s.phase;
-    (Fiv_kdl_spma phs @phs.queue (Fiv_kdl_jlob _0 kgt _4 _2 phs.queue) @phs.players (Fiv_kdl_jgam _1 _5 phs.players _3)))))
-  (Fiv {Fiv_act_strt}) =
+    (Fit_kdl_spma phs @phs.queue (Fit_kdl_jlob _0 kgt _4 _2 phs.queue) @phs.players (Fit_kdl_jgam _1 _5 phs.players _3)))))
+  (Fit {Fit_act_strt}) =
     (KIOBind (KIOTake) @state dup _2 _3 = state;
     dup _4 _5 = _2;
     dup _6 _7 = _3;
     (KIOBind (KIOTick) @tick dup _0 _1 = tick;
-    (Fiv_kdl_smat _4 @state.phase @state.start @~ let phase = state.phase;
-    (Fiv_kdl_spma phase @phase.queue let to_start = #300;
+    (Fit_kdl_smat _4 @state.phase @state.start @~ let phase = state.phase;
+    (Fit_kdl_spma phase @phase.queue let to_start = #300;
     let duration = (U120_sub_sat _0 state.start);
     let can_start = {Bool_true};
-    (Bool_if can_start let starts = (Fiv_map_inpo);
-    let acc = {Fiv_kdl_tsne starts {PEmpty} (Fiv_kdl_sgst _5) #0};
+    (Bool_if can_start let starts = (Fit_map_inpo);
+    let acc = {Fit_kdl_tsne starts {PEmpty} (Fit_kdl_sgst _5) #0};
     let fold = (List_fold phase.queue);
-    let data = (!(!fold acc) (Fiv_kdl_tstf));
-    (Fiv_kdl_tsma data @~ @data.users @data.state @~ let phase = {Fiv_kdl_spga data.users};
+    let data = (!(!fold acc) (Fit_kdl_tstf));
+    (Fit_kdl_tsma data @~ @data.users @data.state @~ let phase = {Fit_kdl_spga data.users};
     let timer = #0;
     let state = data.state;
-    let state = {Fiv_kdl_snew phase timer state};
-    let result = {Fiv_res_star _1};
-    (KIOBind (Fiv_save state) @~ (Fiv_done result))) (KIOBind (Fiv_save _6) @~ let result = {Fiv_res_nost (U120_sub_sat to_start duration)};
-    (Fiv_done result))) @~ (KIOBind (Fiv_save _7) @~ {DONE {Fiv_res_wrph}})))))
-  (Fiv {Fiv_act_rst}) =
+    let state = {Fit_kdl_snew phase timer state};
+    let result = {Fit_res_star _1};
+    (KIOBind (Fit_save state) @~ (Fit_done result))) (KIOBind (Fit_save _6) @~ let result = {Fit_res_nost (U120_sub_sat to_start duration)};
+    (Fit_done result))) @~ (KIOBind (Fit_save _7) @~ {DONE {Fit_res_wrph}})))))
+  (Fit {Fit_act_rst}) =
     (KIOBind (KIOTake) @state dup _0 _1 = state;
-    (KIOBind (KIOTick) @~ (Fiv_kdl_smat _0 @state.phase @~ @~ let phase = state.phase;
-    (Fiv_kdl_spma phase @~ (KIOBind (Fiv_save _1) @~ {DONE {Fiv_res_wrph}}) @~ let phase = (Fiv_kdl_spil);
-    let state = (Fiv_stt_buil);
+    (KIOBind (KIOTick) @~ (Fit_kdl_smat _0 @state.phase @~ @~ let phase = state.phase;
+    (Fit_kdl_spma phase @~ (KIOBind (Fit_save _1) @~ {DONE {Fit_res_wrph}}) @~ let phase = (Fit_kdl_spil);
+    let state = (Fit_stt_buil);
     let s_blk = #0;
-    let state = {Fiv_kdl_snew phase s_blk state};
-    (KIOBind (Fiv_save state) @~ {DONE {Fiv_res_rese}})))))
+    let state = {Fit_kdl_snew phase s_blk state};
+    (KIOBind (Fit_save state) @~ {DONE {Fit_res_rese}})))))
 } with {
-    {Fiv_kdl_snew (Fiv_kdl_spil) #0 (Fiv_stt_buil)}
+    {Fit_kdl_snew (Fit_kdl_spil) #0 (Fit_stt_buil)}
 }

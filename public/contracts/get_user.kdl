@@ -2,7 +2,7 @@
 // Change #0 to wallet
 
 run {
-  ask state  = (Call 'Fiv' {Fiv_act_get});
-  let r      = (Fiv_get_user state #0);
+  ask state  = (Call 'Fit' {Fit_act_get});
+  let r      = (Fit_get_user state #0);
   (Done r)
 }
