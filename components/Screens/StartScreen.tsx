@@ -48,6 +48,7 @@ export function StartScreen(props: StartScreenProps) {
     const loggedUserId = await getUser(account.address);
 
     if (loggedUserId || loggedUserId === 0) {
+      // @ts-ignore
       setGameStore({
         player: {
           num: loggedUserId,
@@ -65,6 +66,7 @@ export function StartScreen(props: StartScreenProps) {
 
     const id = await getUser(account.address);
 
+    // @ts-ignore
     setGameStore({
       player: {
         num: id,
