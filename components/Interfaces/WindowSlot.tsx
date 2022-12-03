@@ -21,7 +21,20 @@ export function WindowSlot(_props: WindowSlotProps) {
               bg:no-repeat
             `}
             key={i}
-          />
+          >
+            {i === 0 ? (
+              <div
+                className={$`
+                bg:url('/images/fire-ball.png')
+                w:${size}
+                h:${size}
+                bg:cover
+                bg:no-repeat
+                cursor:pointer
+              `}
+              />
+            ) : null}
+          </div>
         )),
         F.toArray
       )}

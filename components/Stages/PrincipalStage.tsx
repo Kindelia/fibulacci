@@ -13,7 +13,7 @@ export function PrincipalStage(props: PrincipalStageProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const [play] = useSound("sounds/map-sound.mp3", {
-    volume: 0.1,
+    volume: 1,
     loop: true,
   });
 

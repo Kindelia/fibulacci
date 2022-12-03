@@ -1,19 +1,13 @@
-import { useStore } from "@nanostores/react";
-import { useInterval, useKey } from "react-use";
+import $ from '@master/literal';
+import { useStore } from '@nanostores/react';
+import { useEffect } from 'react';
+import { useInterval } from 'react-use';
 
-import { usePlayerMoveMutation } from "../../hooks/useMoveMutation";
-import { addGameStoreEvent, gameStore } from "../../stores/gameStore";
-import { Blob } from "../Creatures/Blob";
-import { Window } from "../Interfaces/Window";
-import { FireballSkill } from "../Skills/FireballSkill";
-
-type PlayerProps = {
-  player: {
-    x: number;
-    y: number;
-    num: string;
-  };
-};
+import { usePlayerMoveMutation } from '../../hooks/useMoveMutation';
+import { FibObject } from '../../hooks/useStateQuery';
+import { addGameStoreEvent, gameStore, setGameStore } from '../../stores/gameStore';
+import { Blob } from '../Creatures/Blob';
+import { Window } from '../Interfaces/Window';
 
 if (typeof window !== "undefined") {
   window.addEventListener("click", (e) => {
@@ -28,65 +22,77 @@ if (typeof window !== "undefined") {
   });
 }
 
+type PlayerProps = {
+  player: FibObject;
+};
+
 export function Player(props: PlayerProps) {
-  const { player } = useStore(gameStore);
-  const game = useStore(gameStore);
+  const { player } = props;
 
   const playerMoveMutation = usePlayerMoveMutation();
+  const game = useStore(gameStore);
+
+  const scale = 32;
+
+  const top = player?.y * scale;
+  const left = player?.x * scale;
 
   useInterval(() => {
     window?.scrollTo({
-      top: player.y * 32,
-      left: player.x * 32,
+      top,
+      left,
     });
   }, 500);
 
-  const speed = 32;
+  useEffect(() => {
+    const handleKeyDown = (keyboardEvent: KeyboardEvent) => {
+      if(game.isLoading) {
+        return;
+      }
 
-  useKey("ArrowUp", (eventMove: KeyboardEvent) =>
-    playerMoveMutation.mutate({
-      eventMove,
-      player,
-    })
-  );
+      if (
+        !["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(
+          keyboardEvent.key
+        )
+      ) {
+        return;
+      }
 
-  useKey("ArrowDown", (eventMove: KeyboardEvent) =>
-    playerMoveMutation.mutate({
-      eventMove,
-      player,
-    })
-  );
+      playerMoveMutation.mutate({
+        player,
+        keyboardEvent,
+      });
+    };
 
-  useKey("ArrowLeft", (eventMove: KeyboardEvent) =>
-    playerMoveMutation.mutate({
-      eventMove,
-      player,
-    })
-  );
+    window.addEventListener("keydown", handleKeyDown);
 
-  useKey("ArrowRight", (eventMove: KeyboardEvent) =>
-    playerMoveMutation.mutate({
-      eventMove,
-      player,
-    })
-  );
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [player, game]);
+
+  if (game.isLoading && player?.fat !== game.fat) {
+    setGameStore({ isLoading: false, fat: player.fat });
+  }
 
   return (
     <>
-      <Blob
-        side="right"
-        x={player.x * speed}
-        y={player.y * speed}
-        enableDebug
-      />
-      <Window x={player.x * speed} y={player.y * speed} />
-      {game.events.map((e) => {
+      <Blob side="right" {...player} x={left} y={top} enableDebug />
+      {/* <RangeTile top={top} left={left} /> */}
+      {game.isLoading ? (
+        <div className={$`abs top:${top - 20} left:${left - 35}`}>
+          <p>Loading...</p>
+        </div>
+      ) : null}
+      <Window player={player} />
+      {/* <EventLogs /> */}
+      {/* {game.events.map((e) => {
         return {
           fireball: (
             <FireballSkill x={e.position.x} y={e.position.y} id={e.id} />
           ),
         }[e.type];
-      })}
+      })} */}
     </>
   );
 }

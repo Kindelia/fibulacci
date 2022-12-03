@@ -1,10 +1,13 @@
-import $ from '@master/literal';
+import $ from "@master/literal";
 
-import { EmptyBar } from './EmptyBar';
+import { EmptyBar } from "./EmptyBar";
 
-export type HPBarProps = {};
+export type HPBarProps = {
+  hp: number;
+};
 
-export function HPBar(_props: HPBarProps) {
+export function HPBar(props: HPBarProps) {
+  const { hp } = props;
   const scale = 3;
 
   const width = 130 * scale;
@@ -20,7 +23,7 @@ export function HPBar(_props: HPBarProps) {
           left:0 
           overflow:hidden
           top:0
-          w:${width - 100} 
+          w:${width - hp * scale} 
         `}
       >
         <div

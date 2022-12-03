@@ -1,22 +1,33 @@
-import { ConnectButton, useConnectModal } from "@rainbow-me/rainbowkit";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import { useEffectOnce } from "react-use";
 import useSound from "use-sound";
 import { useAccount } from "wagmi";
-import { useJoinMutation } from "../../hooks/useJoinMutation";
 
+import { getUser } from "../../hooks/useGetUserQuery";
+import { useJoinMutation } from "../../hooks/useJoinMutation";
+import { startMutation } from "../../hooks/useStartMutation";
+import { setGameStore } from "../../stores/gameStore";
+import { sleep } from "../../utils/utils";
 import { LogoIcon } from "../Icons/LogoIcon";
 
-export function StartScreen() {
+export type StartScreenProps = {
+  setStep: (step: 0 | 1 | 2) => void;
+};
+
+export function StartScreen(props: StartScreenProps) {
+  const { setStep } = props;
+
   const account = useAccount();
   const { openConnectModal } = useConnectModal();
 
   const [isPlayingSound, setIsPlayingSound] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const join = useJoinMutation();
 
-  const [play, { stop }] = useSound("/sounds/magnetar.mp3", { volume: 0.9 });
+  const [play] = useSound("sounds/magnetar.mp3", { volume: 0.9 });
 
   function handlePlaySound() {
     if (isPlayingSound) {
@@ -30,17 +41,40 @@ export function StartScreen() {
       setIsPlayingSound(false);
     }
   }
+
   async function goToPlay() {
-    if (!account.address) {
-      openConnectModal();
+    setIsLoading(true);
+
+    const loggedUserId = await getUser(account.address);
+
+    if (loggedUserId || loggedUserId === 0) {
+      setGameStore({
+        player: {
+          num: loggedUserId,
+          addressETH: account.address,
+        },
+      });
+
+      setStep(2);
       return;
     }
 
-    console.log('account.address', account.address);
-
     await join.mutate({ address: account.address });
 
-    // Router.push("/play");
+    await sleep(1000 * 10);
+
+    const id = await getUser(account.address);
+
+    setGameStore({
+      player: {
+        num: id,
+        addressETH: account.address,
+      },
+    });
+
+    setIsLoading(false);
+
+    Router.push("/play");
   }
 
   function goToCredits() {
@@ -55,12 +89,30 @@ export function StartScreen() {
     <div className="flex flex:col ai:center jc:center h:100vh bg:black gap:20">
       <LogoIcon className="h:20% @float|3s|ease-in-out|infinite mb:10%" />
       <p>Welcome Fibulacci</p>
-      <button
-        className="bg:white py:20 px:100 f:black rounded bg:gray-60:hover"
-        onClick={goToPlay}
-      >
-        START
-      </button>
+      {!isLoading && !account.address ? (
+        <button
+          className="bg:white py:20 px:100 f:black rounded bg:gray-60:hover"
+          onClick={() => openConnectModal()}
+        >
+          CONNECT WALLET
+        </button>
+      ) : null}
+      {!isLoading && account.address ? (
+        <button
+          className="bg:white py:20 px:100 f:black rounded bg:gray-60:hover"
+          onClick={goToPlay}
+        >
+          START GAME
+        </button>
+      ) : null}
+      {isLoading ? (
+        <button
+          className="bg:white py:20 px:100 f:black rounded bg:gray-60:hover"
+          disabled={true}
+        >
+          Loading...
+        </button>
+      ) : null}
       <p onClick={goToCredits} className="cursor:pointer">
         CREDITS
       </p>
