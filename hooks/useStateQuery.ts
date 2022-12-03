@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import kindelia, { name } from "kindelia-js";
+import kindelia, { name } from "@kindelia/kindelia-js";
 
 import { NODE_URL } from "../utils/env";
 

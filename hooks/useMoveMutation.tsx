@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import kindelia from "kindelia-js";
+import kindelia from "@kindelia/kindelia-js";
 
 import { setGameStore } from "../stores/gameStore";
 import { NODE_URL } from "../utils/env";

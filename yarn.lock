@@ -486,6 +486,14 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
+"@kindelia/@kindelia/kindelia-js@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@kindelia/@kindelia/kindelia-js/-/@kindelia/kindelia-js-1.0.0.tgz#6014395b121014de68b0abd7b685f25ee6145dd6"
+  integrity sha512-JJoQsKeY3rM+BzeNtc0XDIuaxN9nXINLsulyaNe0BtnDgjKZxG/uHjGpOW8uO+NmI9qHLOzOzsO8NEWF37phYQ==
+  dependencies:
+    axios "1.1.2"
+    rustie "0.2.0"
+
 "@master/css@1.37.7":
   version "1.37.7"
   resolved "https://registry.yarnpkg.com/@master/css/-/css-1.37.7.tgz#0456fbf1a859157f582b2e4ef512b6858f949f9d"
@@ -2150,12 +2158,6 @@ keyvaluestorage-interface@^1.0.0:
   resolved "https://registry.yarnpkg.com/keyvaluestorage-interface/-/keyvaluestorage-interface-1.0.0.tgz#13ebdf71f5284ad54be94bd1ad9ed79adad515ff"
   integrity sha512-8t6Q3TclQ4uZynJY9IGr2+SsIGwK9JHcO6ootkHCGA0CrQCRy+VkouYNO2xicET6b9al7QKzpebNow+gkpCL8g==
 
-"kindelia-js@file:../kindelia-js":
-  version "1.0.0-beta"
-  dependencies:
-    axios "1.1.2"
-    rustie "0.2.0"
-
 locate-path@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
@@ -2629,7 +2631,7 @@ rtl-css-js@^1.14.0:
   dependencies:
     "@babel/runtime" "^7.1.2"
 
-rustie@0.2.0, rustie@^0.2.0:
+rustie@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/rustie/-/rustie-0.2.0.tgz#c4d1ef1e1cccabc29b456c52eb272c8f94b52870"
   integrity sha512-Rozr6cLn3U5shexKw6joYEbLdEJ+kQotMWHLsoG40DGBIW/vacSNSqTv8vVc5NElogATIgfio4zxi3MhPiShyQ==

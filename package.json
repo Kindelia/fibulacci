@@ -1,8 +1,9 @@
 {
-  "name": "fib",
-  "version": "0.1.0-beta",
+  "name": "@kindelia/fibulacci",
+  "version": "1.0.0",
   "dependencies": {
     "@fxts/core": "0.11.0",
+    "@kindelia/kindelia-js": "1.0.0",
     "@master/css": "1.37.7",
     "@master/keyframes.css": "1.2.3",
     "@master/literal": "1.0.11",
@@ -13,7 +14,6 @@
     "@tanstack/react-query": "4.16.1",
     "axios": "1.2.0",
     "ethers": "5.7.2",
-    "kindelia-js": "file:../kindelia-js",
     "nanostores": "0.7.1",
     "next": "13.0.5",
     "react": "18.2.0",
@@ -31,11 +31,12 @@
   },
   "private": true,
   "scripts": {
-    "format": "yarn rome format --write **/*.ts",
     "build": "next build",
     "check": "yarn rome check",
     "dev": "next dev",
     "dev:turbo": "next dev --turbo",
+    "format": "yarn rome format --write **/*.ts",
+    "npm:publish": "npm publish --access public",
     "start": "next start"
   }
 }
