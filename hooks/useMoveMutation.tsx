@@ -35,7 +35,7 @@ export function usePlayerMoveMutation() {
         })
         .then((res) => {
           // @ts-ignore
-          setGameStore({ isLoading: true, fat: player.fat });
+          setGameStore({ isLoading: true, fat: player?.fat });
           return res;
         });
     }
