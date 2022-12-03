@@ -1,8 +1,13 @@
-import Head from 'next/head';
+import Head from "next/head";
+import { useState } from "react";
 
-import { LoadingScreen } from '../components/Screens/LoadingScreen';
+import { LoadingScreen } from "../components/Screens/LoadingScreen";
+import PlayScreen from "../components/Screens/PlayScreen";
+import { StartScreen } from "../components/Screens/StartScreen";
 
-export default function Home() {
+export default function Index() {
+  const [step, setStep] = useState<0 | 1 | 2>(0);
+
   return (
     <div>
       <Head>
@@ -12,7 +17,13 @@ export default function Home() {
       </Head>
 
       <main>
-        <LoadingScreen />
+        {
+          {
+            0: <LoadingScreen setStep={setStep} />,
+            1: <StartScreen setStep={setStep} />,
+            2: <PlayScreen />,
+          }[step]
+        }
       </main>
     </div>
   );
