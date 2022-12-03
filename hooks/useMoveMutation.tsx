@@ -18,14 +18,14 @@ export function usePlayerMoveMutation() {
     ["moveMutation"],
     async ({
       player,
-      eventMove,
+      keyboardEvent,
     }: {
       player: FibObject;
-      eventMove: KeyboardEvent;
+      keyboardEvent: KeyboardEvent;
     }) => {
       const code = await (await axios.get("/contracts/act_move.kdl")).data
-        .replace("#0", `#${player.num}`)
-        .replace("#1", `#${EventMoveEnum[eventMove.key]}`);
+        .replace("#0", `#${player?.num}`)
+        .replace("#1", `#${EventMoveEnum[keyboardEvent.key]}`);
 
       return kindelia
         .sendInteract({
@@ -34,10 +34,7 @@ export function usePlayerMoveMutation() {
           code,
         })
         .then((res) => {
-          if (res.data[0]["Ok"] === null) {
-            setGameStore({ isLoading: true, player });
-          }
-
+          setGameStore({ isLoading: true, fat: player.fat });
           return res;
         });
     }
