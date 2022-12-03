@@ -2629,7 +2629,7 @@ rtl-css-js@^1.14.0:
   dependencies:
     "@babel/runtime" "^7.1.2"
 
-rustie@0.2.0:
+rustie@0.2.0, rustie@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/rustie/-/rustie-0.2.0.tgz#c4d1ef1e1cccabc29b456c52eb272c8f94b52870"
   integrity sha512-Rozr6cLn3U5shexKw6joYEbLdEJ+kQotMWHLsoG40DGBIW/vacSNSqTv8vVc5NElogATIgfio4zxi3MhPiShyQ==

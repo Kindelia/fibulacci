@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useEffectOnce } from "react-use";
 import useSound from "use-sound";
 import { useAccount } from "wagmi";
+import { useJoinMutation } from "../../hooks/useJoinMutation";
 
 import { LogoIcon } from "../Icons/LogoIcon";
 
@@ -13,10 +14,14 @@ export function StartScreen() {
 
   const [isPlayingSound, setIsPlayingSound] = useState(false);
 
+  const join = useJoinMutation();
+
   const [play, { stop }] = useSound("/sounds/magnetar.mp3", { volume: 0.9 });
 
   function handlePlaySound() {
-    if (isPlayingSound) return;
+    if (isPlayingSound) {
+      return;
+    }
 
     try {
       play();
@@ -25,13 +30,17 @@ export function StartScreen() {
       setIsPlayingSound(false);
     }
   }
-  function goToPlay() {
+  async function goToPlay() {
     if (!account.address) {
       openConnectModal();
       return;
     }
 
-    Router.push("/play");
+    console.log('account.address', account.address);
+
+    await join.mutate({ address: account.address });
+
+    // Router.push("/play");
   }
 
   function goToCredits() {
