@@ -76,7 +76,7 @@ export function StartScreen(props: StartScreenProps) {
 
     setIsLoading(false);
 
-    Router.push("/play");
+    setStep(2);
   }
 
   function goToCredits() {
