@@ -46,9 +46,9 @@ export function Player(props: PlayerProps) {
 
   useEffect(() => {
     const handleKeyDown = (keyboardEvent: KeyboardEvent) => {
-      if(game.isLoading) {
-        return;
-      }
+      // if(game.isLoading) {
+      //   return;
+      // }
 
       if (
         !["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(
