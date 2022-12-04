@@ -7,10 +7,10 @@ import { NODE_URL } from "../utils/env";
 import { FibObject } from "./useStateQuery";
 
 enum EventMoveEnum {
-  "ArrowUp" = 0,
-  "ArrowLeft" = 1,
-  "ArrowDown" = 2,
-  "ArrowRight" = 3,
+  "W" = 0,
+  "A" = 1,
+  "S" = 2,
+  "D" = 3,
 }
 
 export function usePlayerMoveMutation() {
@@ -18,14 +18,14 @@ export function usePlayerMoveMutation() {
     ["moveMutation"],
     async ({
       player,
-      keyboardEvent,
+      keyboardEventKey,
     }: {
       player: FibObject;
-      keyboardEvent: KeyboardEvent;
+      keyboardEventKey: string;
     }) => {
       const code = await (await axios.get("/contracts/act_move.kdl")).data
         .replace("#0", `#${player?.num}`)
-        .replace("#1", `#${EventMoveEnum[keyboardEvent.key]}`);
+        .replace("#1", `#${EventMoveEnum[keyboardEventKey]}`);
 
       return kindelia
         .sendInteract({

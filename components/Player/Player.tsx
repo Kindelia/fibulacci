@@ -1,13 +1,17 @@
-import $ from '@master/literal';
-import { useStore } from '@nanostores/react';
-import { useEffect } from 'react';
-import { useInterval } from 'react-use';
+import $ from "@master/literal";
+import { useStore } from "@nanostores/react";
+import { useEffect } from "react";
+import { useInterval } from "react-use";
 
-import { usePlayerMoveMutation } from '../../hooks/useMoveMutation';
-import { FibObject } from '../../hooks/useStateQuery';
-import { addGameStoreEvent, gameStore, setGameStore } from '../../stores/gameStore';
-import { Blob } from '../Creatures/Blob';
-import { Window } from '../Interfaces/Window';
+import { usePlayerMoveMutation } from "../../hooks/useMoveMutation";
+import { FibObject } from "../../hooks/useStateQuery";
+import {
+  addGameStoreEvent,
+  gameStore,
+  setGameStore,
+} from "../../stores/gameStore";
+import { Blob } from "../Creatures/Blob";
+import { Window } from "../Interfaces/Window";
 
 if (typeof window !== "undefined") {
   window.addEventListener("click", (e) => {
@@ -50,17 +54,15 @@ export function Player(props: PlayerProps) {
       //   return;
       // }
 
-      if (
-        !["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(
-          keyboardEvent.key
-        )
-      ) {
+      const keyboardEventKey = keyboardEvent.key.toUpperCase();
+
+      if (!["W", "S", "A", "D"].includes(keyboardEventKey)) {
         return;
       }
 
       playerMoveMutation.mutate({
         player,
-        keyboardEvent,
+        keyboardEventKey,
       });
     };
 
