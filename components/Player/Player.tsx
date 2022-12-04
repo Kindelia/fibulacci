@@ -71,9 +71,9 @@ export function Player(props: PlayerProps) {
     };
   }, [player, game]);
 
-  if (game.isLoading && player?.fat !== game.fat) {
+  if (game.isLoading && player?.fat !== game?.fat) {
     // @ts-ignore
-    setGameStore({ isLoading: false, fat: player.fat });
+    setGameStore({ isLoading: false, fat: player?.fat });
   }
 
   return (
