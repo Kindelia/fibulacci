@@ -1,4 +1,5 @@
 import { useStore } from "@nanostores/react";
+// import { useReactQuerySubscription } from "../../hooks/exampleSocket";
 
 import { useStateQuery } from "../../hooks/useStateQuery";
 import { gameStore } from "../../stores/gameStore";
@@ -9,6 +10,8 @@ import { PrincipalStage } from "../Stages/PrincipalStage";
 export default function PlayScreen() {
   const game = useStore(gameStore);
   const { data } = useStateQuery();
+
+  // useReactQuerySubscription();
 
   const loggedPlayer = data?.find((p) => p.num === game.player.num);
   const players = data?.filter(

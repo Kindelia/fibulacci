@@ -57,6 +57,7 @@ export function StartScreen(props: StartScreenProps) {
       });
 
       setStep(2);
+      Router.push("/?step=2")
       return;
     }
 
@@ -77,6 +78,7 @@ export function StartScreen(props: StartScreenProps) {
     setIsLoading(false);
 
     setStep(2);
+    Router.push("/?step=2")
   }
 
   function goToCredits() {

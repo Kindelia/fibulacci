@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import { useState } from 'react';
 import useSound from 'use-sound';
 
@@ -30,6 +31,7 @@ export function LoadingScreen(props: LoadingScreenProps) {
 
     setTimeout(() => {
       setStep(1);
+      Router.push("/?step=1");
     }, 5000);
   }
 
