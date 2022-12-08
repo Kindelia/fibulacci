@@ -48,11 +48,11 @@ export function Blob(props: BlobProps) {
       `}
         onClick={handlePlaySound}
       />
-      {enableDebug ? (
-        <p className={$`abs top:${y - 10} left:${x - 20} f:10`}>
-          {JSON.stringify(props)}
+      {/* {enableDebug ? (
+        <p className={$`abs top:${y - 10} left:${x - 20} f:10 w:500`}>
+          {JSON.stringify(props, null, 2)}
         </p>
-      ) : null}
+      ) : null} */}
     </>
   );
 }

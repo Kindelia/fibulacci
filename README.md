@@ -7,13 +7,13 @@
 
 # Clone
 ```bash
-git clone git@github.com:Kindelia/kindelia-js.git
+git clone git@github.com:Kindelia/@kindelia/kindelia-js.git
 git clone git@github.com:Kindelia/fibulacci.git
 ```
 
 # Install
 ```bash
-cd kindelia-js && yarn install && yarn build && cd ..
+cd @kindelia/kindelia-js && yarn install && yarn build && cd ..
 cd fibulacci && yarn install
 ```
 

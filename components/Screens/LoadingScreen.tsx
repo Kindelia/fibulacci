@@ -1,11 +1,16 @@
-import Router from "next/router";
-import { useState } from "react";
-import { useTimeoutFn } from "react-use";
-import useSound from "use-sound";
+import Router from 'next/router';
+import { useState } from 'react';
+import useSound from 'use-sound';
 
-import { LogoIcon } from "../Icons/LogoIcon";
+import { LogoIcon } from '../Icons/LogoIcon';
 
-export function LoadingScreen() {
+export type LoadingScreenProps = {
+  setStep: (step: 0 | 1 | 2) => void;
+};
+
+export function LoadingScreen(props: LoadingScreenProps) {
+  const { setStep } = props;
+
   const [isPlayingSound, setIsPlayingSound] = useState(false);
 
   const [play] = useSound("/sounds/loading.mp3", { volume: 0.9 });
@@ -25,8 +30,9 @@ export function LoadingScreen() {
     handlePlaySound();
 
     setTimeout(() => {
-      Router.push("/start");
-    }, 7000);
+      setStep(1);
+      Router.push("/?step=1");
+    }, 5000);
   }
 
   if (!isPlayingSound) {

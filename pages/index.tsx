@@ -1,8 +1,23 @@
 import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import { useEffectOnce } from 'react-use';
 
 import { LoadingScreen } from '../components/Screens/LoadingScreen';
+import PlayScreen from '../components/Screens/PlayScreen';
+import { StartScreen } from '../components/Screens/StartScreen';
 
-export default function Home() {
+export default function Index() {
+  const [step, setStep] = useState<0 | 1 | 2>(0);
+
+  useEffectOnce(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const step = urlParams.get("step");
+
+    if (step) {
+      setStep(Number(step) as 0 | 1 | 2);
+    }
+  });
+
   return (
     <div>
       <Head>
@@ -12,7 +27,13 @@ export default function Home() {
       </Head>
 
       <main>
-        <LoadingScreen />
+        {
+          {
+            0: <LoadingScreen setStep={setStep} />,
+            1: <StartScreen setStep={setStep} />,
+            2: <PlayScreen />,
+          }[step]
+        }
       </main>
     </div>
   );

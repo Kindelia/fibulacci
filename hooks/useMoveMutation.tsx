@@ -1,16 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import kindelia from "kindelia-js";
+import kindelia from "@kindelia/kindelia-js";
 
 import { setGameStore } from "../stores/gameStore";
 import { NODE_URL } from "../utils/env";
 import { FibObject } from "./useStateQuery";
 
 enum EventMoveEnum {
-  "ArrowUp" = 0,
-  "ArrowLeft" = 1,
-  "ArrowDown" = 2,
-  "ArrowRight" = 3,
+  "W" = 0,
+  "A" = 1,
+  "S" = 2,
+  "D" = 3,
 }
 
 export function usePlayerMoveMutation() {
@@ -18,14 +18,14 @@ export function usePlayerMoveMutation() {
     ["moveMutation"],
     async ({
       player,
-      eventMove,
+      keyboardEventKey,
     }: {
       player: FibObject;
-      eventMove: KeyboardEvent;
+      keyboardEventKey: string;
     }) => {
       const code = await (await axios.get("/contracts/act_move.kdl")).data
-        .replace("#0", `#${player.num}`)
-        .replace("#1", `#${EventMoveEnum[eventMove.key]}`);
+        .replace("#0", `#${player?.num}`)
+        .replace("#1", `#${EventMoveEnum[keyboardEventKey]}`);
 
       return kindelia
         .sendInteract({
@@ -34,10 +34,8 @@ export function usePlayerMoveMutation() {
           code,
         })
         .then((res) => {
-          if (res.data[0]["Ok"] === null) {
-            setGameStore({ isLoading: true, player });
-          }
-
+          // @ts-ignore
+          setGameStore({ isLoading: true, fat: player?.fat });
           return res;
         });
     }

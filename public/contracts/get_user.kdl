@@ -1,5 +1,5 @@
 // Return the user for a wallet
-// Change #0 to wallet
+// Change #_0 to wallet
 
 run {
   ask state  = (Call 'Fid' {Fid_act_get});

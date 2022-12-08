@@ -1,5 +1,5 @@
 import { useMutation } from "wagmi";
-import kindelia from "kindelia-js";
+import kindelia from "@kindelia/kindelia-js";
 import { NODE_URL } from "../utils/env";
 import { FIB_CONTRACT, FIB_CONTRACT_NAME } from "../utils/contract";
 import axios from "axios";

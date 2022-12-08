@@ -18,7 +18,7 @@ const { chains, provider } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "KChain",
+  appName: "Fibulacci",
   chains,
 });
 
