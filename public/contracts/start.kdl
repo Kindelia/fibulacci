@@ -3,6 +3,6 @@
 // Can only be used when game is at the lobby mode
 
 run {
-  ask x = (Call 'Fit' {Fit_act_strt});
+  ask x = (Call 'Fid' {Fid_act_strt});
   (Done x)
 }
