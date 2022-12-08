@@ -28,10 +28,11 @@ if (typeof window !== "undefined") {
 
 type PlayerProps = {
   player: FibObject;
+  players: FibObject[];
 };
 
 export function Player(props: PlayerProps) {
-  const { player } = props;
+  const { player, players } = props;
 
   const playerMoveMutation = usePlayerMoveMutation();
   const game = useStore(gameStore);
@@ -87,7 +88,7 @@ export function Player(props: PlayerProps) {
           <p>Loading...</p>
         </div>
       ) : null}
-      <Window player={player} />
+      <Window player={player} players={players} />
       {/* <EventLogs /> */}
       {/* {game.events.map((e) => {
         return {
