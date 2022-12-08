@@ -8,27 +8,27 @@ import { Player } from "../Player/Player";
 import { PrincipalStage } from "../Stages/PrincipalStage";
 
 export default function PlayScreen() {
-  const game = useStore(gameStore);
-  const { data } = useStateQuery();
+	const game = useStore(gameStore);
+	const { data } = useStateQuery();
 
-  // useReactQuerySubscription();
+	// useReactQuerySubscription();
 
-  const loggedPlayer = data?.find((p) => p.num === game.player.num);
-  const players = data?.filter(
-    (p) => p.num !== game.player.num && p.type === "player"
-  );
+	const loggedPlayer = data?.find((p) => p.num === game.player.num);
+	const players = data?.filter(
+		(p) => p.num !== game.player.num && p.type === "player",
+	);
 
-  return (
-    <PrincipalStage>
-      <Player player={loggedPlayer} />
-      {players?.map((creature) => (
-        <BlobBlue
-          x={Number(creature.x) * 32}
-          y={Number(creature.y) * 32}
-          hp={creature.hp}
-          side="right"
-        />
-      )) ?? []}
-    </PrincipalStage>
-  );
+	return (
+		<PrincipalStage>
+			{players?.map((creature) => (
+				<BlobBlue
+					x={Number(creature.x) * 32}
+					y={Number(creature.y) * 32}
+					hp={creature.hp}
+					side="right"
+				/>
+			)) ?? []}
+			<Player player={loggedPlayer} players={players} />
+		</PrincipalStage>
+	);
 }
