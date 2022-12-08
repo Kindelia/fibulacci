@@ -4,6 +4,6 @@
 
 run {
   // Wallet and Kgt invested
-  ask x = (Call 'Fid' {Fid_act_join #0 #1});
+  ask x = (Call 'F_0' {F_0_act_join #0 #1});
   (Done x)
 }
