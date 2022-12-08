@@ -5,6 +5,8 @@ body {
   color: white;
 
   overflow: hidden;
+
+  image-rendering: pixelated;
 }
 
 @keyframes blob {
@@ -17,7 +19,6 @@ body {
   }
 }
 
-/* fireball background-position x init background-position y */
 @keyframes fireballX {
   from {
     background-position-x: 256px;
