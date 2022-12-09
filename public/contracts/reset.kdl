@@ -2,6 +2,6 @@
 // Can only be used if state is on the game phase
 
 run {
-  ask x = (Call 'F_3' {F_3_act_rst});
+  ask x = (Call 'F_4' {F_4_act_rst});
   (Done x)
 }
