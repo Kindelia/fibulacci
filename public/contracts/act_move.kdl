@@ -11,7 +11,7 @@
 
 run {
   // Direction, player_num
-  let code = (F_2_kdl_walk #1 #0);
-  ask x = (Call 'F_2' {F_2_act_act code});
+  let code = (F_3_kdl_walk #1 #0);
+  ask x = (Call 'F_3' {F_3_act_act code});
   (Done x)
 }
