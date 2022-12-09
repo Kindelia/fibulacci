@@ -48,8 +48,8 @@ export function useStateQuery() {
       return numbList
         .map((numb) => name.num_to_name(BigInt(numb)))
         .reduce((acc, curr) => {
-          5;
-          if (curr === "type") {
+
+          if (curr === "num") {
             acc.push([]);
           }
 
