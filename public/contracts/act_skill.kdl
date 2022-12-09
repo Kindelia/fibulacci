@@ -6,7 +6,7 @@
 
 run {
   // x0, y0, x1, y1, player_num, skill_slot
-  let code = (F_0_kdl_skll #0 #1 #2 #3 #4 #5);
-  ask x = (Call 'F_0' {F_0_act_act code});
+  let code = (F_1_kdl_skll #0 #1 #2 #3 #4 #5);
+  ask x = (Call 'F_1' {F_1_act_act code});
   (Done x)
 }
