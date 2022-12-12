@@ -1,6 +1,6 @@
 // Return the table but as a BraunTree, with only the relevant data
 
 run {
-  ask state = (Call 'F_4' {F_4_act_get});
+  ask state = (Call 'F_5' {F_5_act_get});
   (Done state)
 }

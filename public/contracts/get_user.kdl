@@ -2,7 +2,7 @@
 // Change #_0 to wallet
 
 run {
-  ask state  = (Call 'F_4' {F_4_act_get});
-  let r      = (F_4_get_user state #0);
+  ask state  = (Call 'F_5' {F_5_act_get});
+  let r      = (F_5_get_user state #0);
   (Done r)
 }
