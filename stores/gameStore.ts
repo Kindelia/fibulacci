@@ -5,6 +5,7 @@ type Game = {
   isLoading?: boolean;
   fat: number;
   player: FibObject & { addressETH: string };
+  isEnableRangeSkill: boolean;
   events: {
     id?: string;
     type: "fireball" | "heal" | "attack" | "defend";
@@ -12,13 +13,13 @@ type Game = {
       x: number;
       y: number;
     };
-    ms: number;
   }[];
 };
 
 const initialGameState: Game = {
   isLoading: false,
   fat: 0,
+  isEnableRangeSkill: false,
   player: {
     num: 0,
     addressETH: "0x000000n",
@@ -50,7 +51,6 @@ export const addGameStoreEvent = (event: Game["events"][0]) => {
     events: [
       ...game.events,
       {
-        id: Math.random().toString(36).substr(2, 18),
         ...event,
       },
     ],
