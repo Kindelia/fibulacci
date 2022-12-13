@@ -8,9 +8,13 @@ import { FibObject } from "./useStateQuery";
 
 enum EventMoveEnum {
   "W" = 0,
+  "ArrowUp" = 0,
   "A" = 1,
+  "ArrowLeft" = 1,
   "S" = 2,
+  "ArrowDown" = 2,
   "D" = 3,
+  "ArrowRight" = 3,
 }
 
 export function usePlayerMoveMutation() {
