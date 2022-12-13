@@ -25,29 +25,38 @@ export function Window(props: WindowProps) {
 			<div className="flex flex:col h:100vh jc:space-around ai:center">
 				<div
 					className={$`
-          w:160
-          h:160
-          bg:orange-80 
-          flex
-          bg:url('/images/maps/world-terrain.png')
-          bg:no-repeat
-          bg:cover
-          rel
-        `}
+						w:160
+						h:160
+						bg:url('/images/maps/world-terrain.png')
+						bg:no-repeat
+						bg:cover
+						rel
+					`}
 					style={{
 						zoom: 2,
-						imageRendering: "auto",
-					}}
+							imageRendering: "auto",
+						}}
 				>
-					{players?.map((p) => (
-						<div
-							key={p.num}
-							className={$`abs bg:red-60 h:5 w:5 top:${p?.y} left:${p?.x} round @flash|5s|infinite`}
-						/>
-					))}
 					<div
-						className={$`abs bg:green-60 h:5 w:5 top:${player?.y} left:${player?.x} round`}
-					/>
+						className={$`
+						w:160
+						h:160	
+						bg:url('/images/maps/world-objects.png')
+						bg:no-repeat
+						bg:cover
+						rel
+					`}
+					>
+						{players?.map((p) => (
+							<div
+								key={p.num}
+								className={$`abs bg:red-60 h:5 w:5 top:${p?.y} left:${p?.x} round @flash|5s|infinite`}
+							/>
+						))}
+						<div
+							className={$`abs bg:green-60 h:5 w:5 top:${player?.y} left:${player?.x} round`}
+						/>
+					</div>
 				</div>
 				<div className="flex flex:col gap:2">
 					<HPBar hp={player?.hp} />
