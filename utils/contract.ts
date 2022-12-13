@@ -1,4 +1,4 @@
-export const FIB_CONTRACT_NAME = "Fql";
+export const FIB_CONTRACT_NAME = "F_4";
 
 export const FIB_CONTRACT = {
 	FIB_ACT_GET: `${FIB_CONTRACT_NAME}_act_get`,
