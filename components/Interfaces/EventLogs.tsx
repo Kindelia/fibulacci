@@ -4,7 +4,7 @@ export type EventLogsProps = {};
 
 export function EventLogs(_: EventLogsProps) {
   return (
-    <div className={$`fixed buttom:0 left:0 h:500 w:500`}>
+    <div className={$`fixed buttom:0 left:0 h:500 w:500 bg:black opacity:0.3`}>
       <p>Events</p>
       <ul>
         {[
