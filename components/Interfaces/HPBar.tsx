@@ -36,7 +36,7 @@ export function HPBar(props: HPBarProps) {
           `}
         />
       </div>
-      <p className="abs top:36% left:45%">HP</p>
+      <p className="abs top:36% left:35%">HP: {hp}</p>
     </div>
   );
 }
