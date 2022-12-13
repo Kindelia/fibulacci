@@ -47,7 +47,8 @@ export function StartScreen(props: StartScreenProps) {
 
 	async function goToPlay() {
 		setIsLoading(true);
-
+		localStorage.clear();
+		
 		const loggedUserId = await getUser(account.address);
 
 		if (loggedUserId || loggedUserId === 0) {
