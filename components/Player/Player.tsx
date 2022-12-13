@@ -91,6 +91,7 @@ export function Player(props: PlayerProps) {
 			{game.events.map((e) => {
 				return {
 					fireball: (
+						// @ts-ignore
 						<FireballSkill x={e.position.x} y={e.position.y} id={e.id} />
 					),
 				}[e.type];

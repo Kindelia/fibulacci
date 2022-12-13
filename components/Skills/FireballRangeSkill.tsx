@@ -43,12 +43,14 @@ export function FireballRangeSkill(props: FireballRangeSkillProps) {
 								};
 
 								skillMutation({
+									// @ts-ignore
 									type: "fireball",
 									targetPosition,
 									playerCurrentPosition: { x: left, y: top },
 									skillId: 0,
 								});
 								
+								// @ts-ignore
 								setGameStore({ isEnableRangeSkill: false })
 							}}
 						/>

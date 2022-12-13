@@ -37,6 +37,7 @@ export function WindowSlot(_props: WindowSlotProps) {
 									cursor:pointer
 								`}
 								onClick={() => {
+									// @ts-ignore
 									setGameStore({
 										isEnableRangeSkill: !game.isEnableRangeSkill,
 									});
