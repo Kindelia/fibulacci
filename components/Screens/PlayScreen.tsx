@@ -1,7 +1,7 @@
 import { useStore } from "@nanostores/react";
-// import { useReactQuerySubscription } from "../../hooks/exampleSocket";
 
 import { useStateQuery } from "../../hooks/useStateQuery";
+import { useWebSocket } from "../../hooks/useWebSocket";
 import { gameStore } from "../../stores/gameStore";
 import { BlobBlue } from "../Creatures/BlobBlue";
 import { Player } from "../Player/Player";
@@ -11,7 +11,7 @@ export default function PlayScreen() {
 	const game = useStore(gameStore);
 	const { data } = useStateQuery();
 
-	// useReactQuerySubscription();
+	useWebSocket();
 
 	const loggedPlayer = data?.find((p) => p.num === game.player.num);
 	const players = data?.filter(
