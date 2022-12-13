@@ -1,5 +1,6 @@
 import $ from "@master/literal";
 import { skillMutation } from "../../hooks/useSkillMutation";
+import { setGameStore } from "../../stores/gameStore";
 import { createDiamond } from "../../utils/utils";
 
 export type FireballRangeSkillProps = {
@@ -47,6 +48,8 @@ export function FireballRangeSkill(props: FireballRangeSkillProps) {
 									playerCurrentPosition: { x: left, y: top },
 									skillId: 0,
 								});
+								
+								setGameStore({ isEnableRangeSkill: false })
 							}}
 						/>
 					))}
