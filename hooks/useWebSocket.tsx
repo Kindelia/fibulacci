@@ -11,18 +11,20 @@ export function useWebSocket() {
 	useEffect(() => {
 		try {
 			const websocket = new WebSocket(
-				`ws://${NODE_URL_WITHOUT_HTTPS}:3000/?tags=add_block`,
+				`wss://${NODE_URL_WITHOUT_HTTPS}/events?tags=add_block`,
 			);
+
 			websocket.onopen = () => {
 				console.log("connected");
 			};
+
 			websocket.onmessage = (event) => {
 				const data = event.data;
 
 				if (data.includes("F_4")) {
 					console.log(data);
 
-					if (data.includes("F_4_res_acte")) {
+					if (data.includes("F_4_res_acte") && data.includes("F_4_evt_skil")) {
 						const parsedData = JSON.parse(data);
 
 						const skill = skillSerializer(
@@ -36,11 +38,6 @@ export function useWebSocket() {
 						});
 					}
 				}
-
-				// const queryKey = [...data.entity, data.id].filter(Boolean);
-				//   queryClient.invalidateQueries(queryKey);
-				//   queryClient.setQueriesData(queryKey, data);
-				// queryClient.getQueriesData(queryKey);
 			};
 
 			return () => {

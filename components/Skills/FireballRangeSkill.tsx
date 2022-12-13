@@ -1,6 +1,7 @@
 import $ from "@master/literal";
+import { useStore } from "@nanostores/react";
 import { skillMutation } from "../../hooks/useSkillMutation";
-import { setGameStore } from "../../stores/gameStore";
+import { gameStore, setGameStore } from "../../stores/gameStore";
 import { createDiamond } from "../../utils/utils";
 
 export type FireballRangeSkillProps = {
@@ -12,6 +13,8 @@ export function FireballRangeSkill(props: FireballRangeSkillProps) {
 	const { top, left } = props;
 
 	const range = 5;
+
+	const game = useStore(gameStore);
 
 	const diamond = createDiamond(range);
 
@@ -43,15 +46,17 @@ export function FireballRangeSkill(props: FireballRangeSkillProps) {
 								};
 
 								skillMutation({
-									// @ts-ignore
-									type: "fireball",
-									targetPosition,
-									playerCurrentPosition: { x: left, y: top },
+									playerId: game.player.num,
+									targetPosition: {
+										x: targetPosition.x / 32,
+										y: targetPosition.y / 32,
+									},
+									playerCurrentPosition: { x: left / 32, y: top / 32 },
 									skillId: 0,
 								});
-								
+
 								// @ts-ignore
-								setGameStore({ isEnableRangeSkill: false })
+								setGameStore({ isEnableRangeSkill: false });
 							}}
 						/>
 					))}
