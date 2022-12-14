@@ -13,6 +13,9 @@ export function HPBar(props: HPBarProps) {
   const width = 130 * scale;
   const height = 18 * scale;
 
+  const defaultHP = 250;
+  const currentHPWidth = hp * width / defaultHP 
+
   return (
     <div className={$`rel w:${width} h:${height}`}>
       <EmptyBar />
@@ -23,7 +26,7 @@ export function HPBar(props: HPBarProps) {
           left:0 
           overflow:hidden
           top:0
-          w:${width - hp * scale} 
+          w:${currentHPWidth === 0 ? 1 : currentHPWidth} 
         `}
       >
         <div
