@@ -1,17 +1,20 @@
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import Router from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useEffectOnce } from "react-use";
 import useSound from "use-sound";
 import { useAccount } from "wagmi";
+import { BgVideo } from "../../atoms/BgVideo";
 
 import { getUser } from "../../hooks/useGetUserQuery";
 import { useJoinMutation } from "../../hooks/useJoinMutation";
 import { useResetMutation } from "../../hooks/useResetMutation";
-import { startMutation, useStartMutation } from "../../hooks/useStartMutation";
+import { useStartMutation } from "../../hooks/useStartMutation";
 import { setGameStore } from "../../stores/gameStore";
 import { sleep } from "../../utils/utils";
-import { LogoIcon } from "../Icons/LogoIcon";
+import { Logo } from "../../atoms/Logo";
+import { Button } from "../../atoms/Button";
+import { MarketingText } from "../../atoms/MarketingText";
 
 export type StartScreenProps = {
 	setStep: (step: 0 | 1 | 2) => void;
@@ -48,7 +51,7 @@ export function StartScreen(props: StartScreenProps) {
 	async function goToPlay() {
 		setIsLoading(true);
 		localStorage.clear();
-		
+
 		const loggedUserId = await getUser(account.address);
 
 		if (loggedUserId || loggedUserId === 0) {
@@ -106,48 +109,36 @@ export function StartScreen(props: StartScreenProps) {
 	});
 
 	return (
-		<div className="flex flex:col ai:center jc:center h:100vh bg:black gap:20">
-			<LogoIcon className="h:20% @float|3s|ease-in-out|infinite mb:10%" />
-			<p>Welcome Fibulacci</p>
-			{!isLoading && !account.address ? (
-				<button
-					className="bg:white py:20 px:100 f:black rounded bg:gray-60:hover"
-					onClick={() => openConnectModal()}
-				>
-					CONNECT WALLET
-				</button>
-			) : null}
-			{!isLoading && account.address ? (
-				<button
-					className="bg:white py:20 px:100 f:black rounded bg:gray-60:hover"
-					onClick={goToPlay}
-				>
-					START GAME
-				</button>
-			) : null}
-			{isLoading ? (
-				<button
-					className="bg:white py:20 px:100 f:black rounded bg:gray-60:hover"
-					disabled={true}
-				>
-					Loading...
-				</button>
-			) : null}
-			<button
-				onClick={onClickContractStart}
-				className="bg:white py:20 px:100 f:black rounded bg:gray-60:hover"
-			>
-				Contract Start
-			</button>
-			<button
-				onClick={onClickContractReset}
-				className="bg:white py:20 px:100 f:black rounded bg:gray-60:hover"
-			>
-				Contract Reset
-			</button>
-			<p onClick={goToCredits} className="cursor:pointer">
-				CREDITS
-			</p>
-		</div>
+		<>
+			<BgVideo />
+			<div className="flex flex:col h:100vh ai:center jc:space-around fixed w:full">
+				<Logo />
+				<MarketingText className="my:20" />
+				<div className="flex flex:col">
+					{!(isLoading && account.address) && (
+						<Button className="mt:auto mb:50" onClick={goToPlay}>
+							Start
+						</Button>
+					)}
+					{isLoading && account.address && (
+						<Button
+							className="mt:auto mb:50"
+							onClick={() => openConnectModal()}
+						>
+							Connect
+						</Button>
+					)}
+					<Button className="mt:auto mb:50" onClick={onClickContractReset}>
+						Reset (Temp)
+					</Button>
+					<Button className="mt:auto mb:50" onClick={onClickContractStart}>
+						Start (Temp)
+					</Button>
+					<Button className="mt:auto mb:50" onClick={goToCredits}>
+						Credits
+					</Button>
+				</div>
+			</div>
+		</>
 	);
 }
