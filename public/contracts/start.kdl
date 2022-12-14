@@ -3,6 +3,6 @@
 // Can only be used when game is at the lobby mode
 
 run {
-  ask x = (Call 'F_4' {F_4_act_strt});
+  ask x = (Call 'F_6' {F_6_act_strt});
   (Done x)
 }

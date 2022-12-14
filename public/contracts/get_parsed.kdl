@@ -2,7 +2,7 @@
 
 run {
   ask tick = (Tick);
-  ask x    = (Call 'F_4' {F_4_act_get});
-  let r    = (F_4_kdl_sttp x tick);
+  ask x    = (Call 'F_6' {F_6_act_get});
+  let r    = (F_6_kdl_sttp x tick);
   (Done r)
 }
