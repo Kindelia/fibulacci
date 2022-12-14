@@ -52,6 +52,12 @@ export function StartScreen(props: StartScreenProps) {
 		setIsLoading(true);
 		localStorage.clear();
 
+		if (!account.address) {
+			openConnectModal();
+			setIsLoading(false);
+			return;
+		}
+
 		const loggedUserId = await getUser(account.address);
 
 		if (loggedUserId || loggedUserId === 0) {
@@ -63,8 +69,8 @@ export function StartScreen(props: StartScreenProps) {
 				},
 			});
 
-			setStep(2);
-			Router.push("/?step=2");
+			setStep(1);
+			Router.push("/?step=1");
 			return;
 		}
 
@@ -84,8 +90,8 @@ export function StartScreen(props: StartScreenProps) {
 
 		setIsLoading(false);
 
-		setStep(2);
-		Router.push("/?step=2");
+		setStep(1);
+		Router.push("/?step=1");
 	}
 
 	function goToCredits() {
@@ -114,20 +120,10 @@ export function StartScreen(props: StartScreenProps) {
 			<div className="flex flex:col h:100vh ai:center jc:space-around fixed w:full">
 				<Logo />
 				<MarketingText className="my:20" />
-				<div className="flex flex:col">
-					{!(isLoading && account.address) && (
-						<Button className="mt:auto mb:50" onClick={goToPlay}>
-							Start
-						</Button>
-					)}
-					{isLoading && account.address && (
-						<Button
-							className="mt:auto mb:50"
-							onClick={() => openConnectModal()}
-						>
-							Connect
-						</Button>
-					)}
+				<div className="flex flex:col">				
+					<Button className="mt:auto mb:50" onClick={goToPlay} disabled={isLoading}>
+						{isLoading ? "Loading" : "Start"}
+					</Button>
 					<Button className="mt:auto mb:50" onClick={onClickContractReset}>
 						Reset (Temp)
 					</Button>
