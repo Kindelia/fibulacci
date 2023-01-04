@@ -9,7 +9,7 @@ export function MarketingText(props: MarketingTextProps) {
 
 	return (
 		<div className={$`color:white text:center flex flex:col gap:30 ${className}`}>
-			<h1>Unleash K-Chan's Capabilities</h1>
+			<h1>Unleash Kindelia Capabilities</h1>
 			<p>
 				Enter a world of endless possibilities with Fibulacci, the world's first
 				<br />
