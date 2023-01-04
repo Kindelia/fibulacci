@@ -454,6 +454,11 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
+"@fontsource/press-start-2p@^4.5.11":
+  version "4.5.11"
+  resolved "https://registry.yarnpkg.com/@fontsource/press-start-2p/-/press-start-2p-4.5.11.tgz#c347ffc85221bac9b242cbbc54194b65d76c4f24"
+  integrity sha512-wICB8YPvoBi9Ok7s+CxAOljiQ6wqQN/UhrDrB63q9nudYDSOWmvrjFQaXSlj0AN16nAkDjZiaCz6dcKtR0kleg==
+
 "@fxts/core@0.12.0":
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/@fxts/core/-/core-0.12.0.tgz#c992c39aa5741c710d7ab06961409b2b666fd53c"

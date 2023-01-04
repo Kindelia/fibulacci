@@ -1,7 +1,7 @@
 import "@master/css";
 import "@master/keyframes.css";
 import "@master/normal.css";
-
+import "@fontsource/press-start-2p";
 import "@rainbow-me/rainbowkit/styles.css";
 
 import "../styles/globals.css";
