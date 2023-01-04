@@ -4,13 +4,13 @@ import {
 	setGameStore,
 } from "../stores/gameStore";
 import { resetLoadingStore, setLoadingStore } from "../stores/loadingStore";
-import { NODE_URL_WITHOUT_HTTPS } from "./env";
+import { NODE_SOCKET_URL } from "./env";
 import { joinSerializer, nojoSerializer, skillSerializer } from "./gamb";
 import { toastError, toastSuccess } from "./utils";
 
 try {
 	const websocket = new WebSocket(
-		`wss://${NODE_URL_WITHOUT_HTTPS}/events?tags=add_block`,
+		`wss://${NODE_SOCKET_URL}/events?tags=add_block`,
 	);
 
 	websocket.onmessage = (event) => {
