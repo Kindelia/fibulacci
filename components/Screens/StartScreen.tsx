@@ -1,33 +1,42 @@
+import { useStore } from "@nanostores/react";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import Router from "next/router";
 import { useState } from "react";
 import { useEffectOnce } from "react-use";
 import useSound from "use-sound";
 import { useAccount } from "wagmi";
-import { BgVideo } from "../../atoms/BgVideo";
 
-import { getUser } from "../../hooks/useGetUserQuery";
+import { BgVideo } from "../../atoms/BgVideo";
+import { Button } from "../../atoms/Button";
+import { Logo } from "../../atoms/Logo";
+import { MarketingText } from "../../atoms/MarketingText";
 import { useJoinMutation } from "../../hooks/useJoinMutation";
+import { getUser } from "../../hooks/useGetUserQuery";
 import { useResetMutation } from "../../hooks/useResetMutation";
 import { useStartMutation } from "../../hooks/useStartMutation";
 import { setGameStore } from "../../stores/gameStore";
-import { sleep } from "../../utils/utils";
-import { Logo } from "../../atoms/Logo";
-import { Button } from "../../atoms/Button";
-import { MarketingText } from "../../atoms/MarketingText";
+import {
+	loadingStore,
+	resetLoadingStore,
+	setLoadingStore,
+} from "../../stores/loadingStore";
 
 export type StartScreenProps = {
 	setStep: (step: 0 | 1 | 2) => void;
+	isDev: boolean;
 };
 
 export function StartScreen(props: StartScreenProps) {
-	const { setStep } = props;
+	const { isDev, setStep } = props;
+
+	const loading = useStore(loadingStore);
+
+	const isLoading = Object.values(loading).some((value) => value);
 
 	const account = useAccount();
 	const { openConnectModal } = useConnectModal();
 
 	const [isPlayingSound, setIsPlayingSound] = useState(false);
-	const [isLoading, setIsLoading] = useState(false);
 
 	const join = useJoinMutation();
 	const start = useStartMutation();
@@ -49,66 +58,60 @@ export function StartScreen(props: StartScreenProps) {
 	}
 
 	async function goToPlay() {
-		setIsLoading(true);
-		localStorage.clear();
+		setLoadingStore({
+			isEnterGameLoading: true,
+		});
 
-		if (!account.address) {
+		if (!account?.address) {
 			openConnectModal();
-			setIsLoading(false);
+			setLoadingStore({
+				isEnterGameLoading: false,
+			});
 			return;
 		}
 
 		const loggedUserId = await getUser(account.address);
 
 		if (loggedUserId || loggedUserId === 0) {
-			// @ts-ignore
 			setGameStore({
 				player: {
-					num: loggedUserId,
 					addressETH: account.address,
+					num: loggedUserId,
 				},
 			});
 
+			resetLoadingStore();
+
 			setStep(1);
-			Router.push("/?step=1");
+
 			return;
 		}
 
 		await join.mutate({ address: account.address });
 
-		await sleep(1000 * 10);
-
-		const id = await getUser(account.address);
-
 		// @ts-ignore
 		setGameStore({
 			player: {
-				num: id,
 				addressETH: account.address,
 			},
 		});
-
-		setIsLoading(false);
-
-		setStep(1);
-		Router.push("/?step=1");
 	}
 
-	function goToCredits() {
-		Router.push("/credits");
-	}
+	const onClickReset = async () => {
+		setLoadingStore({
+			isResetGameLoading: true,
+		});
 
-	function onClickContractStart() {
-		start.mutate();
+		await reset.mutate();
+	};
 
-		alert("Contract started, wait a few minutes!");
-	}
+	const onClickStart = async () => {
+		setLoadingStore({
+			isStartGameLoading: true,
+		});
 
-	function onClickContractReset() {
-		reset.mutate();
-
-		alert("Contract reseted, wait a few minutes!");
-	}
+		await start.mutate();
+	};
 
 	useEffectOnce(() => {
 		handlePlaySound();
@@ -120,17 +123,41 @@ export function StartScreen(props: StartScreenProps) {
 			<div className="flex flex:col h:100vh ai:center jc:space-around fixed w:full">
 				<Logo />
 				<MarketingText className="my:20" />
-				<div className="flex flex:col">				
-					<Button className="mt:auto mb:50" onClick={goToPlay} disabled={isLoading}>
-						{isLoading ? "Loading" : "Start"}
+				<div className="flex flex:col">
+					<Button
+						className="mt:auto mb:50"
+						onClick={goToPlay}
+						disabled={isLoading}
+						suppressHydrationWarning
+					>
+						{loading?.isEnterGameLoading
+							? "Loading"
+							: !account?.address
+							? "Connect Wallet"
+							: "Start"}
 					</Button>
-					<Button className="mt:auto mb:50" onClick={onClickContractReset}>
-						Reset (Temp)
-					</Button>
-					<Button className="mt:auto mb:50" onClick={onClickContractStart}>
-						Start (Temp)
-					</Button>
-					<Button className="mt:auto mb:50" onClick={goToCredits}>
+					{isDev && (
+						<>
+							<Button
+								className="mt:auto mb:50"
+								onClick={onClickReset}
+								disabled={isLoading}
+							>
+								{loading.isResetGameLoading ? "Loading" : "Reset Contract"}
+							</Button>
+							<Button
+								className="mt:auto mb:50"
+								onClick={onClickStart}
+								disabled={isLoading}
+							>
+								{loading.isStartGameLoading ? "Loading" : "Start Contract"}
+							</Button>
+						</>
+					)}
+					<Button
+						className="mt:auto mb:50"
+						onClick={() => Router.push("/credits")}
+					>
 						Credits
 					</Button>
 				</div>

@@ -7,14 +7,15 @@ import { StartScreen } from "../components/Screens/StartScreen";
 
 export default function Index() {
 	const [step, setStep] = useState<0 | 1 | 2>(0);
+	const [isDev, setIsDev] = useState(false);
 
 	useEffectOnce(() => {
 		const urlParams = new URLSearchParams(window.location.search);
-		const step = urlParams.get("step");
+		const step = Number(urlParams.get("step"));
+		const isDev = urlParams.get("isDev") === "true";
 
-		if (step) {
-			setStep(Number(step) as 0 | 1 | 2);
-		}
+		setStep(step as 0 | 1 | 2);
+		setIsDev(isDev);
 	});
 
 	return (
@@ -28,7 +29,7 @@ export default function Index() {
 			<main>
 				{
 					{
-						0: <StartScreen setStep={setStep} />,
+						0: <StartScreen setStep={setStep} isDev={isDev} />,
 						1: <PlayScreen />,
 						// 2: <CreditScreen />,
 					}[step]

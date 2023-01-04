@@ -14,7 +14,7 @@ export function WindowSlot(_props: WindowSlotProps) {
 	return (
 		<div className="flex flex:row flex:wrap w:400 jc:center ai:center">
 			{F.pipe(
-				F.range(16),
+				F.range(8),
 				F.map((i: number) => (
 					<div
 						className={$`

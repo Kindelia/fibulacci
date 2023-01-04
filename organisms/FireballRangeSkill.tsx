@@ -1,8 +1,8 @@
 import $ from "@master/literal";
 import { useStore } from "@nanostores/react";
-import { skillMutation } from "../../hooks/useSkillMutation";
-import { gameStore, setGameStore } from "../../stores/gameStore";
-import { createDiamond } from "../../utils/utils";
+import { skillMutation } from "../hooks/useSkillMutation";
+import { gameStore, setGameStore } from "../stores/gameStore";
+import { createDiamond } from "../utils/utils";
 
 export type FireballRangeSkillProps = {
 	top: number;

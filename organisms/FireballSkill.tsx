@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useInterval } from "react-use";
 import useSound from "use-sound";
 
-import { removeGameStoreEvent } from "../../stores/gameStore";
+import { removeGameStoreEvent } from "../stores/gameStore";
 
 export type FireballSkillProps = {
   x: number;

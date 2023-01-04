@@ -1,17 +1,18 @@
 import { persistentAtom } from "@nanostores/persistent";
+import { computed } from "nanostores";
 import { FibObject } from "../hooks/useStateQuery";
 
 type Game = {
   isLoading?: boolean;
-  fat: number;
-  player: FibObject & { addressETH: string };
-  isEnableRangeSkill: boolean;
-  events: {
+  fat?: number;
+  player?: FibObject & { addressETH: string };
+  isEnableRangeSkill?: boolean;
+  events?: {
     id?: string;
-    type: "fireball" | "heal" | "attack" | "defend";
-    position: {
-      x: number;
-      y: number;
+    type?: "fireball" | "heal" | "attack" | "defend";
+    position?: {
+      x?: number;
+      y?: number;
     };
   }[];
 };
@@ -67,6 +68,8 @@ export const removeGameStoreEvent = (id: string) => {
     events,
   });
 };
+
+export const getAddressETH = computed(gameStore, (game) => game.player.addressETH);
 
 export function resetGameStore() {
   gameStore.set({
