@@ -1,5 +1,4 @@
-export const sleep = (ms: number) =>
-	new Promise((resolve) => setTimeout(resolve, ms));
+import { toast } from "react-hot-toast";
 
 export const formatAddress = (address: string): string =>
 	`#x${address.replace("0x", "").slice(0, 29)}`;
@@ -7,7 +6,7 @@ export const formatAddress = (address: string): string =>
 export const getNumbList = (json: any): string[] =>
 	JSON.stringify(json).match(/(?<=numb":").*?(?="})/g);
 
-export const randomUuid = (): string => {
+export const randomUUID = (): string => {
 	return Array(8)
 		.fill(undefined)
 		.map(() =>
@@ -29,3 +28,22 @@ export const createDiamond = (range: number): number[][] =>
 					return distance <= range ? 1 : 0;
 				}),
 		);
+
+export const toastError = (message: string) =>
+	toast.error(message, {
+		duration: 5000,
+		style: {
+			backgroundColor: "#F87171",
+		},
+	});
+
+export const toastSuccess = (message: string) =>
+	toast.success(message, {
+		duration: 5000,
+		style: {
+			backgroundColor: "#34D399",
+		},
+	});
+
+export const convertDecimalToHex = (decimal: number): string =>
+	decimal.toString(16);
